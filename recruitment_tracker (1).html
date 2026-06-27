@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Hippocampus Schools Teacher Recruitment 26-27</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;font-size:13px;background:#f5f3ff;color:#1a1a2e;}
+.hdr{background:#7B68C8;padding:14px 20px;}
+.hdr h1{font-size:17px;font-weight:700;color:#fff;margin-bottom:3px;}
+.hdr p{font-size:12px;color:rgba(255,255,255,0.85);}
+.hdr-row{overflow:hidden;}
+.hdr-left{float:left;}
+.hdr-right{float:right;padding-top:4px;}
+.add-btn{background:#fff;color:#7B68C8;border:none;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;}
+.tabs{background:#5a4ea8;padding:0 16px;overflow-x:auto;white-space:nowrap;}
+.tab{display:inline-block;padding:10px 18px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);cursor:pointer;border-bottom:3px solid transparent;border-top:none;border-left:none;border-right:none;background:transparent;}
+.tab.active{color:#fff;border-bottom:3px solid #F5A623;}
+.panel{display:none;padding:14px 16px;background:#f5f3ff;}
+.panel.active{display:block;}
+.cards{margin-bottom:14px;overflow:hidden;}
+.cards:after{content:'';display:table;clear:both;}
+.card{float:left;width:16%;min-width:90px;border-radius:8px;padding:10px;border:1.5px solid rgba(123,104,200,0.2);margin-right:8px;margin-bottom:8px;}
+.card-label{font-size:10px;font-weight:700;color:#555;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em;}
+.card-val{font-size:22px;font-weight:700;color:#1a1a2e;}
+.filters{margin-bottom:10px;overflow:hidden;}
+.filters:after{content:'';display:table;clear:both;}
+.f-item{float:left;margin-right:8px;margin-bottom:8px;}
+.f-item input[type="text"]{height:34px;padding:0 10px;border:1.5px solid #c4b8f0;border-radius:6px;font-size:12px;background:#fff;color:#1a1a2e;min-width:200px;-webkit-appearance:none;}
+.f-item select{height:34px;padding:0 10px;border:1.5px solid #c4b8f0;border-radius:6px;font-size:12px;background:#fff;color:#1a1a2e;min-width:130px;-webkit-appearance:none;}
+.ms-native{height:34px;padding:0 10px;border:1.5px solid #c4b8f0;border-radius:6px;font-size:12px;background:#fff;color:#1a1a2e;min-width:150px;-webkit-appearance:none;cursor:pointer;}
+.ms-label{display:none;}
+.hint{display:none;}
+.reset-btn{height:34px;padding:0 14px;border:1.5px solid #E63329;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;background:#fff;color:#E63329;-webkit-appearance:none;}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px;border:1.5px solid #c4b8f0;}
+table{width:100%;border-collapse:collapse;background:#fff;table-layout:fixed;}
+th{background:#7B68C8;padding:9px 10px;text-align:left;font-weight:700;font-size:11px;color:#fff;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;cursor:pointer;}
+td{padding:7px 10px;border-bottom:1px solid #ede9fe;vertical-align:middle;word-break:break-word;color:#1a1a2e;font-size:12px;font-weight:500;}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:#faf8ff;}
+.bdg{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;}
+.b-closed{background:#d1f5e0;color:#145c30;}.b-open{background:#dbeafe;color:#1034a6;}
+.b-dropped{background:#ede9fe;color:#4c1d95;}.b-offer{background:#fef3c7;color:#7a4f00;}
+.b-interview{background:#fde8e7;color:#991111;}
+.sc-DMS{background:#dbeafe;color:#1034a6;}.sc-Shiny{background:#fce7f3;color:#831843;}
+.sc-HSR{background:#d1fae5;color:#065f46;}.sc-JPS{background:#fef3c7;color:#7a4f00;}
+.sc-Netaji{background:#ede9fe;color:#4c1d95;}.sc-NSL{background:#fde8e7;color:#991111;}
+.sc-HSB{background:#e0f2fe;color:#075985;}.sc-VVHPS{background:#f5eeff;color:#6b21a8;}
+.sc-VHIS{background:#ecfdf5;color:#064e3b;}.sc-Prajna{background:#fff7ed;color:#7c2d12;}
+.sc-DBD{background:#f0fdf4;color:#14532d;}.sc-SBHS{background:#fdf2f8;color:#831843;}
+.sc-SPLIS{background:#eff6ff;color:#1e3a5f;}.sc-MFS{background:#fefce8;color:#713f12;}
+.sc-SSVM{background:#f5f3ff;color:#4c1d95;}.sc-SBVM{background:#fff1f2;color:#881337;}
+.sc-SSPS{background:#f0fdfa;color:#134e4a;}.sc-Malnad{background:#fdf4ff;color:#6b21a8;}
+.sc-Summit{background:#fffbeb;color:#78350f;}
+.loc-Pandavapura{background:#dbeafe;color:#1e40af;}.loc-Vijayawada{background:#fce7f3;color:#9d174d;}
+.loc-Rangapur{background:#d1fae5;color:#065f46;}.loc-Sagara{background:#fef3c7;color:#92400e;}
+.loc-Gokak{background:#ede9fe;color:#4c1d95;}.loc-Ponnur{background:#fde8e7;color:#991111;}
+.loc-Bangalore{background:#e0f2fe;color:#075985;}.loc-Beechanahalli{background:#ecfdf5;color:#064e3b;}
+.loc-Doddakallasandra{background:#fff7ed;color:#7c2d12;}.loc-Kudachi{background:#f0fdf4;color:#14532d;}
+.loc-Kalloli{background:#fdf2f8;color:#831843;}.loc-Chimmad{background:#eff6ff;color:#1e3a5f;}
+.loc-Mallipatna{background:#fefce8;color:#713f12;}.loc-Husananhalli{background:#f5f3ff;color:#4c1d95;}
+.loc-Gulbarga{background:#fff1f2;color:#881337;}.loc-Bidar{background:#f0fdfa;color:#134e4a;}
+.loc-Hassan{background:#fdf4ff;color:#6b21a8;}.loc-Chikmagalur{background:#fffbeb;color:#78350f;}
+.pos-Teacher{background:#e0f2fe;color:#075985;}.pos-Admin{background:#fef9c3;color:#713f12;}
+.pos-Counsellor{background:#fce7f3;color:#9d174d;}.pos-Special{background:#ede9fe;color:#4c1d95;}
+.pos-Other{background:#f1f5f9;color:#334155;}
+.gr-KG{background:#f5eeff;color:#6b21a8;}.gr-Pri{background:#dbeafe;color:#1e40af;}
+.gr-Mid{background:#d1fae5;color:#065f46;}.gr-High{background:#fef3c7;color:#92400e;}
+.gr-Senior{background:#fde8e7;color:#991111;}.gr-All{background:#f1f5f9;color:#334155;}
+.edit-btn{background:none;border:none;cursor:pointer;padding:3px 6px;font-size:14px;color:#7B68C8;}
+.bar-row{margin-bottom:3px;overflow:hidden;}
+.bar{height:8px;border-radius:4px;float:left;}
+.bar-cl{background:#34d399;}.bar-op{background:#60a5fa;}.bar-dr{background:#a78bfa;}
+.count{font-size:12px;font-weight:600;color:#555;margin-bottom:8px;}
+.subj-hdr{background:#7B68C8;padding:7px 10px;font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.05em;}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);z-index:1000;display:none;}
+.overlay.open{display:block;}
+.modal{background:#fff;border-radius:12px;padding:20px;width:90%;max-width:640px;max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;margin:5vh auto;position:relative;}
+.modal h2{font-size:15px;font-weight:700;color:#7B68C8;margin-bottom:14px;}
+.field-row{overflow:hidden;}
+.field-row:after{content:'';display:table;clear:both;}
+.field-row .field{float:left;width:48%;margin-right:4%;}
+.field-row .field:last-child{margin-right:0;}
+.field{margin-bottom:10px;}
+.field label{display:block;font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;}
+.field input,.field select,.field textarea{width:100%;padding:8px 10px;border:1.5px solid #c4b8f0;border-radius:6px;font-size:13px;color:#1a1a2e;background:#fff;-webkit-appearance:none;font-family:inherit;}
+.field textarea{min-height:56px;resize:vertical;}
+.modal-foot{margin-top:14px;overflow:hidden;}
+.btn-del{float:left;background:#fff;color:#E63329;border:1.5px solid #E63329;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:none;-webkit-appearance:none;}
+.btn-can{float:right;background:#fff;color:#555;border:1.5px solid #c4b8f0;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;margin-left:8px;-webkit-appearance:none;}
+.btn-sv{float:right;background:#7B68C8;color:#fff;border:none;border-radius:8px;padding:8px 22px;font-size:13px;font-weight:700;cursor:pointer;-webkit-appearance:none;}
+.hint{font-size:10px;color:#888;margin-top:3px;}
+@media(max-width:600px){
+  .card{width:44%;}.field-row .field{width:100%;float:none;margin-right:0;}
+  .modal{width:96%;padding:14px;}.ms-native{width:100%;max-width:100%;}
+}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-row">
+    <div class="hdr-left">
+      <h1>Hippocampus Schools Teacher Recruitment 26-27</h1>
+      <p>Vacancy tracker across all schools &amp; positions</p>
+    </div>
+    <div class="hdr-right">
+      <button class="add-btn" id="addBtn">+ Add Position</button>
+    </div>
+  </div>
+</div>
+<div class="tabs">
+  <button class="tab active" id="tab-s1">Vacancies</button>
+  <button class="tab" id="tab-s2">School Summary</button>
+  <button class="tab" id="tab-s3">Subject-wise</button>
+  <button class="tab" id="tab-s4">School Directory</button>
+</div>
+
+<!-- SHEET 1 -->
+<div id="s1" class="panel active">
+  <div class="cards" id="s1cards"></div>
+  <div class="filters">
+    <div class="f-item"><input type="text" id="q" placeholder="Search school, subject, name..."></div>
+    <div class="f-item"><select id="fSchool"><option value="">All schools</option></select></div>
+    <div class="f-item"><select id="fBy"><option value="">All raised by</option></select></div>
+    <div class="f-item">
+      <select class="ms-native" id="fStatus">
+        <option value="">All statuses</option>
+        <option>Closed</option>
+        <option>Open</option>
+        <option>Dropped</option>
+        <option>Offer under process</option>
+        <option>Interviews under process</option>
+      </select>
+    </div>
+    <div class="f-item">
+      <select class="ms-native" id="fSubj"><option value="">All subjects</option></select>
+    </div>
+    <div class="f-item" style="margin-top:0;">
+      <button class="add-btn" style="background:#7B68C8;color:#fff;height:34px;padding:0 14px;border-radius:6px;font-size:12px;font-weight:700;margin-right:6px;border:none;cursor:pointer;" id="btnApply1">Apply</button>
+      <button class="reset-btn" id="btnReset1">X Reset</button>
+    </div>
+  </div>
+  <div class="count" id="rowCount"></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th style="width:42px;" id="th-sl">#</th>
+        <th style="width:36px;"></th>
+        <th style="width:86px;" id="th-school">School</th>
+        <th style="width:84px;" id="th-loc">Location</th>
+        <th style="width:94px;" id="th-pos">Position</th>
+        <th style="width:114px;" id="th-subj">Subject</th>
+        <th style="width:68px;">Grades</th>
+        <th style="width:68px;">Salary</th>
+        <th style="width:44px;">Accom</th>
+        <th style="width:90px;" id="th-status">Status</th>
+        <th style="width:72px;">Close By</th>
+        <th style="width:80px;">Closed On</th>
+        <th style="width:70px;">Raised By</th>
+        <th style="width:106px;">Selected</th>
+        <th style="width:114px;">Comments</th>
+        <th style="width:90px;">Source</th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SHEET 2 -->
+<div id="s2" class="panel">
+  <div class="cards" id="s2cards"></div>
+  <div class="filters">
+    <div class="f-item"><select id="f2By"><option value="">All raised by</option></select></div>
+    <div class="f-item"><select id="f2Status">
+      <option value="">All statuses</option>
+      <option>Closed</option><option>Open</option><option>Dropped</option><option>Offer under process</option>
+    </select></div>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th style="width:120px;">School</th><th style="width:100px;">Location</th>
+        <th style="width:50px;">Total</th><th style="width:50px;">Open</th>
+        <th style="width:56px;">Closed</th><th style="width:58px;">Dropped</th>
+        <th style="width:60px;">Offer</th><th style="width:72px;">Raised By</th>
+        <th style="width:180px;">HR vs School</th><th style="width:160px;">Progress</th>
+      </tr></thead>
+      <tbody id="s2tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SHEET 3 -->
+<div id="s3" class="panel">
+  <div class="cards" id="s3cards"></div>
+  <div class="filters">
+    <div class="f-item">
+      <select class="ms-native" id="f3Subj"><option value="">All subjects</option></select>
+    </div>
+    <div class="f-item"><select id="f3Status">
+      <option value="">All statuses</option>
+      <option>Closed</option><option>Open</option><option>Dropped</option><option>Offer under process</option>
+    </select></div>
+    <div class="f-item"><select id="f3School"><option value="">All schools</option></select></div>
+    <div class="f-item"><button class="reset-btn" id="btnReset3">X Reset</button></div>
+  </div>
+  <div class="count" id="s3count"></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th style="width:36px;"></th>
+        <th style="width:126px;">Subject</th><th style="width:86px;">School</th>
+        <th style="width:84px;">Location</th><th style="width:68px;">Grades</th>
+        <th style="width:68px;">Salary</th><th style="width:44px;">Accom</th>
+        <th style="width:90px;">Status</th><th style="width:70px;">Raised By</th>
+        <th style="width:106px;">Selected</th><th style="width:114px;">Comments</th>
+      </tr></thead>
+      <tbody id="s3tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SHEET 4: School Directory -->
+<div id="s4" class="panel">
+  <div class="cards" id="s4cards"></div>
+  <div class="filters">
+    <div class="f-item"><input type="text" id="q4" placeholder="Search school, principal, director..."></div>
+    <div class="f-item"><select id="f4Dir"><option value="">All directors</option></select></div>
+    <div class="f-item"><select id="f4Board"><option value="">All boards</option></select></div>
+    <div class="f-item"><button class="add-btn" style="background:#7B68C8;color:#fff;height:34px;padding:0 14px;border-radius:6px;font-size:12px;font-weight:700;border:none;cursor:pointer;" id="addSchoolBtn">+ Add School</button></div>
+    <div class="f-item"><button class="reset-btn" id="btnReset4">X Reset</button></div>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th style="width:36px;">#</th>
+        <th style="width:36px;"></th>
+        <th style="width:140px;">School Name</th>
+        <th style="width:120px;">Board</th>
+        <th style="width:160px;">Principal</th>
+        <th style="width:120px;">Director</th>
+      </tr></thead>
+      <tbody id="s4tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SCHOOL DIRECTORY MODAL -->
+<div class="overlay" id="overlay4">
+  <div class="modal">
+    <h2 id="modal4Title">Add New School</h2>
+    <div class="field-row">
+      <div class="field"><label>School Name</label><input id="f4-name" placeholder="e.g. DMS"></div>
+      <div class="field"><label>Board</label><input id="f4-board" placeholder="e.g. CBSE / State"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Principal</label><input id="f4-principal" placeholder="e.g. Shobha"></div>
+      <div class="field"><label>Director</label><input id="f4-director" placeholder="e.g. Leena"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-del" id="btnDel4">Delete</button>
+      <button class="btn-sv" id="btnSv4">Save</button>
+      <button class="btn-can" id="btnCan4">Cancel</button>
+    </div>
+  </div>
+</div>
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2 id="modalTitle">Add New Position</h2>
+    <div class="field-row">
+      <div class="field"><label>School</label><input id="f-school" placeholder="e.g. DMS"></div>
+      <div class="field"><label>Location</label><input id="f-loc" placeholder="e.g. Pandavapura"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Position Name</label><input id="f-pos" placeholder="e.g. Teacher"></div>
+      <div class="field"><label>Subject / Job Profile</label><input id="f-subj" placeholder="e.g. Mathematics"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Grades</label><input id="f-grade" placeholder="e.g. G6-10 or KG"></div>
+      <div class="field"><label>Salary Range</label><input id="f-sal" placeholder="e.g. 20k-25k"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Position Shared On</label><input id="f-date" placeholder="e.g. 01-Jun-26"></div>
+      <div class="field"><label>Accommodation</label>
+        <select id="f-accom"><option value="No">No</option><option value="Yes">Yes</option></select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Status</label>
+        <select id="f-status">
+          <option>Open</option><option>Closed</option><option>Dropped</option>
+          <option>Offer under process</option><option>Interviews under process</option>
+        </select>
+      </div>
+      <div class="field"><label>Position Raised By</label><input id="f-raisedby" placeholder="e.g. Lalitha"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Close By</label><input id="f-closeby" placeholder="e.g. HR"></div>
+      <div class="field"><label>Closed On</label><input id="f-closedon" placeholder="e.g. 14-Jan-26"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Final Closed By</label><input id="f-finalby" placeholder="e.g. HR"></div>
+      <div class="field"><label>Selected Candidate</label><input id="f-selected" placeholder="Name"></div>
+    </div>
+    <div class="field"><label>Comments</label><textarea id="f-comments" placeholder="Remarks..."></textarea></div>
+    <div class="field"><label>Source of Resume</label><input id="f-source" placeholder="e.g. work india"></div>
+    <div class="modal-foot">
+      <button class="btn-del" id="btnDel">Delete</button>
+      <button class="btn-sv" id="btnSv">Save</button>
+      <button class="btn-can" id="btnCan">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+window.onload = function() {
+
+var DATA=[
+[1,"DMS","Pandavapura","Teacher","09-Jan-26","Eng/SST","G1-5","11k","Yes","Closed","HR","14-Jan-26","HR","Lalitha","Manasa joined on 16th Jan","","BEd Colleges"],
+[2,"DMS","Pandavapura","Teacher","19-Jun-26","Eng/SST","G6-10","","Yes","Open","HR","","","Lalitha","","",""],
+[3,"DMS","Pandavapura","Teacher","08-Jun-26","Science","G6-10","","No","Open","HR","","","Lalitha","","",""],
+[4,"DMS","Pandavapura","Teacher","15-Sep-25","Science","G6-10","20k","Yes","Closed","HR","14-Jan-26","HR","Lalitha","Prakruthi joined on 16th Jan","","BEd Colleges"],
+[5,"DMS","Pandavapura","Teacher","20-Nov-25","Hindi","G6-10","12k","Yes","Closed","School","14-Jan-26","School","Lalitha","replacement Vani","",""],
+[6,"DMS","Pandavapura","Teacher","20-Nov-25","EVS","G1-5","12k","Yes","Closed","School","14-Jan-26","School","Lalitha","Sahana and Ambujakshi - continuing","",""],
+[7,"DMS","Pandavapura","Teacher","20-Nov-25","Eng/SST","G6-10","15k-16k","Yes","Closed","HR","","","Lalitha","replacement","",""],
+[8,"DMS","Pandavapura","Teacher","20-Nov-25","Mathematics","G6-10","17k","Yes","Closed","School","14-Jan-26","School","Lalitha","Nisarga - continuing","",""],
+[9,"DMS","Pandavapura","Teacher","31-Mar-26","Kindergarten","KG","9k","Yes","Closed","School","14-Jan-26","School","Lalitha","Pallavi - continuing","",""],
+[10,"Shiny","Vijayawada","Teacher","27-May-26","Science","G6-10","9k","No","Open","School","","","Umri","","",""],
+[11,"Shiny","Vijayawada","Teacher","27-May-26","English","G3-5","8k","No","Open","School","","","Umri","","",""],
+[12,"Shiny","Vijayawada","Teacher","19-Jun-26","SST","G6-9","9k","No","Open","School","","","Umri","","",""],
+[13,"Shiny","Vijayawada","Teacher","19-Jun-26","Telugu","G6-9","9k","No","Open","School","","","Lalitha","","",""],
+[14,"HSR","Rangapur","Teacher","28-May-26","English","G7-9","22k","Yes","Open","School","","","Lalitha","","",""],
+[15,"HSR","Rangapur","Teacher","28-May-26","English","G8-9","30k","Yes","Open","School","","","Lalitha","","",""],
+[16,"HSR","Rangapur","Teacher","25-Nov-25","English","G1-5","15k","No","Closed","HR","02-Feb-26","HR","Lalitha","Sangeeta Kondareddy joined on 2nd Feb","","work india"],
+[17,"HSR","Rangapur","Teacher","23-Dec-25","English","G6-10","35k","Yes","Closed","HR","28-May-26","Others","Lalitha","Chinnu Singh - 1st June","",""],
+[18,"HSR","Rangapur","Teacher","08-Dec-25","English","G9-12","45k-50k","Yes","Closed","HR","28-May-26","HR","Lalitha","Aarti Yadav - 1st June, 45k","",""],
+[19,"HSR","Rangapur","Teacher","08-Dec-25","Mathematics","G9-12","55k","Yes","Closed","HR","05-Jun-26","Others","Lalitha","Acharyulu","","Arun Consultancy"],
+[20,"HSR","Rangapur","Teacher","08-Dec-25","Physics","G9-12","45k-50k","Yes","Closed","HR","05-Jun-26","Others","Lalitha","Areyendhu Shalu","","Eras (Kerala)"],
+[21,"HSR","Rangapur","Teacher","08-Dec-25","Chemistry","G9-12","45k-50k","Yes","Closed","HR","03-Jun-26","School","Lalitha","Krishna - 3rd June","",""],
+[22,"HSR","Rangapur","Teacher","08-Dec-25","Biology","G9-12","45k-50k","Yes","Closed","HR","28-May-26","School","Lalitha","Poojashri - 30k, joined on 1st June","","Local"],
+[23,"HSR","Rangapur","Teacher","08-Dec-25","Economics, Accountancy","G9-12","45K","No","Closed","HR","20-May-26","Others","Lalitha","Merin Rose - 10th June","","Nivin Consultant"],
+[24,"HSR","Rangapur","Teacher","08-Dec-25","Finishing school coordinator","G9-12","45K","No","Dropped","HR","","","Lalitha","","",""],
+[25,"JPS","Sagara","Teacher","13-Jan-26","English","G6-10","20k-25k","Yes","Closed","School","11-May-26","School","Rahul","Spoorthi Pawar - 17k, 11th May","","Local"],
+[26,"JPS","Sagara","Teacher","13-Jan-26","Science","G6-10","20k-25k","Yes","Closed","School","22-Apr-26","School","Rahul","Sudeep continuing","",""],
+[27,"JPS","Sagara","Teacher","13-Jan-26","SST","G1-8","20k-25k","Yes","Closed","School","22-Apr-26","School","Rahul","Usha - 17k, 11th May","","Local"],
+[28,"JPS","Sagara","Teacher","13-Jan-26","Library + Art","All Grades","10-12k","No","Closed","School","22-Apr-26","School","Rahul","Janardhan continuing","",""],
+[29,"JPS","Sagara","Teacher","25-Mar-26","Kindergarten","KG","8-10k","No","Closed","School","22-Apr-26","School","Rahul","Afreen - 10k 11th May","","Local"],
+[30,"JPS","Sagara","Teacher","25-Mar-26","English","G3-5","11k","No","Closed","School","22-Apr-26","School","Rahul","Nasreen Bhanu - 11k, 11th May","","Local"],
+[31,"HSR","Rangapur","Teacher","28-May-26","PE Teacher","All Grades","","Yes","Closed","School","","School","Lalitha","Akash - 30k","Internal reference",""],
+[32,"JPS","Sagara","Teacher","22-Apr-26","EVS","G3-5","11k-12k","No","Closed","School","08-Jun-26","School","Rahul","Usha","",""],
+[33,"JPS","Sagara","Teacher","22-Apr-26","SST","G6-10","22k","No","Open","HR","","","Rahul","","",""],
+[34,"JPS","Sagara","Teacher","","SST","G6-10","14k","No","Closed","School","04-Jun-26","School","Rahul","Afreen Taj - joined on 4th June","",""],
+[35,"JPS","Sagara","Teacher","22-Apr-26","English","G3-5","12k","No","Closed","School","","School","Rahul","Sinchana","",""],
+[36,"JPS","Sagara","Teacher","22-Apr-26","Mathematics","G6-10","18k-20k","No","Closed","HR","10-Jun-26","HR","Rahul","Kanakaraj","",""],
+[37,"Netaji","Gokak","Teacher","13-Jan-26","EVS","G3-5","8k-10k","No","Closed","School","05-05-2026","School","Rahul","Lakshmi - Continuing","",""],
+[38,"Netaji","Gokak","Teacher","13-Jan-26","Mathematics","G6-10","15k-25k","No","Closed","School","05-05-2026","School","Rahul","","",""],
+[39,"Netaji","Gokak","Teacher","22-Apr-26","Hindi","G1-5","8k-10k","No","Closed","School","05-05-2026","School","Rahul","","",""],
+[40,"Netaji","Gokak","Teacher","22-Apr-26","Kindergarten","KG","7k-8k","No","Open","School","","","Rahul","","",""],
+[41,"Netaji","Gokak","Teacher","13-Jan-26","Supplementary","All Grades","8k-10k","No","Closed","School","05-05-2026","School","Rahul","Priya - 12k, 18th May","","Local"],
+[42,"NSL","Ponnur","Special Educator","02-Mar-26","Special Educator","All Grades","30-35K","Yes","Open","HR","","","Umri","","",""],
+[43,"NSL","Ponnur","Teacher","02-Mar-26","Kindergarten","KG","15-18K","No","Closed","School","02-May-26","School","Umri","","",""],
+[44,"NSL","Ponnur","Teacher","02-Mar-26","Kindergarten","KG","15-18K","No","Closed","School","02-May-26","School","Umri","","",""],
+[45,"NSL","Ponnur","Teacher","02-Mar-26","English","G1-5","25K","Yes","Closed","School","13-May-26","School","Umri","","",""],
+[46,"NSL","Ponnur","Teacher","02-Mar-26","EVS/Science","G1-8","35K","Yes","Closed","School","13-May-26","School","Umri","","",""],
+[47,"NSL","Ponnur","Teacher","05-Jan-26","Science","G6-10","35K","Yes","Closed","School","18-May-26","Others","Umri","Madhurima Madanan","","Nivin Consultant"],
+[48,"NSL","Ponnur","Teacher","02-Mar-26","Mathematics","G8-10","35K","Yes","Closed","School","13-May-26","School","Umri","","",""],
+[49,"NSL","Ponnur","Teacher","02-Mar-26","Mathematics","G8-10","35K","Yes","Closed","School","","School","Umri","Sankuru Murali - 45k","",""],
+[50,"NSL","Ponnur","Teacher","27-May-26","Mathematics","G6-8","","Yes","Open","School","08-Jun-26","School","Umri","Surya - Partime","",""],
+[51,"NSL","Ponnur","Teacher","05-Jan-26","Telugu","G6-10","20-25K","No","Closed","HR","13-May-26","HR","Umri","Dhanlaxmi","","work india"],
+[52,"HSB","Bangalore","Teacher","01-Dec-25","Hindi","G1-5","15k-17k","No","Closed","HR","17-Dec-25","Others","Leena","Sunita Mishra- 22k, 15th May","Imuna Begum resigned","Schoolnovate"],
+[53,"HSB","Bangalore","Teacher","01-Feb-26","Kindergarten","KG","14k","No","Closed","School","22-Apr-26","School","Leena","Sharanamma - 14k 15th May","","Local"],
+[54,"HSB","Bangalore","School Admin","01-Feb-26","Admin","--","15k-17k","No","Open","HR","15-Apr-26","HR","Leena","Nithish - 25k","","Social Media Ads"],
+[55,"HSB","Bangalore","Admission Counsellor","01-Feb-26","Admission Counsellor","--","25k","No","Open","HR","","HR","Leena","","","work india"],
+[56,"HSB","Bangalore","Teacher","01-Feb-26","Mathematics","G1-5","20k","No","Closed","HR","22-May-26","HR","Leena","Veena Abhilash","","work india"],
+[57,"HSB","Bangalore","Teacher","01-Feb-26","English","G6-10","22k-23k","No","Closed","HR","25-Apr-26","Others","Leena","Pallavi Pati - selected","","Schoolnovate"],
+[58,"HSB","Bangalore","Teacher","01-Feb-26","Mathematics","G6-10","20k","No","Closed","HR","27-Apr-26","HR","Leena","Harshitha N","","Social Media Ads"],
+[59,"HSB","Bangalore","Teacher","01-Feb-26","Science","G3-8","16k","No","Closed","HR","12-May-26","HR","Leena","Yogeshwari - not joining","",""],
+[60,"HSB","Bangalore","Teacher","01-Feb-26","Science","G6-10","22k","No","Closed","School","01-Jun-26","HR","Leena","Charulakshmi - 17k","",""],
+[61,"HSB","Bangalore","Teacher","01-Feb-26","Kannada","G6-10","15k-17k","No","Closed","HR","22-Apr-26","HR","Leena","Shivakumar - 20k","","work india"],
+[62,"HSB","Bangalore","Teacher","01-Feb-26","SST","G6-10","22k-23k","No","Closed","HR","01-Jun-26","HR","Leena","Suman -16k","","Indeed"],
+[63,"HSB","Bangalore","Teacher","01-Feb-26","Library + Art","All Grades","12k","No","Dropped","School","","","Leena","","",""],
+[64,"HSB","Bangalore","Teacher","01-Feb-26","Computer Teacher","All Grades","25k","No","Open","School","","","Leena","","",""],
+[65,"HSB","Bangalore","Teacher","01-Feb-26","Kindergarten","KG","18k-19k","No","Closed","School","15-Apr-26","HR","Leena","A Sumathi","","work india"],
+[66,"HSB","Bangalore","Teacher","01-Feb-26","Kindergarten","KG","18k-19k","No","Closed","School","01-Jun-26","School","Leena","Uma","",""],
+[67,"HSB","Bangalore","Teacher","01-Feb-26","Shadow Teacher + Dance","G1-5","23k","No","Closed","HR","15-Apr-26","HR","Leena","Faruk Ahmed -22k","","work india"],
+[68,"HSB","Bangalore","Teacher","01-Feb-26","PE Teacher","All Grades","22k-25k","No","Closed","HR","18-Apr-26","HR","Leena","Dharmik Jain - 25k","","Social Media Ads"],
+[69,"VVHPS","Bangalore","Teacher","01-Feb-26","Kindergarten","KG","12500","No","Closed","School","4-May-26","HR","Roopashree","Kumudha- offer under process","",""],
+[70,"VVHPS","Bangalore","Teacher","01-Feb-26","EVS","G1-5","15k","No","Closed","School","22-Apr-26","School","Roopashree","Priyanka - 19k","","Local"],
+[71,"VVHPS","Bangalore","Teacher","01-Feb-26","Mathematics","G6-10","20k","No","Closed","School","22-Apr-26","School","Roopashree","Galvio - 18k","","Indeed"],
+[72,"VVHPS","Bangalore","Teacher","01-Feb-26","Mathematics","G8-10","21k","No","Closed","School","20-May-26","HR","Roopashree","Humera Kouser","","Indeed"],
+[73,"VVHPS","Bangalore","Teacher","01-Feb-26","SST","G6-10","16k","No","Closed","School","22-Apr-26","School","Roopashree","Bhumika - 17k","","Local"],
+[74,"VVHPS","Bangalore","Teacher","01-Feb-26","Science","G8-10","21k","No","Closed","School","04-May-26","School","Roopashree","Shailashree - 21k","","Local"],
+[75,"VVHPS","Bangalore","Teacher","01-Feb-26","Hindi","G1-8","15k","No","Closed","School","27-May-26","School","Roopashree","existing teacher hindi for primary","",""],
+[76,"VVHPS","Bangalore","Teacher","01-Feb-26","Kannada","G6-10","16k","No","Closed","HR","31-Mar-26","HR","Roopashree","Rekha Chavan","",""],
+[77,"VVHPS","Bangalore","Teacher","10-Apr-26","Kannada","G8-10","18K","No","Closed","School","22-Apr-26","School","Savita","Sreedevi - 18k","",""],
+[78,"VVHPS","Bangalore","Teacher","20-04-2026","Hindi","G8-10","18K","No","Closed","School","22-Apr-26","School","Savita","Kathyayini -18k","",""],
+[79,"VVHPS","Bangalore","Teacher","10-Apr-26","Mother Teacher","G1-2-3","16k","Yes","Closed","School","24-Apr-26","School","Savita","Sumaiya - 16k","",""],
+[80,"VVHPS","Bangalore","Teacher","01-Feb-26","Computer Teacher","All Grades","17k","No","Closed","School","22-Apr-26","School","Roopashree","Vijayashree - 17k","","Local"],
+[81,"VHIS","Beechanahalli","Teacher","01-Feb-26","Karate","All Grades","9k","Yes","Closed","School","22-Apr-26","School","Leena","Rakesh continuing","Rakesh replacement",""],
+[82,"VHIS","Beechanahalli","Teacher","01-Feb-26","Kannada","G1-5","20k","Yes","Closed","HR","22-Apr-26","School","Leena","Anitha - 17k","","Local"],
+[83,"VHIS","Beechanahalli","Teacher","01-Feb-26","SST","G6-10","24k","Yes","Closed","HR","22-Apr-26","HR","Leena","Vishnu","",""],
+[84,"VHIS","Beechanahalli","Teacher","01-Feb-26","Physics","G6-10","33k","Yes","Closed","HR","23-Mar-26","School","Leena","Kumar Govind - 35k","Karthik replacement",""],
+[85,"VHIS","Beechanahalli","Teacher","01-Feb-26","Hindi","G1-5","13k","Yes","Closed","Local","22-Apr-26","School","Leena","Salma - 17k","Smrithy replacement","Local"],
+[86,"VHIS","Beechanahalli","Teacher","01-Feb-26","EVS & Social","G1-5","17k","Yes","Closed","HR","22-Apr-26","HR","Leena","Sri Trisha","Sree Trisha replacement",""],
+[87,"VHIS","Beechanahalli","Teacher","01-Feb-26","Kindergarten","KG","13k","Yes","Closed","School","22-Apr-26","School","Leena","Meghashree - 13k","Shaheen Taj replacement",""],
+[88,"VHIS","Beechanahalli","Teacher","01-Feb-26","English","G1-5","15850","Yes","Closed","HR","22-Apr-26","HR","Leena","Manjula","",""],
+[89,"VHIS","Beechanahalli","Teacher","01-Feb-26","Mathematics","G1-5","12k","Yes","Closed","School","20-May-26","School","Leena","Aishwarya - 25th May","Anusha replacement",""],
+[90,"VHIS","Beechanahalli","Teacher","01-Feb-26","Mathematics","G1-5","16.5k","Yes","Closed","HR","20-May-26","HR","Leena","Roopa - 30th May","Sujatha replacement",""],
+[91,"VHIS","Beechanahalli","Teacher","01-Feb-26","English","G6-10","24k","Yes","Open","HR","20-May-26","School","Leena","Shilpa replacement","Soorya replacement",""],
+[92,"HSB","Bangalore","School Admin","01-Apr-26","Admin","--","18k","No","Closed","School","09-Jun-26","Others","Leena","Raghavendra - 18k","","Schoolnovate"],
+[93,"VVHPS","Bangalore","Teacher","25-May-26","PE Teacher","G1-8","25k","No","Closed","School","09-Jun-26","School","Roopashree","","",""],
+[94,"VHIS","Beechanahalli","Teacher","01-Feb-26","English","G8-10","25.5k","Yes","Closed","HR","03-Jun-26","HR","Leena","Lawrence - joined on 4th June","Pooja replacement",""],
+[95,"VHIS","Beechanahalli","Teacher","01-Feb-26","Mathematics","G8-10","25k","Yes","Closed","HR","22-May-26","HR","Leena","Tansila - 30k","Fathima replacement",""],
+[96,"VHIS","Beechanahalli","Teacher","01-Feb-26","Computer Teacher","All Grades","12k","Yes","Open","HR","","","Leena","","",""],
+[97,"VHIS","Beechanahalli","Teacher","01-Feb-26","PE Teacher","All Grades","23k","Yes","Closed","HR","22-May-26","HR","Leena","Trigun - 23rd May","",""],
+[98,"Prajna Bharathi School","Doddakallasandra","Teacher","19-Jun-26","Kindergarten","KG","14k","No","Open","School","","","Lalitha","Shruthi - replacement","",""],
+[99,"Prajna Bharathi School","Doddakallasandra","Teacher","19-Jun-26","English","G1-2-3","","No","Offer under process","School","","School","Lalitha","","",""],
+[100,"Prajna Bharathi School","Doddakallasandra","Teacher","17-Mar-26","Mathematics","G8-10","30k","No","Closed","HR","27-May-26","School","Lalitha","Adjusted internally","",""],
+[101,"Prajna Bharathi School","Doddakallasandra","Teacher","17-Mar-26","Mathematics","G1-5","","No","Closed","HR","21-May-26","HR","Lalitha","Vidhyashree","","work india"],
+[102,"Prajna Bharathi School","Doddakallasandra","Teacher","11-May-26","Kindergarten","KG","","No","Closed","School","23-May-26","School","Lalitha","Rakshitha","",""],
+[103,"Prajna Bharathi School","Doddakallasandra","Teacher","17-Mar-26","English","G8-10","20K","No","Closed","HR","27-May-26","School","Lalitha","Adjusted internally","",""],
+[104,"Prajna Bharathi School","Doddakallasandra","Teacher","17-Mar-26","PE Teacher","All Grades","20K","No","Closed","HR","27-May-26","School","Lalitha","Adjusted internally","",""],
+[105,"DB Darure","Kudachi","Teacher","17-Mar-26","Kindergarten","KG","5k","No","Closed","School","13-May-26","School","Rahul","Shraddha","",""],
+[106,"DB Darure","Kudachi","Teacher","17-Mar-26","Mathematics","G8-10","10k","No","Open","School","","School","Rahul","","",""],
+[107,"DB Darure","Kudachi","Teacher","17-Mar-26","PE Teacher","All Grades","10k","No","Closed","Local","13-May-26","School","Rahul","Bashwadi","",""],
+[108,"DB Darure","Kudachi","Teacher","17-Mar-26","English","G1-5","7k","No","Closed","Local","13-May-26","School","Rahul","Pooja","",""],
+[109,"SBHS","Kalloli","Teacher","17-Mar-26","Hindi","G1-5","6k","No","Closed","School","23-May-26","School","Rahul","Aaisha Nadaf - 5.5k","",""],
+[110,"SBHS","Kalloli","Teacher","17-Mar-26","Mathematics","G1-5","7k","No","Closed","School","23-May-26","School","Rahul","Jyothi - 9k","",""],
+[111,"SBHS","Kalloli","Teacher","06-May-26","English","G1-2-3","6k","No","Closed","School","","School","Rahul","","",""],
+[112,"SBHS","Kalloli","School Admin","06-May-26","Admin","--","7-10k","No","Open","School","","School","Rahul","","",""],
+[113,"SPLIS","Chimmad","Teacher","18-Mar-26","Kindergarten","KG","8-10k","No","Closed","School","6th May","School","Rahul","Seema","",""],
+[114,"SPLIS","Chimmad","Teacher","18-Mar-26","Kindergarten","KG","8-10k","No","Closed","School","6th May","School","Rahul","Manjula","",""],
+[115,"SPLIS","Chimmad","Teacher","18-Mar-26","Kindergarten","KG","8-10k","No","Closed","School","","","Rahul","","",""],
+[116,"SPLIS","Chimmad","Teacher","18-Mar-26","Mathematics","G1-5","8-10k","No","Closed","School","6th May","School","Rahul","Preethi","",""],
+[117,"SPLIS","Chimmad","Teacher","18-Mar-26","Mathematics","G1-5","10-12k","Yes","Closed","School","6th May","School","Rahul","Nikita","",""],
+[118,"SPLIS","Chimmad","Teacher","18-Mar-26","EVS","G1-5","10-12k","Yes","Closed","School","","","Rahul","","",""],
+[119,"SPLIS","Chimmad","Teacher","18-Mar-26","Hindi","G1-5","8-10k","Yes","Closed","School","","","Rahul","","",""],
+[120,"SPLIS","Chimmad","Teacher","18-Mar-26","English","G3-5","10-12k","Yes","Closed","School","","School","Rahul","","",""],
+[121,"SPLIS","Chimmad","Teacher","18-Mar-26","Kannada","G1-5","8-10k","Yes","Closed","School","6th May","School","Rahul","Asha","",""],
+[122,"SPLIS","Chimmad","Teacher","18-Mar-26","Kannada","G1-5","10-12k","Yes","Closed","School","6th May","School","Rahul","Annapurna","",""],
+[123,"SPLIS","Chimmad","Teacher","18-Mar-26","Kannada","G6-10","10-12k","Yes","Closed","School","6th May","School","Rahul","","",""],
+[124,"SPLIS","Chimmad","Teacher","18-Mar-26","Mathematics","G6-10","18-22k","Yes","Closed","School","06-May-26","School","Rahul","","",""],
+[125,"SPLIS","Chimmad","Teacher","18-Mar-26","PE Teacher","All Grades","12-14k","Yes","Closed","School","06-May-26","School","Rahul","Ramesh","",""],
+[126,"SPLIS","Chimmad","Teacher","18-Mar-26","Library + Art","All Grades","8-10k","Yes","Closed","School","06-May-26","School","Rahul","Vaishnavi","",""],
+[127,"SPLIS","Chimmad","Teacher","18-Mar-26","Hindi","G6-10","10-12k","Yes","Closed","School","","","Rahul","","",""],
+[128,"SPLIS","Chimmad","Teacher","18-Mar-26","Mathematics","","","Yes","Closed","School","01-Jun-26","School","Rahul","Vaishnavi","",""],
+[129,"SPLIS","Chimmad","Teacher","18-Mar-26","Supplementary","","","Yes","Closed","School","01-Jun-26","School","Rahul","Nikitha","",""],
+[130,"MFS","Mallipatna","Teacher","19-Mar-26","EVS","G1-5","9K","No","Closed","School","01-Jun-26","School","Leena","Dhanya","",""],
+[131,"MFS","Mallipatna","Teacher","20-Mar-26","Kindergarten","KG","9K","No","Closed","School","01-Jun-26","School","Leena","Arpitha continuing","",""],
+[132,"MFS","Mallipatna","Teacher","20-Mar-26","Hindi","G1-7","9k","No","Closed","School","19-Jun-26","School","Leena","Managed internally","",""],
+[133,"SSVM","Husananhalli","Teacher","21-Mar-26","PE Teacher","All Grades","8K","No","Dropped","School","","","Leena","","",""],
+[134,"SSVM","Husananhalli","Teacher","22-Mar-26","Library","All Grades","10K","No","Closed","School","27-May-26","School","Leena","Adjusted internally","",""],
+[135,"SSVM","Husananhalli","Teacher","20-Mar-26","English","G5-7","12k","No","Closed","School","13-May-26","School","Leena","Madura","",""],
+[136,"SBVM","Gulbarga","Teacher","25-03-2026","English","G1-5","12K","No","Closed","School","","School","Umri","Varsha joined","",""],
+[137,"SBVM","Gulbarga","Teacher","25-03-2026","English","G8-10","25K","Yes","Offer under process","School","27-May-26","School","Umri","Shankar offer under process","",""],
+[138,"SBVM","Gulbarga","Teacher","25-03-2026","Kindergarten","KG","9K","No","Closed","School","15-Jun-26","School","Umri","Nagaveni - 10k","",""],
+[139,"SBVM","Gulbarga","Teacher","27-May-26","Mathematics","G8-10","","No","Closed","School","","School","Umri","Amrutharaj","",""],
+[140,"SSPS","Bidar","Teacher","25-03-2026","Mathematics","G6-10","18K","No","Closed","School","05-Jun-26","School","Umri","Ajay","",""],
+[141,"SSPS","Bidar","Teacher","25-03-2026","EVS","G3-5","15K","No","Closed","School","27-May-26","School","Umri","Sowmya","",""],
+[142,"SSPS","Bidar","Teacher","25-03-2026","Computer Teacher","All Grades","12-15K","No","Closed","School","19-Jun-26","School","Umri","Preethi","",""],
+[143,"SSPS","Bidar","Teacher","25-03-2026","Hindi","G1-5","15K","Yes","Closed","School","19-Jun-26","School","Umri","Shakku Bai","",""],
+[144,"SSPS","Bidar","Teacher","25-03-2026","SST","G8-10","19K","Yes","Closed","School","19-Jun-26","School","Umri","Rekha","",""],
+[145,"Malnad","Hassan","Teacher","25-03-2026","Chem and Bio","G8-10","25-30K","No","Closed","Local","20-Apr-26","School","Lalitha","Preethi UR - 20th May","hemalatha maam finalised and will update about offer with nagaraj sir","Local"],
+[146,"Malnad","Hassan","Teacher","25-03-2026","English/EVS Pri","G1-5","15K","No","Closed","Local","22-Apr-26","HR","Lalitha","Angel","","BEd Colleges"],
+[147,"Malnad","Hassan","Teacher","25-03-2026","Physics/Math","G1-5","40K","No","Closed","HR","","","Lalitha","Vedashree","",""],
+[148,"Malnad","Hassan","Teacher","","Eng/Computer Science","G5-7","18k","No","Open","School","","","Lalitha","","",""],
+[149,"Malnad","Hassan","Teacher","14-May-26","SST","G6-10","20k","No","Closed","School","30-May-26","School","Lalitha","Meghasree continuing","",""],
+[150,"Malnad","Hassan","Teacher","14-May-26","Mathematics","G1-5","15K","No","Closed","School","","","Lalitha","","",""],
+[151,"Malnad","Hassan","Admission Counsellor","14-May-26","Admission Counsellor","--","25k","No","Closed","School","30-May-26","HR","Lalitha","Harsthitha - Tanmayee reference 20k","",""],
+[152,"Malnad","Hassan","Teacher","14-May-26","Hindi","G8-10","19k-20k","No","Closed","School","","","Lalitha","","",""],
+[153,"Malnad","Hassan","Teacher","25-03-2026","Kindergarten","KG","10-12K","No","Closed","School","","","Lalitha","","",""],
+[154,"The Summit","Chikmagalur","Teacher","23-04-2026","Physics/Math","G8-10","25k","No","Closed","HR","27-May-26","HR","Lalitha","Geetha 20k, joining on 29th May","AVG B.Ed College","BEd Colleges"],
+[155,"JPS","Sagara","Teacher","22-Apr-26","Mathematics","G6-9","22k","No","Open","HR","","","Rahul","","",""]
+];
+[2,"DMS","Pandavapura","Teacher","19-Jun-26","Eng/SST","G6-10","","Yes","Open","HR","","","Lalitha","","",""],
+[3,"DMS","Pandavapura","Teacher","08-Jun-26","Science","G6-10","","No","Open","HR","","","Lalitha","","",""],
+[4,"DMS","Pandavapura","Teacher","15-Sep-25","Science","G6-10","20k","Yes","Closed","HR","14-Jan-26","HR","Lalitha","Prakruthi joined on 16th Jan","","BEd Colleges"],
+[5,"DMS","Pandavapura","Teacher","20-Nov-25","Hindi","G6-10","12k","Yes","Closed","School","14-Jan-26","School","Lalitha","replacement Vani","",""],
+[6,"DMS","Pandavapura","Teacher","20-Nov-25","EVS","G1-5","12k","Yes","Closed","School","14-Jan-26","School","Lalitha","Sahana & Ambujakshi - continuing","",""],
+[7,"DMS","Pandavapura","Teacher","20-Nov-25","Social Science/Eng","G6-10","15k-16k","Yes","Closed","HR","","","Lalitha","replacement","",""],
+[8,"DMS","Pandavapura","Teacher","20-Nov-25","Mathematics","G6-10","17k","Yes","Closed","School","14-Jan-26","School","Lalitha","Nisarga - continuing","",""],
+[9,"DMS","Pandavapura","Teacher","31-Mar-26","Kindergarten","KG","9k","Yes","Closed","School","14-Jan-26","School","Lalitha","Pallavi - continuing","",""],
+[10,"Shiny","Vijayawada","Teacher","27-May-26","Science","G6-10","9k","No","Open","School","","","Umri","","",""],
+[11,"Shiny","Vijayawada","Teacher","27-May-26","English","G3-5","8k","No","Open","School","","","Umri","","",""],
+[12,"Shiny","Vijayawada","Teacher","19-Jun-26","Social Science","G6-9","9k","No","Open","School","","","Umri","","",""],
+[13,"Shiny","Vijayawada","Teacher","19-Jun-26","Telugu","G6-9","9k","No","Open","School","","","Lalitha","","",""],
+[14,"HSR","Rangapur","Teacher","28-May-26","English","G7-9","22k","Yes","Open","School","","","Lalitha","","",""],
+[15,"HSR","Rangapur","Teacher","28-May-26","English","G8-9","30k","Yes","Open","School","","","Lalitha","","",""],
+[16,"HSR","Rangapur","Teacher","25-Nov-25","English","G1-5","15k","No","Closed","HR","02-Feb-26","HR","Lalitha","Sangeeta Kondareddy joined on 2nd Feb","","work india"],
+[17,"HSR","Rangapur","Teacher","23-Dec-25","English","G6-10","35k","Yes","Closed","HR","28-May-26","Others","Lalitha","Chinnu Singh - 1st June","",""],
+[18,"HSR","Rangapur","Teacher","08-Dec-25","English","G9-12","45k-50k","Yes","Closed","HR","28-May-26","HR","Lalitha","Aarti Yadav - 1st June, 45k","",""],
+[19,"HSR","Rangapur","Teacher","08-Dec-25","Mathematics","G9-12","55k","Yes","Closed","HR","05-Jun-26","Others","Lalitha","Acharyulu","","Arun Consultancy"],
+[20,"HSR","Rangapur","Teacher","08-Dec-25","Physics","G9-12","45k-50k","Yes","Closed","HR","05-Jun-26","Others","Lalitha","Areyendhu Shalu","","Eras (Kerala)"],
+[21,"HSR","Rangapur","Teacher","08-Dec-25","Chemistry","G9-12","45k-50k","Yes","Closed","HR","03-Jun-26","School","Lalitha","Krishna - 3rd June","",""],
+[22,"HSR","Rangapur","Teacher","08-Dec-25","Biology","G9-12","45k-50k","Yes","Closed","HR","28-May-26","School","Lalitha","Poojashri - 30k, joined on 1st June","","Local"],
+[23,"HSR","Rangapur","Teacher","08-Dec-25","Economics, Accountancy","G9-12","45K","No","Closed","HR","20-May-26","Others","Lalitha","Merin Rose - 10th June","","Nivin Consultant"],
+[24,"HSR","Rangapur","Teacher","08-Dec-25","Finishing school coordinator","G9-12","45K","No","Dropped","HR","","","Lalitha","","",""],
+[25,"JPS","Sagara","Teacher","13-Jan-26","English","G6-10","20k-25k","Yes","Closed","School","11-May-26","School","Rahul","Spoorthi Pawar - 17k, 11th May","","Local"],
+[26,"JPS","Sagara","Teacher","13-Jan-26","Science","G6-10","20k-25k","Yes","Closed","School","22-Apr-26","School","Rahul","Sudeep continuing","",""],
+[27,"JPS","Sagara","Teacher","13-Jan-26","Social Science","G1-8","20k-25k","Yes","Closed","School","22-Apr-26","School","Rahul","Usha - 17k, 11th May","","Local"],
+[28,"JPS","Sagara","Teacher","13-Jan-26","Library + Art","All Grades","10-12k","No","Closed","School","22-Apr-26","School","Rahul","Janardhan continuing","",""],
+[29,"JPS","Sagara","Teacher","25-Mar-26","Kindergarten","KG","8-10k","No","Closed","School","22-Apr-26","School","Rahul","Afreen - 10k 11th May","","Local"],
+[30,"JPS","Sagara","Teacher","25-Mar-26","English","G3-5","11k","No","Closed","School","22-Apr-26","School","Rahul","Nasreen Bhanu - 11k, 11th May","","Local"],
+[31,"HSR","Rangapur","Teacher","28-May-26","PE Teacher","All Grades","","Yes","Closed","School","","School","Lalitha","Akash - 30k","Internal reference",""],
+[32,"JPS","Sagara","Teacher","22-Apr-26","EVS","G3-5","11k-12k","No","Closed","School","08-Jun-26","School","Rahul","Usha","",""],
+[33,"JPS","Sagara","Teacher","22-Apr-26","SST","G6-10","22k","No","Open","","","","Rahul","","",""],
+[34,"JPS","Sagara","Teacher","","SST","G6-10","14k","No","Closed","School","04-Jun-26","School","Rahul","Afreen Taj - joined on 4th June","",""],
+[35,"JPS","Sagara","Teacher","22-Apr-26","Eng","G3-5","12k","No","Closed","School","","School","Rahul","Sinchana","",""],
+[36,"JPS","Sagara","Teacher","22-Apr-26","Mathematics","G6-10","18k-20k","No","Closed","HR","10-Jun-26","HR","Rahul","Kanakaraj","",""],
+[37,"Netaji","Gokak","Teacher","13-Jan-26","EVS","G3-5","8k-10k","No","Closed","School","05-05-2026","School","Rahul","Lakshmi - Continuing","",""],
+[38,"Netaji","Gokak","Teacher","13-Jan-26","Mathematics","G6-10","15k-25k","No","Closed","School","05-05-2026","School","Rahul","","",""],
+[39,"Netaji","Gokak","Teacher","22-Apr-26","Hindi","G1-5","8k-10k","No","Closed","School","05-05-2026","School","Rahul","","",""],
+[40,"Netaji","Gokak","Teacher","22-Apr-26","Kindergarten","KG","7k-8k","No","Open","School","","","Rahul","","",""],
+[41,"Netaji","Gokak","Teacher","13-Jan-26","Supplementary","All Grades","8k-10k","No","Closed","School","05-05-2026","School","Rahul","Priya - 12k, 18th May","","Local"],
+[42,"NSL","Ponnur","Special Educator","02-Mar-26","Special Educator","All Grades","30-35K","Yes","Open","HR","","","Umri","","",""],
+[43,"NSL","Ponnur","Teacher","02-Mar-26","Kindergarten","KG","15-18K","No","Closed","School","02-May-26","School","Umri","","",""],
+[44,"NSL","Ponnur","Teacher","02-Mar-26","Kindergarten","KG","15-18K","No","Closed","School","02-May-26","School","Umri","","",""],
+[45,"NSL","Ponnur","Teacher","02-Mar-26","English","G1-5","25K","Yes","Closed","School","13-May-26","School","Umri","","",""],
+[46,"NSL","Ponnur","Teacher","02-Mar-26","EVS/Science","G1-8","35K","Yes","Closed","School","13-May-26","School","Umri","","",""],
+[47,"NSL","Ponnur","Teacher","05-Jan-26","Science","G6-10","35K","Yes","Closed","School","18-May-26","Others","Umri","Madhurima Madanan","","Nivin Consultant"],
+[48,"NSL","Ponnur","Teacher","02-Mar-26","Mathematics","G8-10","35K","Yes","Closed","School","13-May-26","School","Umri","","",""],
+[49,"NSL","Ponnur","Teacher","02-Mar-26","Mathematics","G8-10","35K","Yes","Closed","School","","School","Umri","Sankuru Murali - 45k","",""],
+[50,"NSL","Ponnur","Teacher","27-May-26","Mathematics","G6-8","","Yes","Open","School","08-Jun-26","School","Umri","Surya - Partime","",""],
+[51,"NSL","Ponnur","Teacher","05-Jan-26","Telugu","G6-10","20-25K","No","Closed","HR","13-May-26","HR","Umri","Dhanlaxmi","","work india"],
+[52,"HSB","Bangalore","Teacher","01-Dec-25","Hindi","G1-5","15k-17k","No","Closed","HR","17-Dec-25","Others","Leena","Sunita Mishra- 22k, 15th May","Imuna Begum resigned","Schoolnovate"],
+[53,"HSB","Bangalore","Teacher","01-Feb-26","Kindergarten","KG","14k","No","Closed","School","22-Apr-26","School","Leena","Sharanamma - 14k 15th May","","Local"],
+[54,"HSB","Bangalore","School Admin","01-Feb-26","Admin","--","15k-17k","No","Open","HR","15-Apr-26","HR","Leena","Nithish - 25k","","Social Media Ads"],
+[55,"HSB","Bangalore","Admission Counsellor","01-Feb-26","Admission Counsellor","--","25k","No","Open","HR","","HR","Leena","","","work india"],
+[56,"HSB","Bangalore","Teacher","01-Feb-26","Mathematics","G1-5","20k","No","Closed","HR","22-May-26","HR","Leena","Veena Abhilash","","work india"],
+[57,"HSB","Bangalore","Teacher","01-Feb-26","English","G6-10","22k-23k","No","Closed","HR","25-Apr-26","Others","Leena","Pallavi Pati - selected","","Schoolnovate"],
+[58,"HSB","Bangalore","Teacher","01-Feb-26","Mathematics","G6-10","20k","No","Closed","HR","27-Apr-26","HR","Leena","Harshitha N","","Social Media Ads"],
+[59,"HSB","Bangalore","Teacher","01-Feb-26","Science","G3-8","16k","No","Closed","HR","12-May-26","HR","Leena","Yogeshwari - not joining","",""],
+[60,"HSB","Bangalore","Teacher","01-Feb-26","Science","G6-10","22k","No","Closed","School","01-Jun-26","HR","Leena","Charulakshmi - 17k","",""],
+[61,"HSB","Bangalore","Teacher","01-Feb-26","Kannada","G6-10","15k-17k","No","Closed","HR","22-Apr-26","HR","Leena","Shivakumar - 20k","","work india"],
+[62,"HSB","Bangalore","Teacher","01-Feb-26","Social Science","G6-10","22k-23k","No","Closed","HR","01-Jun-26","HR","Leena","Suman -16k","","Indeed"],
+[63,"HSB","Bangalore","Teacher","01-Feb-26","Library + Art","All Grades","12k","No","Dropped","School","","","Leena","","",""],
+[64,"HSB","Bangalore","Teacher","01-Feb-26","Computer Teacher","All Grades","25k","No","Open","School","","","Leena","","",""],
+[65,"HSB","Bangalore","Teacher","01-Feb-26","Kindergarten","KG","18k-19k","No","Closed","School","15-Apr-26","HR","Leena","A Sumathi","","work india"],
+[66,"HSB","Bangalore","Teacher","01-Feb-26","Kindergarten","KG","18k-19k","No","Closed","School","01-Jun-26","School","Leena","Uma","",""],
+[67,"HSB","Bangalore","Teacher","01-Feb-26","Shadow Teacher + Dance","G1-5","23k","No","Closed","HR","15-Apr-26","HR","Leena","Faruk Ahmed -22k","","work india"],
+[68,"HSB","Bangalore","Teacher","01-Feb-26","PE Teacher","All Grades","22k-25k","No","Closed","HR","18-Apr-26","HR","Leena","Dharmik Jain - 25k","","Social Media Ads"],
+[69,"VVHPS","Bangalore","Teacher","01-Feb-26","Kindergarten","KG","12500","No","Closed","School","4-May-26","HR","Roopashree","Kumudha- offer under process","",""],
+[70,"VVHPS","Bangalore","Teacher","01-Feb-26","EVS","G1-5","15k","No","Closed","School","22-Apr-26","School","Roopashree","Priyanka - 19k","","Local"],
+[71,"VVHPS","Bangalore","Teacher","01-Feb-26","Mathematics","G6-10","20k","No","Closed","School","22-Apr-26","School","Roopashree","Galvio - 18k","","Indeed"],
+[72,"VVHPS","Bangalore","Teacher","01-Feb-26","Mathematics","G8-10","21k","No","Closed","School","20-May-26","HR","Roopashree","Humera Kouser","","Indeed"],
+[73,"VVHPS","Bangalore","Teacher","01-Feb-26","Social Science","G6-10","16k","No","Closed","School","22-Apr-26","School","Roopashree","Bhumika - 17k","","Local"],
+[74,"VVHPS","Bangalore","Teacher","01-Feb-26","Science","G8-10","21k","No","Closed","School","04-May-26","School","Roopashree","Shailashree - 21k","","Local"],
+[75,"VVHPS","Bangalore","Teacher","01-Feb-26","Hindi","G1-8","15k","No","Closed","School","27-May-26","School","Roopashree","existing teacher hindi for primary","",""],
+[76,"VVHPS","Bangalore","Teacher","01-Feb-26","Kannada","G6-10","16k","No","Closed","HR","31-Mar-26","HR","Roopashree","Rekha Chavan","",""],
+[77,"VVHPS","Bangalore","Teacher","10-Apr-26","Kannada","G8-10","18K","No","Closed","School","22-Apr-26","School","Savita","Sreedevi - 18k","",""],
+[78,"VVHPS","Bangalore","Teacher","20-04-2026","Hindi","G8-10","18K","No","Closed","School","22-Apr-26","School","Savita","Kathyayini -18k","",""],
+[79,"VVHPS","Bangalore","Teacher","10-Apr-26","Mother Teacher","G1-2-3","16k","Yes","Closed","School","24-Apr-26","School","Savita","Sumaiya - 16k","",""],
+[80,"VVHPS","Bangalore","Teacher","01-Feb-26","Computer Teacher","All Grades","17k","No","Closed","School","22-Apr-26","School","Roopashree","Vijayashree - 17k","","Local"],
+[81,"VHIS","Beechanahalli","Teacher","01-Feb-26","Karate","All Grades","9k","Yes","Closed","School","22-Apr-26","School","Leena","Rakesh continuing","Rakesh replacement",""],
+[82,"VHIS","Beechanahalli","Teacher","01-Feb-26","Kannada","G1-5","20k","Yes","Closed","HR","22-Apr-26","School","Leena","Anitha - 17k","","Local"],
+[83,"VHIS","Beechanahalli","Teacher","01-Feb-26","Social Science","G6-10","24k","Yes","Closed","HR","22-Apr-26","HR","Leena","Vishnu","",""],
+[84,"VHIS","Beechanahalli","Teacher","01-Feb-26","Physics","G6-10","33k","Yes","Closed","HR","23-Mar-26","School","Leena","Kumar Govind - 35k","Karthik replacement",""],
+[85,"VHIS","Beechanahalli","Teacher","01-Feb-26","Hindi","G1-5","13k","Yes","Closed","Local","22-Apr-26","School","Leena","Salma - 17k","Smrithy replacement","Local"],
+[86,"VHIS","Beechanahalli","Teacher","01-Feb-26","EVS & Social","G1-5","17k","Yes","Closed","HR","22-Apr-26","HR","Leena","Sri Trisha","Sree Trisha replacement",""],
+[87,"VHIS","Beechanahalli","Teacher","01-Feb-26","Kindergarten","KG","13k","Yes","Closed","School","22-Apr-26","School","Leena","Meghashree - 13k","Shaheen Taj replacement",""],
+[88,"VHIS","Beechanahalli","Teacher","01-Feb-26","English","G1-5","15850","Yes","Closed","HR","22-Apr-26","HR","Leena","Manjula","",""],
+[89,"VHIS","Beechanahalli","Teacher","01-Feb-26","Mathematics","G1-5","12k","Yes","Closed","School","20-May-26","School","Leena","Aishwarya - 25th May","Anusha replacement",""],
+[90,"VHIS","Beechanahalli","Teacher","01-Feb-26","Mathematics","G1-5","16.5k","Yes","Closed","HR","20-May-26","HR","Leena","Roopa - 30th May","Sujatha replacement",""],
+[91,"VHIS","Beechanahalli","Teacher","01-Feb-26","English","G6-10","24k","Yes","Open","HR","20-May-26","School","Leena","Shilpa replacement","Soorya replacement",""],
+[92,"HSB","Bangalore","School Admin","01-Apr-26","Admin","--","18k","No","Closed","School","09-Jun-26","Others","Leena","Raghavendra - 18k","","Schoolnovate"],
+[93,"VVHPS","Bangalore","Teacher","25-May-26","PE","G1-8","25k","No","Closed","School","09-Jun-26","School","Roopashree","","",""],
+[94,"VHIS","Beechanahalli","Teacher","01-Feb-26","English","G8-10","25.5k","Yes","Closed","HR","03-Jun-26","HR","Leena","Lawrence - joined on 4th June","Pooja replacement",""],
+[95,"VHIS","Beechanahalli","Teacher","01-Feb-26","Mathematics","G8-10","25k","Yes","Closed","HR","22-May-26","HR","Leena","Tansila - 30k","Fathima replacement",""],
+[96,"VHIS","Beechanahalli","Teacher","01-Feb-26","Computer Teacher","All Grades","12k","Yes","Open","HR","","","Leena","","",""],
+[97,"VHIS","Beechanahalli","Teacher","01-Feb-26","PE Teacher","All Grades","23k","Yes","Closed","HR","22-May-26","HR","Leena","Trigun - 23rd May","",""],
+[98,"Prajna Bharathi School","Doddakallasandra","Teacher","19-Jun-26","Kindergarten","KG","14k","No","Open","","","","Lalitha","Shruthi - replacement","",""],
+[99,"Prajna Bharathi School","Doddakallasandra","Teacher","19-Jun-26","English","G1-2-3","","No","Offer under process","School","","School","Lalitha","","",""],
+[100,"Prajna Bharathi School","Doddakallasandra","Teacher","17-Mar-26","Mathematics","G8-10","30k","No","Closed","HR","27-May-26","School","Lalitha","Adjusted internally","",""],
+[101,"Prajna Bharathi School","Doddakallasandra","Teacher","17-Mar-26","Mathematics","G1-5","","No","Closed","HR","21-May-26","HR","Lalitha","Vidhyashree","","work india"],
+[102,"Prajna Bharathi School","Doddakallasandra","Teacher","11-May-26","Kindergarten","KG","","No","Closed","School","23-May-26","School","Lalitha","Rakshitha","",""],
+[103,"Prajna Bharathi School","Doddakallasandra","Teacher","17-Mar-26","English","G8-10","20K","No","Closed","HR","27-May-26","School","Lalitha","Adjusted internally","",""],
+[104,"Prajna Bharathi School","Doddakallasandra","Teacher","17-Mar-26","PE Teacher","All Grades","20K","No","Closed","HR","27-May-26","School","Lalitha","Adjusted internally","",""],
+[105,"DB Darure","Kudachi","Teacher","17-Mar-26","Kindergarten","KG","5k","No","Closed","School","13-May-26","School","Rahul","Shraddha","",""],
+[106,"DB Darure","Kudachi","Teacher","17-Mar-26","Mathematics","G8-10","10k","No","Open","School","","School","Rahul","","",""],
+[107,"DB Darure","Kudachi","Teacher","17-Mar-26","PE Teacher","All Grades","10k","No","Closed","Local","13-May-26","School","Rahul","Bashwadi","",""],
+[108,"DB Darure","Kudachi","Teacher","17-Mar-26","English","G1-5","7k","No","Closed","Local","13-May-26","School","Rahul","Pooja","",""],
+[109,"SBHS","Kalloli","Teacher","17-Mar-26","Hindi","G1-5","6k","No","Closed","School","23-May-26","School","Rahul","Aaisha Nadaf - 5.5k","",""],
+[110,"SBHS","Kalloli","Teacher","17-Mar-26","Mathematics","G1-5","7k","No","Closed","School","23-May-26","School","Rahul","Jyothi - 9k","",""],
+[111,"SBHS","Kalloli","Teacher","06-May-26","English","G1-2-3","6k","No","Closed","School","","School","Rahul","","",""],
+[112,"SBHS","Kalloli","School Admin","06-May-26","Admin","--","7-10k","No","Open","School","","School","Rahul","","",""],
+[113,"SPLIS","Chimmad","Teacher","18-Mar-26","Kindergarten","KG","8-10k","No","Closed","School","6th May","School","Rahul","Seema","",""],
+[114,"SPLIS","Chimmad","Teacher","18-Mar-26","Kindergarten","KG","8-10k","No","Closed","School","6th May","School","Rahul","Manjula","",""],
+[115,"SPLIS","Chimmad","Teacher","18-Mar-26","Kindergarten","KG","8-10k","No","Closed","School","","","Rahul","","",""],
+[116,"SPLIS","Chimmad","Teacher","18-Mar-26","Mathematics","G1-5","8-10k","No","Closed","School","6th May","School","Rahul","Preethi","",""],
+[117,"SPLIS","Chimmad","Teacher","18-Mar-26","Mathematics","G1-5","10-12k","Yes","Closed","School","6th May","School","Rahul","Nikita","",""],
+[118,"SPLIS","Chimmad","Teacher","18-Mar-26","EVS","G1-5","10-12k","Yes","Closed","School","","","Rahul","","",""],
+[119,"SPLIS","Chimmad","Teacher","18-Mar-26","Hindi","G1-5","8-10k","Yes","Closed","School","","","Rahul","","",""],
+[120,"SPLIS","Chimmad","Teacher","18-Mar-26","English","G3-5","10-12k","Yes","Closed","School","","School","Rahul","","",""],
+[121,"SPLIS","Chimmad","Teacher","18-Mar-26","Kannada","G1-5","8-10k","Yes","Closed","School","6th May","School","Rahul","Asha","",""],
+[122,"SPLIS","Chimmad","Teacher","18-Mar-26","Kannada","G1-5","10-12k","Yes","Closed","School","6th May","School","Rahul","Annapurna","",""],
+[123,"SPLIS","Chimmad","Teacher","18-Mar-26","Kannada","G6-10","10-12k","Yes","Closed","School","6th May","School","Rahul","","",""],
+[124,"SPLIS","Chimmad","Teacher","18-Mar-26","Mathematics","G6-10","18-22k","Yes","Closed","School","06-May-26","School","Rahul","","",""],
+[125,"SPLIS","Chimmad","Teacher","18-Mar-26","PE Teacher","All Grades","12-14k","Yes","Closed","School","06-May-26","School","Rahul","Ramesh","",""],
+[126,"SPLIS","Chimmad","Teacher","18-Mar-26","Library + Art","All Grades","8-10k","Yes","Closed","School","06-May-26","School","Rahul","Vaishnavi","",""],
+[127,"SPLIS","Chimmad","Teacher","18-Mar-26","Hindi","G6-10","10-12k","Yes","Closed","School","","","Rahul","","",""],
+[128,"SPLIS","Chimmad","Teacher","18-Mar-26","Mathematics","","","Yes","Closed","School","01-Jun-26","School","Rahul","Vaishnavi","",""],
+[129,"SPLIS","Chimmad","Teacher","18-Mar-26","Supplementary","","","Yes","Closed","School","01-Jun-26","School","Rahul","Nikitha","",""],
+[130,"MFS","Mallipatna","Teacher","19-Mar-26","EVS","G1-5","9K","No","Closed","School","01-Jun-26","School","Leena","Dhanya","",""],
+[131,"MFS","Mallipatna","Teacher","20-Mar-26","Kindergarten","KG","9K","No","Closed","School","01-Jun-26","School","Leena","Arpitha continuing","",""],
+[132,"MFS","Mallipatna","Teacher","20-Mar-26","Hindi","G1-7","9k","No","Closed","School","19-Jun-26","School","Leena","Managed internally","",""],
+[133,"SSVM","Husananhalli","Teacher","21-Mar-26","PE Teacher","All Grades","8K","No","Dropped","School","","","Leena","","",""],
+[134,"SSVM","Husananhalli","Teacher","22-Mar-26","Library","All Grades","10K","No","Closed","School","27-May-26","School","Leena","Adjusted internally","",""],
+[135,"SSVM","Husananhalli","Teacher","20-Mar-26","English","G5-7","12k","No","Closed","School","13-May-26","School","Leena","Madura","",""],
+[136,"SBVM","Gulbarga","Teacher","25-03-2026","English","G1-5","12K","No","Closed","School","","School","Umri","Varsha joined","",""],
+[137,"SBVM","Gulbarga","Teacher","25-03-2026","English","G8-10","25K","Yes","Offer under process","School","27-May-26","School","Umri","Shankar offer under process","",""],
+[138,"SBVM","Gulbarga","Teacher","25-03-2026","Kindergarten","KG","9K","No","Closed","School","15-Jun-26","School","Umri","Nagaveni - 10k","",""],
+[139,"SBVM","Gulbarga","Teacher","27-May-26","Mathematics","G8-10","","No","Closed","School","","School","Umri","Amrutharaj","",""],
+[140,"SSPS","Bidar","Teacher","25-03-2026","Mathematics","G6-10","18K","No","Closed","School","05-Jun-26","School","Umri","Ajay","",""],
+[141,"SSPS","Bidar","Teacher","25-03-2026","EVS","G3-5","15K","No","Closed","School","27-May-26","School","Umri","Sowmya","",""],
+[142,"SSPS","Bidar","Teacher","25-03-2026","Computer Teacher","All Grades","12-15K","No","Closed","School","19-Jun-26","School","Umri","Preethi","",""],
+[143,"SSPS","Bidar","Teacher","25-03-2026","Hindi","G1-5","15K","Yes","Closed","School","19-Jun-26","School","Umri","Shakku Bai","",""],
+[144,"SSPS","Bidar","Teacher","25-03-2026","Social Science","G8-10","19K","Yes","Closed","School","19-Jun-26","School","Umri","Rekha","",""],
+[145,"Malnad","Hassan","Teacher","25-03-2026","Chem and Bio","G8-10","25-30K","No","Closed","Local","20-Apr-26","School","Lalitha","Preethi UR - 20th May","","Local"],
+[146,"Malnad","Hassan","Teacher","25-03-2026","English/EVS Pri","G1-5","15K","No","Closed","Local","22-Apr-26","HR","Lalitha","Angel","","BEd Colleges"],
+[147,"Malnad","Hassan","Teacher","25-03-2026","Physics/Math","G1-5","40K","No","Closed","HR","","","Lalitha","Vedashree","",""],
+[148,"Malnad","Hassan","Teacher","","Eng/Computer Science","G5-7","18k","No","Open","","","","Lalitha","","",""],
+[149,"Malnad","Hassan","Teacher","14-May-26","SST","G6-10","20k","No","Closed","School","30-May-26","School","Lalitha","Meghasree continuing","",""],
+[150,"Malnad","Hassan","Teacher","14-May-26","Mathematics","G1-5","15K","No","Closed","School","","","Lalitha","","",""],
+[151,"Malnad","Hassan","Admission Counsellor","14-May-26","Admission Counsellor","--","25k","No","Closed","School","30-May-26","HR","Lalitha","Harsthitha - Tanmayee reference 20k","",""],
+[152,"Malnad","Hassan","Teacher","14-May-26","Hindi","G8-10","19k-20k","No","Closed","School","","","Lalitha","","",""],
+[153,"Malnad","Hassan","Teacher","25-03-2026","Kindergarten","KG","10-12K","No","Closed","School","","","Lalitha","","",""],
+[154,"The Summit","Chikmagalur","Teacher","23-04-2026","Physics/Math","G8-10","25k","No","Closed","HR","27-May-26","HR","Lalitha","Geetha 20k, joining on 29th May","AVG B.Ed College","BEd Colleges"],
+[155,"JPS","Sagara","Teacher","22-Apr-26","Mathematics","G6-9","22k","No","Open","","","","Rahul","","",""]
+];
+
+var SCHOOLS=[
+[1,"SSVM","State","Shobha","Leena"],
+[2,"VHIS","CBSE","Nisha","Leena"],
+[3,"Malenadu","State","Bhavani","Leena"],
+[4,"HSB","State","Shanthala","Leena"],
+[5,"Pragna Bharti","State","Anupama","Leena"],
+[6,"JPS","State","Prashanth","Rahul"],
+[7,"DBD","State","Anjum","Rahul"],
+[8,"Netaji","State","Yasmin","Rahul"],
+[9,"SBHS","State","Rameza","Rahul"],
+[10,"SPLIS","State","New","Rahul"],
+[11,"VVPS","State","Savita","Roopashree"],
+[13,"SSPS","CBSE","Rangareddy","Umri"],
+[14,"NSL","CBSE","Dr Gangadhar","Umri"],
+[15,"SBVM","CBSE","Venkatesan","Umri"],
+[16,"Shiny- Guntur","State","Lam Anusha","Umri"],
+[17,"HSR","CBSE","Anju","Umri"],
+[18,"Malnad","CBSE/ G10- State","Hemalatha","Lalitha"],
+[19,"DMS","State","New/Latha/Vanishree","Lalitha"],
+[20,"The Summit","CBSE","Reeta","Lalitha"]
+];
+var nextSchoolId=21;
+var editSchoolIdx=null;
+var sortCol = 'sl', sortDir = 1;
+var STATUS_OPTS = ["Closed","Open","Dropped","Offer under process","Interviews under process"];
+var SCHOOL_CLS = {"DMS":"DMS","Shiny":"Shiny","HSR":"HSR","JPS":"JPS","Netaji":"Netaji","NSL":"NSL","HSB":"HSB","VVHPS":"VVHPS","VHIS":"VHIS","Prajna Bharathi School":"Prajna","DB Darure":"DBD","SBHS":"SBHS","SPLIS":"SPLIS","MFS":"MFS","SSVM":"SSVM","SBVM":"SBVM","SSPS":"SSPS","Malnad":"Malnad","The Summit":"Summit"};
+var LOC_CLS = {"Pandavapura":"Pandavapura","Vijayawada":"Vijayawada","Rangapur":"Rangapur","Sagara":"Sagara","Gokak":"Gokak","Ponnur":"Ponnur","Bangalore":"Bangalore","Beechanahalli":"Beechanahalli","Doddakallasandra":"Doddakallasandra","Kudachi":"Kudachi","Kalloli":"Kalloli","Chimmad":"Chimmad","Mallipatna":"Mallipatna","Husananhalli":"Husananhalli","Gulbarga":"Gulbarga","Bidar":"Bidar","Hassan":"Hassan","Chikmagalur":"Chikmagalur"};
+
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function bdg(t,cls){return '<span class="bdg '+cls+'">'+esc(t)+'</span>';}
+function stCls(s){if(!s)return 'b-dropped';var sl=s.toLowerCase();if(sl.indexOf('closed')>-1)return 'b-closed';if(sl==='open')return 'b-open';if(sl.indexOf('offer')>-1)return 'b-offer';if(sl.indexOf('interview')>-1)return 'b-interview';return 'b-dropped';}
+function posCls(p){if(!p||p==='Teacher')return 'pos-Teacher';var pl=p.toLowerCase();if(pl.indexOf('admin')>-1)return 'pos-Admin';if(pl.indexOf('counsel')>-1)return 'pos-Counsellor';if(pl.indexOf('special')>-1)return 'pos-Special';return 'pos-Other';}
+function grCls(g){if(!g||g==='--'||g==='')return 'gr-All';var gl=g.toLowerCase();if(gl==='kg')return 'gr-KG';if(gl==='all grades')return 'gr-All';var nums=g.match(/\d+/g);if(!nums)return 'gr-All';var mn=Math.min.apply(null,nums.map(Number));if(mn<=5)return 'gr-Pri';if(mn<=8)return 'gr-Mid';if(mn<=10)return 'gr-High';return 'gr-Senior';}
+
+// Get selected values from a native multi-select
+function getSelected(id){
+  var el=document.getElementById(id);
+  if(!el) return [];
+  var vals=[];
+  var opts=el.options;
+  var len=opts.length;
+  for(var i=0;i<len;i++){
+    var opt=opts[i];
+    if(opt.selected===true) vals.push(opt.value);
+  }
+  return vals;
+}
+// Select all options in a multi-select
+function selectAll(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  var opts=el.options;
+  for(var i=0;i<opts.length;i++) opts[i].selected=true;
+}
+
+function populateMultiSelect(id, items) {
+  var el = document.getElementById(id);
+  // keep first "All" option
+  while(el.options.length > 1) el.remove(1);
+  for(var i=0;i<items.length;i++){
+    var o = document.createElement('option');
+    o.value = items[i]; o.textContent = items[i];
+    el.appendChild(o);
+  }
+}
+
+function rebuildDDs() {
+  var sSet={}, bSet={}, subjSet={}, lSet={};
+  for(var i=0;i<DATA.length;i++){
+    if(DATA[i][1])sSet[DATA[i][1]]=1;
+    if(DATA[i][13])bSet[DATA[i][13]]=1;
+    if(DATA[i][5])subjSet[DATA[i][5]]=1;
+    if(DATA[i][2])lSet[DATA[i][2]]=1;
+  }
+  var schools=Object.keys(sSet).sort();
+  var bys=Object.keys(bSet).sort();
+  var subjs=Object.keys(subjSet).sort();
+
+  function fillSel(id,opts,prefix){
+    var el=document.getElementById(id); if(!el)return;
+    var v=el.value; el.innerHTML='<option value="">'+prefix+'</option>';
+    for(var i=0;i<opts.length;i++){var o=document.createElement('option');o.value=opts[i];o.textContent=opts[i];el.appendChild(o);}
+    el.value=v;
+  }
+  fillSel('fSchool',schools,'All schools');
+  fillSel('f3School',schools,'All schools');
+  fillSel('fBy',bys,'All raised by');
+  fillSel('f2By',bys,'All raised by');
+
+  // Populate subject dropdowns (single-select)
+  var subjs=Object.keys(subjSet).sort();
+  function fillSubj(id){
+    var el=document.getElementById(id); if(!el) return;
+    el.innerHTML='<option value="">All subjects</option>';
+    for(var i=0;i<subjs.length;i++){var o=document.createElement('option');o.value=subjs[i];o.textContent=subjs[i];el.appendChild(o);}
+  }
+  fillSubj('fSubj');
+  fillSubj('f3Subj');
+}
+
+// Filtering
+function getFiltered(){
+  var q=(document.getElementById('q').value||'').toLowerCase();
+  var fS=document.getElementById('fSchool').value;
+  var fB=document.getElementById('fBy').value;
+  var selStatus=getSelected('fStatus');
+  var selSubj=getSelected('fSubj');
+  var allSubjSelected=(selSubj.length===document.getElementById('fSubj').options.length);
+  var res=[];
+  for(var i=0;i<DATA.length;i++){
+    var r=DATA[i];
+    if(q&&[r[1],r[2],r[3],r[5],r[14],r[15]].join(' ').toLowerCase().indexOf(q)<0)continue;
+    if(fS&&r[1]!==fS)continue;
+    if(fB&&r[13]!==fB)continue;
+    // status filter
+    if(selStatus.length>0){
+      var st=(r[9]||'').toLowerCase(), sm=false;
+      for(var j=0;j<selStatus.length;j++){if(st.indexOf(selStatus[j].toLowerCase())>-1){sm=true;break;}}
+      if(!sm)continue;
+    }
+    // subject filter
+    if(!allSubjSelected&&selSubj.length>0){
+      var found=false;
+      for(var k=0;k<selSubj.length;k++){if(selSubj[k]===r[5]){found=true;break;}}
+      if(!found)continue;
+    }
+    res.push(r);
+  }
+  return res;
+}
+
+function render(){
+  var data=getFiltered();
+  var ci={sl:0,school:1,loc:2,pos:3,subj:5,status:9};
+  var idx=ci[sortCol]||0;
+  data.sort(function(a,b){
+    if(sortCol==='sl')return(a[0]-b[0])*sortDir;
+    return(a[idx]||'').toString().localeCompare((b[idx]||'').toString())*sortDir;
+  });
+  var tot=data.length,cl=0,op=0,dr=0,of=0;
+  for(var i=0;i<data.length;i++){var s=(data[i][9]||'').toLowerCase();if(s.indexOf('closed')>-1)cl++;else if(s==='open')op++;else if(s.indexOf('drop')>-1)dr++;else of++;}
+  document.getElementById('s1cards').innerHTML=
+    '<div class="card" style="background:#ede9fe"><div class="card-label">Total</div><div class="card-val">'+tot+'</div></div>'+
+    '<div class="card" style="background:#d1f5e0"><div class="card-label">Closed</div><div class="card-val">'+cl+'</div></div>'+
+    '<div class="card" style="background:#dbeafe"><div class="card-label">Open</div><div class="card-val">'+op+'</div></div>'+
+    '<div class="card" style="background:#fef3c7"><div class="card-label">Offer Under Process</div><div class="card-val">'+of+'</div></div>'+
+    '<div class="card" style="background:#fde8e7"><div class="card-label">Dropped</div><div class="card-val">'+dr+'</div></div>'+
+    '<div class="card" style="background:#f5eeff"><div class="card-label">Closure Rate</div><div class="card-val">'+(tot?Math.round(cl/tot*100):0)+'%</div></div>';
+  document.getElementById('rowCount').textContent='Showing '+data.length+' of '+DATA.length+' positions';
+  var html='';
+  for(var i=0;i<data.length;i++){
+    var r=data[i],di=-1;
+    for(var j=0;j<DATA.length;j++){if(DATA[j][0]===r[0]){di=j;break;}}
+    html+='<tr>'+
+      '<td style="color:#888;font-size:12px;font-weight:700;text-align:right;padding-right:8px;">'+r[0]+'</td>'+
+      '<td><button class="edit-btn" onclick="openModal('+di+')">&#9998;</button></td>'+
+      '<td>'+bdg(r[1],'sc-'+(SCHOOL_CLS[r[1]]||'Other'))+'</td>'+
+      '<td>'+bdg(r[2],'loc-'+(LOC_CLS[r[2]]||'Other'))+'</td>'+
+      '<td>'+bdg(r[3]||'Teacher',posCls(r[3]))+'</td>'+
+      '<td style="font-weight:500;">'+esc(r[5])+'</td>'+
+      '<td>'+(r[6]&&r[6]!='--'?bdg(r[6],grCls(r[6])):'')+'</td>'+
+      '<td style="font-weight:500;">'+esc(r[7]||'--')+'</td>'+
+      '<td style="text-align:center;">'+(r[8]==='Yes'?'<span style="color:#065f46;font-weight:700;">Y</span>':'<span style="color:#ccc;">-</span>')+'</td>'+
+      '<td>'+bdg(r[9]||'',stCls(r[9]))+'</td>'+
+      '<td style="color:#444;font-weight:500;">'+esc(r[10]||'--')+'</td>'+
+      '<td style="color:#444;font-weight:500;">'+esc(r[11]||'--')+'</td>'+
+      '<td style="font-weight:600;">'+esc(r[13]||'--')+'</td>'+
+      '<td style="font-weight:500;">'+esc(r[14]||'')+'</td>'+
+      '<td style="color:#555;">'+esc(r[15]||'')+'</td>'+
+      '<td style="color:#555;">'+esc(r[16]||'')+'</td>'+
+    '</tr>';
+  }
+  document.getElementById('tbody').innerHTML=html;
+}
+
+function renderS2(){
+  var fB=document.getElementById('f2By').value;
+  var fS=document.getElementById('f2Status').value;
+  var sc={};
+  for(var i=0;i<DATA.length;i++){
+    var r=DATA[i];
+    if(fB&&r[13]!==fB)continue;
+    if(fS&&(r[9]||'').toLowerCase().indexOf(fS.toLowerCase())<0)continue;
+    var k=r[1];
+    if(!sc[k])sc[k]={name:k,loc:r[2],tot:0,cl:0,op:0,dr:0,of:0,hr:0,sch:0,oth:0,rb:{}};
+    var s=sc[k];s.tot++;
+    var st=(r[9]||'').toLowerCase();
+    if(st.indexOf('closed')>-1)s.cl++;else if(st==='open')s.op++;else if(st.indexOf('drop')>-1)s.dr++;else s.of++;
+    var cb=(r[12]||'').toLowerCase();
+    if(cb==='hr')s.hr++;else if(cb==='school')s.sch++;else if(cb)s.oth++;
+    if(r[13])s.rb[r[13]]=1;
+  }
+  var rows=Object.keys(sc).map(function(k){return sc[k];}).sort(function(a,b){return b.tot-a.tot;});
+  var tS=rows.length,tP=0,tO=0,tC=0;
+  for(var i=0;i<rows.length;i++){tP+=rows[i].tot;tO+=rows[i].op;tC+=rows[i].cl;}
+  document.getElementById('s2cards').innerHTML=
+    '<div class="card" style="background:#ede9fe"><div class="card-label">Schools</div><div class="card-val">'+tS+'</div></div>'+
+    '<div class="card" style="background:#fef3c7"><div class="card-label">Total</div><div class="card-val">'+tP+'</div></div>'+
+    '<div class="card" style="background:#dbeafe"><div class="card-label">Open</div><div class="card-val">'+tO+'</div></div>'+
+    '<div class="card" style="background:#d1f5e0"><div class="card-label">Closed</div><div class="card-val">'+tC+'</div></div>';
+  var html='';
+  for(var i=0;i<rows.length;i++){
+    var r=rows[i],mx=140,t=r.tot||1;
+    var cw=Math.round(r.cl/t*mx),ow=Math.round(r.op/t*mx),dw=Math.round(r.dr/t*mx);
+    var base=r.hr+r.sch+r.oth||1;
+    var hp=Math.round(r.hr/base*100),sp=Math.round(r.sch/base*100);
+    html+='<tr>'+
+      '<td>'+bdg(r.name,'sc-'+(SCHOOL_CLS[r.name]||'Other'))+'</td>'+
+      '<td>'+bdg(r.loc,'loc-'+(LOC_CLS[r.loc]||'Other'))+'</td>'+
+      '<td style="font-weight:700;">'+r.tot+'</td>'+
+      '<td style="color:#1034a6;font-weight:700;">'+r.op+'</td>'+
+      '<td style="color:#145c30;font-weight:700;">'+r.cl+'</td>'+
+      '<td style="color:#4c1d95;font-weight:600;">'+r.dr+'</td>'+
+      '<td style="color:#7a4f00;font-weight:600;">'+r.of+'</td>'+
+      '<td style="font-weight:600;font-size:11px;">'+Object.keys(r.rb).join(', ')+'</td>'+
+      '<td><div style="font-size:11px;font-weight:600;color:#444;margin-bottom:3px;">HR:'+r.hr+' Sch:'+r.sch+' Oth:'+r.oth+'</div>'+
+        '<div style="background:#ede9fe;border-radius:4px;overflow:hidden;height:8px;width:160px;">'+
+        '<div style="float:left;height:8px;background:#7B68C8;width:'+hp+'%;min-width:'+(r.hr?2:0)+'px;"></div>'+
+        '<div style="float:left;height:8px;background:#34d399;width:'+sp+'%;min-width:'+(r.sch?2:0)+'px;"></div>'+
+        '<div style="float:left;height:8px;background:#F5A623;width:'+(100-hp-sp)+'%;"></div></div>'+
+        '<div style="font-size:10px;color:#555;margin-top:2px;">Purple=HR  Green=School  Yellow=Others</div></td>'+
+      '<td>'+
+        '<div class="bar-row"><div class="bar bar-cl" style="width:'+cw+'px;"></div> <span style="font-size:10px;color:#444;">'+r.cl+' closed</span></div>'+
+        '<div class="bar-row"><div class="bar bar-op" style="width:'+ow+'px;"></div> <span style="font-size:10px;color:#444;">'+r.op+' open</span></div>'+
+        '<div class="bar-row"><div class="bar bar-dr" style="width:'+dw+'px;"></div> <span style="font-size:10px;color:#444;">'+r.dr+' dropped</span></div>'+
+      '</td></tr>';
+  }
+  document.getElementById('s2tbody').innerHTML=html;
+}
+
+function renderS3(){
+  var fS=document.getElementById('f3Status').value;
+  var fSc=document.getElementById('f3School').value;
+  var selSubj=getSelected('f3Subj');
+  var allSel=(selSubj.length===document.getElementById('f3Subj').options.length);
+  var data=[];
+  for(var i=0;i<DATA.length;i++){
+    var r=DATA[i];
+    if(fSc&&r[1]!==fSc)continue;
+    if(fS&&(r[9]||'').toLowerCase().indexOf(fS.toLowerCase())<0)continue;
+    if(!allSel&&selSubj.length>0){var f=false;for(var k=0;k<selSubj.length;k++){if(selSubj[k]===r[5]){f=true;break;}}if(!f)continue;}
+    data.push(r);
+  }
+  var tot=data.length,cl=0,op=0,ss={};
+  for(var i=0;i<data.length;i++){var s=(data[i][9]||'').toLowerCase();if(s.indexOf('closed')>-1)cl++;else if(s==='open')op++;if(data[i][5])ss[data[i][5]]=1;}
+  document.getElementById('s3cards').innerHTML=
+    '<div class="card" style="background:#ede9fe"><div class="card-label">Subjects</div><div class="card-val">'+Object.keys(ss).length+'</div></div>'+
+    '<div class="card" style="background:#fef3c7"><div class="card-label">Positions</div><div class="card-val">'+tot+'</div></div>'+
+    '<div class="card" style="background:#d1f5e0"><div class="card-label">Closed</div><div class="card-val">'+cl+'</div></div>'+
+    '<div class="card" style="background:#dbeafe"><div class="card-label">Open</div><div class="card-val">'+op+'</div></div>';
+  document.getElementById('s3count').textContent='Showing '+data.length+' positions';
+  var grp={};
+  for(var i=0;i<data.length;i++){var k=data[i][5]||'--';if(!grp[k])grp[k]=[];grp[k].push(data[i]);}
+  var keys=Object.keys(grp).sort();
+  var html='';
+  for(var si=0;si<keys.length;si++){
+    var subj=keys[si],rows=grp[subj];
+    html+='<tr><td colspan="11" class="subj-hdr">'+esc(subj)+' ('+rows.length+')</td></tr>';
+    for(var ri=0;ri<rows.length;ri++){
+      var r=rows[ri],di=-1;
+      for(var j=0;j<DATA.length;j++){if(DATA[j][0]===r[0]){di=j;break;}}
+      html+='<tr>'+
+        '<td><button class="edit-btn" onclick="openModal('+di+')">&#9998;</button></td>'+
+        '<td style="font-weight:600;">'+esc(r[5])+'</td>'+
+        '<td>'+bdg(r[1],'sc-'+(SCHOOL_CLS[r[1]]||'Other'))+'</td>'+
+        '<td>'+bdg(r[2],'loc-'+(LOC_CLS[r[2]]||'Other'))+'</td>'+
+        '<td>'+(r[6]&&r[6]!='--'?bdg(r[6],grCls(r[6])):'')+'</td>'+
+        '<td style="font-weight:500;">'+esc(r[7]||'')+'</td>'+
+        '<td style="text-align:center;">'+(r[8]==='Yes'?'<span style="color:#065f46;font-weight:700;">Y</span>':'<span style="color:#ccc;">-</span>')+'</td>'+
+        '<td>'+bdg(r[9]||'',stCls(r[9]))+'</td>'+
+        '<td style="font-weight:600;">'+esc(r[13]||'')+'</td>'+
+        '<td style="font-weight:500;">'+esc(r[14]||'')+'</td>'+
+        '<td style="color:#555;">'+esc(r[15]||'')+'</td>'+
+      '</tr>';
+    }
+  }
+  document.getElementById('s3tbody').innerHTML=html;
+}
+
+function renderS4(){
+  var q=(document.getElementById('q4').value||'').toLowerCase();
+  var fD=document.getElementById('f4Dir').value;
+  var fB=document.getElementById('f4Board').value;
+  var data=[];
+  for(var i=0;i<SCHOOLS.length;i++){
+    var r=SCHOOLS[i];
+    if(q&&[r[1],r[2],r[3],r[4]].join(' ').toLowerCase().indexOf(q)<0) continue;
+    if(fD&&r[4]!==fD) continue;
+    if(fB&&r[2]!==fB) continue;
+    data.push(r);
+  }
+  // cards
+  var dirs={};
+  for(var i=0;i<SCHOOLS.length;i++) dirs[SCHOOLS[i][4]]=1;
+  document.getElementById('s4cards').innerHTML=
+    '<div class="card" style="background:#ede9fe"><div class="card-label">Total Schools</div><div class="card-val">'+SCHOOLS.length+'</div></div>'+
+    '<div class="card" style="background:#d1fae5"><div class="card-label">Directors</div><div class="card-val">'+Object.keys(dirs).length+'</div></div>'+
+    '<div class="card" style="background:#dbeafe"><div class="card-label">CBSE</div><div class="card-val">'+SCHOOLS.filter(function(r){return r[2].indexOf('CBSE')>-1;}).length+'</div></div>'+
+    '<div class="card" style="background:#fef3c7"><div class="card-label">State Board</div><div class="card-val">'+SCHOOLS.filter(function(r){return r[2].indexOf('State')>-1;}).length+'</div></div>';
+  // dir colors
+  var dirCols={"Leena":"#dbeafe","Rahul":"#d1fae5","Roopashree":"#fdf4ff","Umri":"#fde8e7","Lalitha":"#fef3c7"};
+  var html='';
+  for(var i=0;i<data.length;i++){
+    var r=data[i];
+    var di=-1; for(var j=0;j<SCHOOLS.length;j++){if(SCHOOLS[j][0]===r[0]){di=j;break;}}
+    var dc=dirCols[r[4]]||'#f1f5f9';
+    var bc=r[2].indexOf('CBSE')>-1?'#d1fae5':'#fef3c7';
+    var bclr=r[2].indexOf('CBSE')>-1?'#065f46':'#92400e';
+    html+='<tr>'+
+      '<td style="color:#888;font-size:12px;font-weight:700;text-align:right;padding-right:8px;">'+r[0]+'</td>'+
+      '<td><button class="edit-btn" onclick="openSchoolModal('+di+')">&#9998;</button></td>'+
+      '<td style="font-weight:700;color:#1a1a2e;">'+esc(r[1])+'</td>'+
+      '<td><span class="bdg" style="background:'+bc+';color:'+bclr+';">'+esc(r[2])+'</span></td>'+
+      '<td style="font-weight:500;">'+esc(r[3])+'</td>'+
+      '<td><span class="bdg" style="background:'+dc+';color:#1a1a2e;">'+esc(r[4])+'</span></td>'+
+    '</tr>';
+  }
+  document.getElementById('s4tbody').innerHTML=html;
+}
+
+function rebuildS4DDs(){
+  var dirs={},boards={};
+  for(var i=0;i<SCHOOLS.length;i++){dirs[SCHOOLS[i][4]]=1;boards[SCHOOLS[i][2]]=1;}
+  var dKeys=Object.keys(dirs).sort();
+  var bKeys=Object.keys(boards).sort();
+  var elD=document.getElementById('f4Dir');
+  elD.innerHTML='<option value="">All directors</option>';
+  for(var i=0;i<dKeys.length;i++){var o=document.createElement('option');o.value=dKeys[i];o.textContent=dKeys[i];elD.appendChild(o);}
+  var elB=document.getElementById('f4Board');
+  elB.innerHTML='<option value="">All boards</option>';
+  for(var i=0;i<bKeys.length;i++){var o=document.createElement('option');o.value=bKeys[i];o.textContent=bKeys[i];elB.appendChild(o);}
+}
+
+function openSchoolModal(idx){
+  editSchoolIdx=idx;
+  var r=idx!==null?SCHOOLS[idx]:null;
+  document.getElementById('modal4Title').textContent=r?'Edit School #'+r[0]:'Add New School';
+  document.getElementById('btnDel4').style.display=r?'block':'none';
+  document.getElementById('f4-name').value=r?r[1]:'';
+  document.getElementById('f4-board').value=r?r[2]:'';
+  document.getElementById('f4-principal').value=r?r[3]:'';
+  document.getElementById('f4-director').value=r?r[4]:'';
+  document.getElementById('overlay4').className='overlay open';
+}
+function closeSchoolModal(){document.getElementById('overlay4').className='overlay';editSchoolIdx=null;}
+function saveSchool(){
+  var name=document.getElementById('f4-name').value.trim();
+  if(!name){alert('Please enter a School name.');return;}
+  var row=[
+    editSchoolIdx!==null?SCHOOLS[editSchoolIdx][0]:nextSchoolId++,
+    name,
+    document.getElementById('f4-board').value.trim(),
+    document.getElementById('f4-principal').value.trim(),
+    document.getElementById('f4-director').value.trim()
+  ];
+  if(editSchoolIdx!==null) SCHOOLS[editSchoolIdx]=row; else SCHOOLS.push(row);
+  closeSchoolModal();rebuildS4DDs();renderS4();
+}
+function deleteSchool(){
+  if(editSchoolIdx===null) return;
+  if(confirm('Delete '+SCHOOLS[editSchoolIdx][1]+'?')){SCHOOLS.splice(editSchoolIdx,1);closeSchoolModal();rebuildS4DDs();renderS4();}
+}
+
+// Modal
+var editIdx=null;
+function openModal(idx){
+  editIdx=idx;
+  var r=idx!==null?DATA[idx]:null;
+  document.getElementById('modalTitle').textContent=r?'Edit Row #'+r[0]:'Add New Position';
+  document.getElementById('btnDel').style.display=r?'block':'none';
+  document.getElementById('f-school').value=r?r[1]:'';
+  document.getElementById('f-loc').value=r?r[2]:'';
+  document.getElementById('f-pos').value=r?r[3]:'Teacher';
+  document.getElementById('f-date').value=r?r[4]:'';
+  document.getElementById('f-subj').value=r?r[5]:'';
+  document.getElementById('f-grade').value=r?r[6]:'';
+  document.getElementById('f-sal').value=r?r[7]:'';
+  document.getElementById('f-accom').value=r?r[8]:'No';
+  document.getElementById('f-status').value=r?r[9]:'Open';
+  document.getElementById('f-closeby').value=r?r[10]:'';
+  document.getElementById('f-closedon').value=r?r[11]:'';
+  document.getElementById('f-finalby').value=r?r[12]:'';
+  document.getElementById('f-raisedby').value=r?r[13]:'';
+  document.getElementById('f-selected').value=r?r[14]:'';
+  document.getElementById('f-comments').value=r?r[15]:'';
+  document.getElementById('f-source').value=r?r[16]:'';
+  document.getElementById('overlay').className='overlay open';
+}
+function closeModal(){document.getElementById('overlay').className='overlay';editIdx=null;}
+function saveRow(){
+  var school=document.getElementById('f-school').value.trim();
+  if(!school){alert('Please enter a School name.');return;}
+  var row=[
+    editIdx!==null?DATA[editIdx][0]:nextId++,
+    school,
+    document.getElementById('f-loc').value.trim(),
+    document.getElementById('f-pos').value.trim()||'Teacher',
+    document.getElementById('f-date').value.trim(),
+    document.getElementById('f-subj').value.trim(),
+    document.getElementById('f-grade').value.trim(),
+    document.getElementById('f-sal').value.trim(),
+    document.getElementById('f-accom').value,
+    document.getElementById('f-status').value,
+    document.getElementById('f-closeby').value.trim(),
+    document.getElementById('f-closedon').value.trim(),
+    document.getElementById('f-finalby').value.trim(),
+    document.getElementById('f-raisedby').value.trim(),
+    document.getElementById('f-selected').value.trim(),
+    document.getElementById('f-comments').value.trim(),
+    document.getElementById('f-source').value.trim()
+  ];
+  if(editIdx!==null)DATA[editIdx]=row;else DATA.push(row);
+  closeModal();rebuildDDs();renderAll();
+}
+function deleteRow(){
+  if(editIdx===null)return;
+  if(confirm('Delete row #'+DATA[editIdx][0]+'?')){DATA.splice(editIdx,1);closeModal();rebuildDDs();renderAll();}
+}
+
+// Tab switching
+function switchTab(id){
+  var ids=['s1','s2','s3','s4'];
+  for(var i=0;i<ids.length;i++){
+    document.getElementById(ids[i]).className=ids[i]===id?'panel active':'panel';
+    document.getElementById('tab-'+ids[i]).className=ids[i]===id?'tab active':'tab';
+  }
+}
+
+// Sort
+function wireSort(id,col){
+  var th=document.getElementById(id);if(!th)return;
+  th.onclick=function(){if(sortCol===col)sortDir*=-1;else{sortCol=col;sortDir=1;}render();};
+}
+wireSort('th-sl','sl');wireSort('th-school','school');
+wireSort('th-loc','loc');wireSort('th-pos','pos');
+wireSort('th-subj','subj');wireSort('th-status','status');
+
+// Events
+document.getElementById('addBtn').onclick=function(){openModal(null);};
+document.getElementById('btnSv').onclick=saveRow;
+document.getElementById('btnCan').onclick=closeModal;
+document.getElementById('btnDel').onclick=deleteRow;
+document.getElementById('overlay').onclick=function(e){if(e.target===this)closeModal();};
+document.getElementById('tab-s1').onclick=function(){switchTab('s1');};
+document.getElementById('tab-s2').onclick=function(){switchTab('s2');};
+document.getElementById('tab-s3').onclick=function(){switchTab('s3');};
+document.getElementById('btnReset1').onclick=function(){
+  document.getElementById('q').value='';
+  document.getElementById('fSchool').value='';
+  document.getElementById('fBy').value='';
+  document.getElementById('fStatus').value='';
+  document.getElementById('fSubj').value='';
+  render();
+};
+document.getElementById('btnReset3').onclick=function(){
+  document.getElementById('f3Status').value='';
+  document.getElementById('f3School').value='';
+  document.getElementById('f3Subj').value='';
+  renderS3();
+};
+document.getElementById('q').onkeyup=render;
+document.getElementById('q').onchange=render;
+document.getElementById('fSchool').onchange=render;
+document.getElementById('fBy').onchange=render;
+document.getElementById('btnApply1').onclick=render;
+document.getElementById('fStatus').onchange=render;
+document.getElementById('fSubj').onchange=render;
+document.getElementById('f2By').onchange=renderS2;
+document.getElementById('f2Status').onchange=renderS2;
+document.getElementById('f3Status').onchange=renderS3;
+document.getElementById('f3School').onchange=renderS3;
+document.getElementById('f3Subj').onchange=renderS3;
+
+document.getElementById('tab-s4').onclick=function(){switchTab('s4');};
+document.getElementById('addSchoolBtn').onclick=function(){openSchoolModal(null);};
+document.getElementById('btnSv4').onclick=saveSchool;
+document.getElementById('btnCan4').onclick=closeSchoolModal;
+document.getElementById('btnDel4').onclick=deleteSchool;
+document.getElementById('overlay4').onclick=function(e){if(e.target===this)closeSchoolModal();};
+document.getElementById('q4').onkeyup=renderS4;
+document.getElementById('q4').onchange=renderS4;
+document.getElementById('f4Dir').onchange=renderS4;
+document.getElementById('f4Board').onchange=renderS4;
+document.getElementById('btnReset4').onclick=function(){
+  document.getElementById('q4').value='';
+  document.getElementById('f4Dir').value='';
+  document.getElementById('f4Board').value='';
+  renderS4();
+};
+
+// Init
+rebuildDDs();
+rebuildS4DDs();
+renderAll();
+
+}; // end window.onload
+</script>
+</body>
+</html>

@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HLC Employee Handbook v2.0</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--p:#7B68C8;--pd:#5a4fa8;--pl:#eeedfe;--r:#E63329;--y:#F5A623;--g:#22c55e}
+body{font-family:system-ui,sans-serif;background:#f5f4ff;color:#1a1a2e;min-height:100vh;font-size:13px}
+header{background:var(--p);color:#fff;padding:12px 20px;display:flex;align-items:center;gap:12px}
+header h1{font-size:1rem;font-weight:700}header p{font-size:.72rem;opacity:.8}
+.v-badge{background:var(--y);color:#1a1a2e;font-size:.65rem;font-weight:800;padding:2px 7px;border-radius:10px;margin-left:8px}
+
+/* NAV */
+.nav{display:flex;background:#fff;border-bottom:2px solid var(--pl);padding:0 12px;overflow-x:auto;gap:2px}
+.nav-btn{padding:9px 13px;font-size:.75rem;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;color:#777;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:5px}
+.nav-btn.active{color:var(--p);border-bottom-color:var(--p)}
+.nav-btn:hover:not(.active){color:var(--pd);background:#f9f8ff}
+
+/* PANELS */
+.panel{display:none;padding:14px 16px;animation:fadeIn .2s}.panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* SEARCH */
+.big-search{position:relative;margin-bottom:14px}
+.big-search input{width:100%;padding:12px 16px 12px 44px;border:2px solid var(--pl);border-radius:12px;font-size:.9rem;outline:none;background:#fff}
+.big-search input:focus{border-color:var(--p)}
+.big-search i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#aaa;font-size:20px}
+.search-results{display:flex;flex-direction:column;gap:8px}
+.sr{background:#fff;border:1px solid #e8e4f8;border-radius:10px;padding:12px 14px;cursor:pointer;transition:all .2s}
+.sr:hover{border-color:var(--p);box-shadow:0 2px 8px rgba(123,104,200,.12)}
+.sr-cat{font-size:.68rem;font-weight:700;color:var(--p);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.sr-title{font-size:.85rem;font-weight:700;margin-bottom:3px}
+.sr-snip{font-size:.78rem;color:#555;line-height:1.5}
+mark{background:#fff3cd;border-radius:3px;padding:0 2px}
+.search-empty{text-align:center;padding:40px;color:#aaa;font-size:.85rem}
+
+/* BROWSE */
+.cat-filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.cat-chip{padding:4px 12px;border:1px solid #d0cbf5;border-radius:20px;font-size:.75rem;cursor:pointer;color:var(--p);background:#fff;font-weight:500;transition:all .15s}
+.cat-chip.active,.cat-chip:hover{background:var(--p);color:#fff;border-color:var(--p)}
+.policy-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.policy-card{background:#fff;border-radius:10px;border:1px solid #e8e4f8;padding:12px;cursor:pointer;transition:all .2s}
+.policy-card:hover{border-color:var(--p);box-shadow:0 2px 10px rgba(123,104,200,.12)}
+.policy-card .icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;font-size:16px}
+.policy-card h3{font-size:.82rem;font-weight:700;margin-bottom:4px}
+.policy-card p{font-size:.74rem;color:#666;line-height:1.5}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:.68rem;font-weight:600;margin-top:6px}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:14px;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.2)}
+.modal-hdr{background:var(--p);color:#fff;padding:14px 18px;border-radius:14px 14px 0 0;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:1}
+.modal-hdr h2{font-size:.95rem;font-weight:700;flex:1}
+.modal-close{background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;line-height:1}
+.modal-body{padding:16px}
+.ps{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #f0eeff}
+.ps:last-child{border-bottom:none;margin-bottom:0}
+.ps h4{font-size:.78rem;font-weight:700;color:var(--p);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+.ps p,.ps li{font-size:.8rem;color:#333;line-height:1.65}
+.ps ul,.ps ol{padding-left:1.1rem}.ps li{margin-bottom:3px}
+.ps table{width:100%;font-size:.78rem;border-collapse:collapse;margin-top:6px}
+.ps th{background:#f0eeff;padding:5px 8px;text-align:left;font-weight:600}
+.ps td{padding:5px 8px;border-bottom:1px solid #f0eeff}
+
+/* COMPARE */
+.compare-selects{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.compare-selects select{flex:1;min-width:160px;padding:8px 10px;border:1.5px solid #d0cbf5;border-radius:8px;font-size:.8rem;outline:none;background:#fff}
+.compare-selects select:focus{border-color:var(--p)}
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cmp-col{background:#fff;border-radius:10px;border:1px solid #e8e4f8;overflow:hidden}
+.cmp-hdr{color:#fff;padding:10px 14px;font-size:.85rem;font-weight:700}
+.cmp-body{padding:12px 14px}
+.cmp-row{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid #f5f3ff;font-size:.78rem}
+.cmp-row:last-child{border-bottom:none}
+.cmp-label{color:#888;min-width:110px;font-weight:600;flex-shrink:0}
+.cmp-val{color:#1a1a2e;flex:1;line-height:1.5}
+.diff{background:#fff8e6;border-radius:4px;padding:1px 5px;color:#7a4f00;font-weight:600}
+
+/* CALCULATORS */
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.calc-card{background:#fff;border-radius:12px;border:1px solid #e8e4f8;padding:16px}
+.calc-card h3{font-size:.88rem;font-weight:700;color:var(--p);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.form-row{margin-bottom:10px}
+.form-row label{display:block;font-size:.75rem;font-weight:600;color:#555;margin-bottom:4px}
+.form-row input,.form-row select{width:100%;padding:7px 10px;border:1.5px solid #d0cbf5;border-radius:7px;font-size:.82rem;outline:none;background:#fff}
+.form-row input:focus,.form-row select:focus{border-color:var(--p)}
+.calc-btn{width:100%;padding:8px;background:var(--p);color:#fff;border:none;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;margin-top:6px}
+.calc-btn:hover{background:var(--pd)}
+.result-box{margin-top:12px;padding:12px;border-radius:8px;background:#f0eeff;border:1px solid #d0cbf5;font-size:.8rem;line-height:1.8;display:none}
+.result-box.show{display:block}
+.result-box .big{font-size:1.1rem;font-weight:700;color:var(--p)}
+.result-box .row{display:flex;justify-content:space-between;border-bottom:1px solid #e0dbf5;padding:3px 0}
+.result-box .row:last-child{border-bottom:none;font-weight:700;color:var(--p)}
+
+/* QUIZ */
+.quiz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:14px}
+.quiz-topic{background:#fff;border-radius:10px;border:1px solid #e8e4f8;padding:14px;cursor:pointer;transition:all .2s;text-align:center}
+.quiz-topic:hover{border-color:var(--p);transform:translateY(-2px)}
+.quiz-topic .icon{font-size:28px;margin-bottom:8px}
+.quiz-topic h3{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.quiz-topic p{font-size:.75rem;color:#777}
+.quiz-arena{display:none}
+.quiz-arena.active{display:block}
+.q-progress{display:flex;gap:4px;margin-bottom:14px}
+.q-progress span{flex:1;height:4px;border-radius:2px;background:#e8e4f8}
+.q-progress span.done{background:var(--p)}
+.q-progress span.curr{background:var(--y)}
+.q-num{font-size:.72rem;color:#999;margin-bottom:4px}
+.q-text{font-size:.95rem;font-weight:600;color:#1a1a2e;margin-bottom:14px;line-height:1.5}
+.q-opts{display:grid;gap:8px;margin-bottom:14px}
+.opt{padding:9px 14px;border:1.5px solid #e8e4f8;border-radius:8px;background:#fff;font-size:.82rem;cursor:pointer;text-align:left;transition:all .2s;color:#1a1a2e;line-height:1.4}
+.opt:hover:not(:disabled){border-color:var(--p);background:#f9f8ff}
+.opt.correct{border-color:#22c55e;background:#f0fdf4;color:#15803d;font-weight:600}
+.opt.wrong{border-color:#ef4444;background:#fef2f2;color:#b91c1c}
+.fb{padding:10px 12px;border-radius:8px;font-size:.8rem;margin-bottom:10px;line-height:1.6;display:none}
+.fb.show{display:block}
+.fb.good{background:#f0fdf4;color:#166534;border:1px solid #86efac}
+.fb.bad{background:#fef2f2;color:#991b1b;border:1px solid #fca5a5}
+.q-next{padding:8px 18px;background:var(--p);color:#fff;border:none;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;float:right}
+.score-card{text-align:center;padding:30px 20px;background:#fff;border-radius:12px;border:1px solid #e8e4f8}
+.score-ring{width:90px;height:90px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700}
+
+/* FORMS */
+.forms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.form-dl-card{background:#fff;border-radius:10px;border:1px solid #e8e4f8;padding:14px;display:flex;flex-direction:column;gap:10px}
+.form-dl-card h3{font-size:.83rem;font-weight:700}
+.form-dl-card p{font-size:.76rem;color:#666;line-height:1.5;flex:1}
+.dl-btn{padding:7px 14px;background:var(--p);color:#fff;border:none;border-radius:7px;font-size:.78rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;justify-content:center}
+.dl-btn:hover{background:var(--pd)}
+.dl-btn.secondary{background:#fff;color:var(--p);border:1.5px solid var(--p)}
+.dl-btn.secondary:hover{background:var(--pl)}
+
+/* HR QUERY FORM */
+.hr-form{max-width:560px;background:#fff;border-radius:12px;border:1px solid #e8e4f8;padding:20px}
+.hr-form h3{font-size:.95rem;font-weight:700;color:var(--p);margin-bottom:14px}
+.submitted-msg{display:none;text-align:center;padding:30px;background:#f0fdf4;border-radius:10px;border:1px solid #86efac}
+.submitted-msg i{font-size:40px;color:#22c55e;display:block;margin-bottom:10px}
+.submitted-msg h3{color:#166534}
+
+/* ACK TRACKING */
+.ack-wrap{max-width:600px}
+.ack-form{background:#fff;border-radius:12px;border:1px solid #e8e4f8;padding:20px;margin-bottom:14px}
+.ack-list{background:#fff;border-radius:12px;border:1px solid #e8e4f8;overflow:hidden}
+.ack-list-hdr{background:var(--p);color:#fff;padding:10px 16px;font-size:.82rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.ack-item{padding:12px 16px;border-bottom:1px solid #f0eeff;display:flex;align-items:center;gap:12px;font-size:.8rem}
+.ack-item:last-child{border-bottom:none}
+.ack-item .name{font-weight:600;flex:1}
+.ack-item .date{color:#888;font-size:.73rem}
+.ack-status{padding:3px 10px;border-radius:12px;font-size:.7rem;font-weight:700}
+.ack-status.done{background:#f0fdf4;color:#15803d}
+.ack-status.pending{background:#fff8e6;color:#854d0e}
+.ack-empty{padding:24px;text-align:center;color:#aaa;font-size:.82rem}
+
+/* INSURANCE CHECKER */
+.ins-card{max-width:520px;background:#fff;border-radius:12px;border:1px solid #e8e4f8;padding:20px}
+.ins-result{margin-top:14px;display:none}
+.ins-result.show{display:block}
+.ins-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;margin-bottom:8px;font-size:.82rem}
+.ins-row.yes{background:#f0fdf4;border:1px solid #86efac;color:#166534}
+.ins-row.no{background:#fef2f2;border:1px solid #fca5a5;color:#991b1b}
+.ins-row.info{background:#f0eeff;border:1px solid #d0cbf5;color:#3C3489}
+.ins-row i{font-size:18px;flex-shrink:0}
+
+/* UTILS */
+.section-title{font-size:.95rem;font-weight:700;color:#1a1a2e;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.68rem;font-weight:700;background:var(--pl);color:var(--pd)}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="width:40px;height:40px;background:rgba(255,255,255,.2);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+    <i class="ti ti-building-community" style="font-size:22px"></i>
+  </div>
+  <div>
+    <h1>Hippocampus Learning Centres — Employee Handbook <span class="v-badge">v2.0</span></h1>
+    <p>Interactive Policy Guide · v2.0</p>
+  </div>
+</header>
+
+<div class="nav">
+  <div class="nav-btn active" onclick="show('browse')"><i class="ti ti-books"></i>Browse</div>
+  <div class="nav-btn" onclick="show('search')"><i class="ti ti-search"></i>Search</div>
+  <div class="nav-btn" onclick="show('compare')"><i class="ti ti-columns"></i>Compare</div>
+  <div class="nav-btn" onclick="show('calc')"><i class="ti ti-calculator"></i>Calculators</div>
+  <div class="nav-btn" onclick="show('insurance')"><i class="ti ti-heart-plus"></i>Insurance</div>
+  <div class="nav-btn" onclick="show('quiz')"><i class="ti ti-certificate"></i>Quiz</div>
+  <div class="nav-btn" onclick="show('forms')"><i class="ti ti-download"></i>Forms</div>
+  <div class="nav-btn" onclick="show('hrquery')"><i class="ti ti-mail"></i>HR Query</div>
+  <div class="nav-btn" onclick="show('ack')"><i class="ti ti-checklist"></i>Acknowledgement</div>
+</div>
+
+<!-- SEARCH -->
+<div id="p-search" class="panel">
+  <div class="big-search">
+    <i class="ti ti-search"></i>
+    <input type="text" id="globalSearch" placeholder="Search the entire handbook… e.g. 'gratuity', 'maternity', 'accommodation rates'" oninput="doSearch()" autofocus>
+  </div>
+  <div id="searchResults"><div class="search-empty"><i class="ti ti-books" style="font-size:36px;display:block;margin-bottom:8px"></i>Start typing to search across all policies</div></div>
+</div>
+
+<!-- BROWSE -->
+<div id="p-browse" class="panel active">
+  <div class="cat-filters" id="catFilters"></div>
+  <div class="policy-grid" id="policyGrid"></div>
+</div>
+
+<!-- COMPARE -->
+<div id="p-compare" class="panel">
+  <p style="font-size:.78rem;color:#666;margin-bottom:10px">Select any two policy areas to compare side by side. <span style="background:#fff8e6;border-radius:4px;padding:1px 5px;color:#7a4f00;font-weight:600">Highlighted</span> = values differ.</p>
+  <div class="compare-selects">
+    <select id="cmp1" onchange="renderCompare()"><option value="">— Select policy A —</option></select>
+    <select id="cmp2" onchange="renderCompare()"><option value="">— Select policy B —</option></select>
+  </div>
+  <div id="compareOut"><p style="color:#999;font-size:.82rem">Select two policies above to compare them.</p></div>
+</div>
+
+<!-- CALCULATORS -->
+<div id="p-calc" class="panel">
+  <div class="section-title"><i class="ti ti-calculator" style="color:var(--p)"></i>Policy Calculators</div>
+  <div class="calc-grid">
+
+    <!-- Leave Entitlement -->
+    <div class="calc-card">
+      <h3><i class="ti ti-calendar-off"></i> Leave Entitlement</h3>
+      <div class="form-row"><label>Employment Type</label>
+        <select id="lv-type"><option value="confirmed">Confirmed Employee</option><option value="probation">On Probation</option></select></div>
+      <div class="form-row"><label>Date of Joining / Confirmation</label><input type="date" id="lv-date"></div>
+      <div class="form-row"><label>Gender</label>
+        <select id="lv-gender"><option value="any">Male</option><option value="female">Female</option></select></div>
+      <button class="calc-btn" onclick="calcLeave()">Calculate Leave Entitlement</button>
+      <div class="result-box" id="lv-result"></div>
+    </div>
+
+    <!-- Notice Period -->
+    <div class="calc-card">
+      <h3><i class="ti ti-door-exit"></i> Notice Period Calculator</h3>
+      <div class="form-row"><label>Employment Status</label>
+        <select id="np-status"><option value="confirmed">Confirmed Employee</option><option value="probation">On Probation</option></select></div>
+      <div class="form-row"><label>Resignation Date</label><input type="date" id="np-date"></div>
+      <div class="form-row"><label>Emergency Relief?</label>
+        <select id="np-emergency"><option value="no">No</option><option value="yes">Yes (Manager Approval)</option></select></div>
+      <button class="calc-btn" onclick="calcNotice()">Calculate Last Working Day</button>
+      <div class="result-box" id="np-result"></div>
+    </div>
+
+    <!-- Gratuity -->
+    <div class="calc-card">
+      <h3><i class="ti ti-cash"></i> Gratuity Estimator</h3>
+      <div class="form-row"><label>Date of Joining</label><input type="date" id="gr-join"></div>
+      <div class="form-row"><label>Date of Exit (or Today)</label><input type="date" id="gr-exit"></div>
+      <div class="form-row"><label>Last Basic Salary (₹/month)</label><input type="number" id="gr-basic" placeholder="e.g. 25000"></div>
+      <button class="calc-btn" onclick="calcGratuity()">Calculate Gratuity</button>
+      <div class="result-box" id="gr-result"></div>
+    </div>
+
+    <!-- Accommodation Entitlement -->
+    <div class="calc-card">
+      <h3><i class="ti ti-bed"></i> Accommodation Entitlement</h3>
+      <div class="form-row"><label>Employee Grade</label>
+        <select id="ac-grade"><option value="E">Executive (E)</option><option value="M">Management (M)</option><option value="A">Sr. Management (A)</option></select></div>
+      <div class="form-row"><label>City / Town Type</label>
+        <select id="ac-city"><option value="small">Small Town (pop &lt; 1 lakh)</option><option value="district">District HQ (1–10 lakh)</option><option value="city">City (pop &gt; 10 lakh)</option></select></div>
+      <div class="form-row"><label>Staying With</label>
+        <select id="ac-stay"><option value="hotel">Hotel / Own arrangement</option><option value="friend">Friend / Relative</option></select></div>
+      <div class="form-row"><label>Number of Nights</label><input type="number" id="ac-nights" value="1" min="1"></div>
+      <button class="calc-btn" onclick="calcAccom()">Calculate Allowance</button>
+      <div class="result-box" id="ac-result"></div>
+    </div>
+
+    <!-- DA Calculator -->
+    <div class="calc-card">
+      <h3><i class="ti ti-plane"></i> Travel DA Calculator</h3>
+      <div class="form-row"><label>Travel Type</label>
+        <select id="da-type"><option value="outside">Outside area of operation</option><option value="within">Within area (&gt;12 hrs)</option></select></div>
+      <div class="form-row"><label>Number of Days</label><input type="number" id="da-days" value="1" min="1"></div>
+      <div class="form-row"><label>Mode (for km-based)</label>
+        <select id="da-mode"><option value="none">Bus / Train (no km calc)</option><option value="bike">Two-wheeler</option><option value="car">Car</option></select></div>
+      <div class="form-row"><label>Distance (km) — if applicable</label><input type="number" id="da-km" value="0" min="0"></div>
+      <button class="calc-btn" onclick="calcDA()">Calculate DA</button>
+      <div class="result-box" id="da-result"></div>
+    </div>
+
+    <!-- Loan Eligibility -->
+    <div class="calc-card">
+      <h3><i class="ti ti-credit-card"></i> Loan Eligibility</h3>
+      <div class="form-row"><label>Employment Status</label>
+        <select id="ln-status"><option value="confirmed">Confirmed</option><option value="probation">On Probation</option></select></div>
+      <div class="form-row"><label>Months Since Confirmation</label><input type="number" id="ln-months" placeholder="e.g. 6" min="0"></div>
+      <div class="form-row"><label>Monthly Basic Salary (₹)</label><input type="number" id="ln-basic" placeholder="e.g. 20000"></div>
+      <div class="form-row"><label>Existing Loan?</label>
+        <select id="ln-existing"><option value="no">No</option><option value="yes">Yes</option></select></div>
+      <button class="calc-btn" onclick="calcLoan()">Check Loan Eligibility</button>
+      <div class="result-box" id="ln-result"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- INSURANCE -->
+<div id="p-insurance" class="panel">
+  <div class="section-title"><i class="ti ti-heart-plus" style="color:var(--p)"></i>Insurance Eligibility Checker</div>
+  <div class="ins-card">
+    <div class="form-row"><label>Monthly Gross Salary (₹)</label><input type="number" id="ins-gross" placeholder="e.g. 18000"></div>
+    <div class="form-row"><label>Employment Type</label>
+      <select id="ins-type"><option value="fulltime">Full-time Permanent</option><option value="probation">Probation</option><option value="consultant">Consultant / Part-time</option></select></div>
+    <div class="form-row"><label>Gender</label>
+      <select id="ins-gender"><option value="male">Male</option><option value="female">Female</option></select></div>
+    <div class="form-row"><label>Marital Status</label>
+      <select id="ins-marital"><option value="married">Married</option><option value="single">Single / Unmarried</option></select></div>
+    <button class="calc-btn" onclick="checkInsurance()">Check My Insurance Entitlements</button>
+    <div class="ins-result" id="ins-result"></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="p-quiz" class="panel">
+  <div id="quiz-topics">
+    <div class="section-title"><i class="ti ti-certificate" style="color:var(--p)"></i>Knowledge Quiz — Choose a Topic</div>
+    <div class="quiz-grid">
+      <div class="quiz-topic" onclick="startQuiz('leave')"><div class="icon">🌴</div><h3>Leave Policy</h3><p>8 questions on EL, SL, maternity, paternity & bereavement</p></div>
+      <div class="quiz-topic" onclick="startQuiz('salary')"><div class="icon">💰</div><h3>Salary & Compensation</h3><p>7 questions on CTC, deductions, PF & ESIC</p></div>
+      <div class="quiz-topic" onclick="startQuiz('travel')"><div class="icon">✈️</div><h3>Travel & Allowances</h3><p>7 questions on DA, accommodation & TA claims</p></div>
+      <div class="quiz-topic" onclick="startQuiz('conduct')"><div class="icon">⚖️</div><h3>Ethics & Conduct</h3><p>6 questions on code of conduct, POSH & zero tolerance</p></div>
+      <div class="quiz-topic" onclick="startQuiz('exit')"><div class="icon">🚪</div><h3>Exit & Separation</h3><p>6 questions on notice period, F&F & gratuity</p></div>
+      <div class="quiz-topic" onclick="startQuiz('all')"><div class="icon">🧠</div><h3>Full Handbook Mix</h3><p>12 questions across all policy areas</p></div>
+    </div>
+  </div>
+  <div id="quiz-arena" class="quiz-arena">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <button onclick="backToTopics()" style="background:none;border:none;color:var(--p);cursor:pointer;font-size:.82rem;font-weight:600;display:flex;align-items:center;gap:4px"><i class="ti ti-arrow-left"></i> Topics</button>
+      <span id="quiz-topic-name" class="tag"></span>
+    </div>
+    <div class="q-progress" id="q-progress"></div>
+    <div id="q-body"></div>
+  </div>
+</div>
+
+<!-- FORMS DOWNLOAD -->
+<div id="p-forms" class="panel">
+  <div class="section-title"><i class="ti ti-download" style="color:var(--p)"></i>Download Forms & Templates</div>
+  <div class="forms-grid" id="formsGrid"></div>
+</div>
+
+<!-- HR QUERY -->
+<div id="p-hrquery" class="panel">
+  <div class="section-title"><i class="ti ti-mail" style="color:var(--p)"></i>Submit an HR Query</div>
+  <div class="hr-form" id="hrFormWrap">
+    <p style="font-size:.78rem;color:#666;margin-bottom:14px">Fill in the form below. Your query will be prepared as an email to <strong>hr@hippocampus.in</strong></p>
+    <div class="form-row"><label>Full Name *</label><input type="text" id="hq-name" placeholder="Your full name"></div>
+    <div class="form-row"><label>Employee ID</label><input type="text" id="hq-id" placeholder="e.g. HLC0012"></div>
+    <div class="form-row"><label>Department</label><input type="text" id="hq-dept" placeholder="Your department"></div>
+    <div class="form-row"><label>Query Category *</label>
+      <select id="hq-cat">
+        <option value="">— Select —</option>
+        <option>Leave Policy</option><option>Salary / Payroll</option><option>Travel & Allowances</option>
+        <option>Performance & Appraisal</option><option>Loans & Advances</option><option>Exit / Resignation</option>
+        <option>Benefits & Insurance</option><option>IT Assets</option><option>Ethics / Code of Conduct</option>
+        <option>Other</option>
+      </select></div>
+    <div class="form-row"><label>Your Query *</label>
+      <textarea id="hq-query" rows="4" style="width:100%;padding:8px 10px;border:1.5px solid #d0cbf5;border-radius:7px;font-size:.82rem;outline:none;resize:vertical" placeholder="Describe your query in detail…"></textarea></div>
+    <div class="form-row"><label>Urgency</label>
+      <select id="hq-urgency"><option value="normal">Normal</option><option value="urgent">Urgent</option><option value="critical">Critical</option></select></div>
+    <button class="calc-btn" onclick="submitHRQuery()" style="width:auto;padding:9px 22px">Submit Query →</button>
+  </div>
+  <div class="submitted-msg" id="hrSubmitted">
+    <i class="ti ti-circle-check"></i>
+    <h3 style="margin-bottom:6px">Query Submitted!</h3>
+    <p style="font-size:.82rem;color:#555;margin-bottom:14px" id="hrSubmitDetail"></p>
+    <button onclick="resetHRForm()" style="padding:8px 18px;background:var(--g);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:600">Submit Another Query</button>
+  </div>
+</div>
+
+<!-- ACKNOWLEDGEMENT -->
+<div id="p-ack" class="panel">
+  <div class="section-title"><i class="ti ti-checklist" style="color:var(--p)"></i>Employee Handbook Acknowledgement</div>
+  <div class="ack-wrap">
+    <div class="ack-form">
+      <p style="font-size:.8rem;color:#444;margin-bottom:14px;line-height:1.6">By submitting this acknowledgement, you confirm that you have read, understood and agree to abide by all policies and procedures in the HLC Employee Handbook v2.0.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="form-row"><label>Full Name *</label><input type="text" id="ack-name" placeholder="Your full name"></div>
+        <div class="form-row"><label>Employee ID *</label><input type="text" id="ack-id" placeholder="e.g. HLC0012"></div>
+        <div class="form-row"><label>Designation</label><input type="text" id="ack-desg" placeholder="Your role"></div>
+        <div class="form-row"><label>Department</label><input type="text" id="ack-dept" placeholder="Your department"></div>
+        <div class="form-row"><label>Date of Joining</label><input type="date" id="ack-doj"></div>
+        <div class="form-row"><label>Manager Name</label><input type="text" id="ack-mgr" placeholder="Reporting manager"></div>
+      </div>
+      <div style="margin:12px 0;padding:10px 14px;background:#fff8e6;border-radius:8px;border:1px solid #fde68a;font-size:.78rem;color:#555">
+        <strong>Declaration:</strong> I acknowledge receipt of the Hippocampus Learning Centre Employee Handbook. I understand it is not a contract of employment and that HLC reserves the right to update policies at any time.
+      </div>
+      <button class="calc-btn" onclick="submitAck()" style="width:auto;padding:9px 22px">✓ Submit Acknowledgement</button>
+    </div>
+    <div class="ack-list">
+      <div class="ack-list-hdr"><i class="ti ti-list-check"></i> Acknowledgement Records <span id="ackCount" style="margin-left:auto;background:rgba(255,255,255,.2);padding:2px 8px;border-radius:10px;font-size:.72rem">0</span></div>
+      <div id="ackList"><div class="ack-empty">No acknowledgements recorded yet.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- POLICY MODAL -->
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-hdr"><i class="ti ti-file-text" style="font-size:18px"></i><h2 id="mTitle"></h2><button class="modal-close" onclick="closeModal()"><i class="ti ti-x"></i></button></div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+// ── POLICY DATA ──────────────────────────────────────────────────────────
+const POLICIES=[
+{id:'onboarding',cat:'Onboarding',title:'Employee Onboarding',icon:'ti-user-plus',color:'#534AB7',bg:'#eeedfe',badge:'3-day induction',badgeColor:'#3C3489',
+summary:'Joining formalities, email setup, induction process and buddy system.',
+compare:{Induction:'3-day structured induction','Buddy':'Assigned for guidance','Email Setup':'IT creates ID 1 week before joining','HRMS':'hippocampus.greythr.com','NDA':'Signed on joining'},
+sections:[
+{h:'Joining Day',body:'Welcome email sent to manager the day before. Employee completes paperwork and attends 3-day induction covering HLC, their team, and cross-functional teams. A buddy is assigned.'},
+{h:'Email & IT Setup',body:'HR intimates IT at least 1 week before joining. Default password must be changed at first login.'},
+{h:'GreytHR (HRMS)',body:'Domain: <strong>hippocampus.greythr.com</strong>. Used for payslips, attendance, leave and expense claims.'},
+{h:'ID Card & Salary Account',body:'ID card issued by HR (Bangalore). Submit bank account number, IFSC code and name as per bank records on Day 1.'},
+{h:'NDA & NCA',body:'Non-Disclosure and Non-Compete Agreement signed on joining day.'},
+{h:'Dress Code',body:'Clean, well-groomed and professional attire at all times.'},
+]},
+{id:'workinghours',cat:'Attendance',title:'Working Hours',icon:'ti-clock',color:'#0F6E56',bg:'#e1f5ee',badge:'6-day week',badgeColor:'#085041',
+summary:'Office timings, flexible hours, field team schedules and overtime policy.',
+compare:{'Corporate Hours':'Mon–Fri 9:30–6:00, Sat 10–5:30','Flexible':'From 8 AM, leave by 4:30 PM','Field Teams':'Mon–Sat 8 hrs/day','Monthly Off':'First Saturday','Senior Mgmt':'Exempt from Saturdays','Overtime':'Not paid'},
+sections:[
+{h:'Corporate Office',body:'Mon–Fri: <strong>9:30 AM–6:00 PM</strong>. Saturday: <strong>10:00 AM–5:30 PM</strong>. Flexible: arrive from 8 AM, leave by 4:30 PM.'},
+{h:'Field Teams',body:'Monday to Saturday — 8 working hours per day.'},
+{h:'First Saturday Off',body:'First Saturday of every month is a monthly off. Working with approval earns a Comp Off.'},
+{h:'Senior Management',body:'Exempt from Saturdays but available for meetings and travel when needed.'},
+{h:'Overtime',body:'No OT concept at HLC — no staff is paid for overtime.'},
+]},
+{id:'attendance',cat:'Attendance',title:'Attendance & WFH',icon:'ti-fingerprint',color:'#0F6E56',bg:'#e1f5ee',badge:'Mark by 10:30 AM',badgeColor:'#085041',
+summary:'Attendance marking, late arrivals, WFH rules and absence consequences.',
+compare:{'Mark Attendance':'Daily in GreytHR','Absent If':'Not in by 10:30 AM without WFH notice','WFH':'Email manager + HR before 10:30 AM','Late (after 11:30)':'= half-day leave','3 Consecutive Lates':'= half-day deduction','Absent 3 Days':'Salary suspended','Absent 10 Days':'Employment terminated'},
+sections:[
+{h:'Daily Attendance',body:'Mandatory to mark in/out in GreytHR every day.'},
+{h:'Late Arrival',body:'After 10:30 AM without WFH notice = absent. After 11:30 AM = half-day leave.'},
+{h:'WFH',body:'Email reporting manager + CC HR before 10:30 AM.'},
+{h:'Consecutive Lates',body:'3 consecutive late arrivals (after 11:30 AM) or <5 hours without permission = half-day deduction.'},
+{h:'Absence without Notice',body:'3 consecutive days → salary suspended. 10 consecutive days → employment terminated.'},
+]},
+{id:'holidays',cat:'Attendance',title:'Holidays & Compensatory Off',icon:'ti-calendar-event',color:'#0F6E56',bg:'#e1f5ee',badge:'5 National + 9 State',badgeColor:'#085041',
+summary:'National, state and festival holidays, optional holidays and comp-off rules.',
+compare:{'National Holidays':'5 days — all offices closed','State/Festival Holidays':'9 days','Optional Holidays':'1 day per year','Comp-Off Limit':'Max 4 consecutive','Comp-Off Validity':'60 days','Senior Mgmt':'NOT eligible for comp-off'},
+sections:[
+{h:'Holidays',body:'5 national holidays (all offices closed) + 9 state/festival holidays. List released by HR each January.'},
+{h:'Comp-Off Rules',body:'<ul><li>Max 4 together</li><li>Must be used within 60 days with written manager approval</li><li>Lapses if unused</li><li>Travel on holidays not compensated</li><li><strong>Senior Management NOT eligible</strong></li></ul>'},
+]},
+{id:'leave',cat:'Leave',title:'Leave Policy',icon:'ti-calendar-off',color:'#7B68C8',bg:'#eeedfe',badge:'12 EL + 12 CL/SL',badgeColor:'#5a4fa8',
+summary:'Earned, sick, casual, maternity, paternity, bereavement leave rules.',
+compare:{'Earned Leave':'12 days/year (3/quarter)','CL/SL':'12 days/year — expires same quarter','Maternity':'26 weeks paid','Paternity':'10 days','Bereavement (close)':'3 days','Bereavement (distant)':'1 day','Probation':'1 paid leave/month','Notice Period':'No leaves — LOP','Leave Year':'1 July–30 June'},
+sections:[
+{h:'Earned Leave (EL)',body:'12 days/year accrued at 3 per quarter (post-confirmation). Carry-forward: max 6 days. Encashed at Gross salary on exit.'},
+{h:'Sick & Casual Leave (SL/CL)',body:'12 days/year, 3 per quarter — expires same quarter. Intimate by 10:30 AM. Max 2 consecutive days (else EL deducted). Medical cert needed if >3 days.'},
+{h:'Maternity Leave',body:'26 weeks paid (2 pregnancies max). Extension = LOP.'},
+{h:'Paternity Leave',body:'10 days full pay (2 children max). Must be taken at a stretch. Cannot be encashed.'},
+{h:'Bereavement Leave',body:'3 days: spouse, child, parent, sibling, in-laws. 1 day: aunt, uncle, grandparent, spouse\'s grandparent. 4 hours: fellow HLC employee/retiree.'},
+{h:'Probation',body:'1 paid leave per month. All other leaves unpaid.'},
+{h:'Notice Period',body:'No leaves permitted. All treated as LOP.'},
+]},
+{id:'salary',cat:'Compensation',title:'Salary & Compensation',icon:'ti-currency-rupee',color:'#BA7517',bg:'#faeeda',badge:'Paid by 2nd',badgeColor:'#854F0B',
+summary:'Salary structure, CTC components, deductions and payment cycle.',
+compare:{'Salary Date':'On or before 2nd','Basic':'40% of CTC','HRA':'40% of Basic','Conveyance':'₹1,600/month','Statutory Bonus':'8.33% of Basic','Medical Allowance':'₹1,250/month','PF Employer':'13% of Basic','ESIC Employer':'4.75% of Gross','PF Employee':'12% of Basic','ESIC Employee':'0.75% of Gross'},
+sections:[
+{h:'Salary Cycle',body:'Paid on or before the 2nd of every month. If joining after 20th, salary paid from next month.'},
+{h:'Gross Components',body:'<table><tr><th>Component</th><th>Rate</th></tr><tr><td>Basic</td><td>40% of CTC</td></tr><tr><td>HRA</td><td>40% of Basic</td></tr><tr><td>Conveyance</td><td>₹1,600/month</td></tr><tr><td>Statutory Bonus</td><td>8.33% of Basic</td></tr><tr><td>Medical Allowance</td><td>₹1,250/month</td></tr><tr><td>Other Allowances</td><td>Balance</td></tr></table>'},
+{h:'Employer Benefits',body:'PF: 13% Basic (capped ₹15,000). ESIC: 4.75% Gross (if Gross <₹21,000). Medical insurance: ₹200/month. Accident insurance: ₹9/month.'},
+{h:'Employee Deductions',body:'PF: 12% Basic (capped ₹15,000). ESIC: 0.75% Gross. Professional Tax as per state. Income Tax as per IT rules.'},
+{h:'Medical Insurance',body:'₹5 Lakh/family (self + spouse + 2 children). Maternity: ₹25,000 normal / ₹35,000 LSCS. For non-ESIC employees only.'},
+]},
+{id:'travel',cat:'Allowances',title:'Travel Policy',icon:'ti-plane',color:'#185FA5',bg:'#e6f1fb',badge:'DA ₹300/day',badgeColor:'#0C447C',
+summary:'Domestic travel modes by grade, daily allowance and TA/DA claim rules.',
+compare:{'Executive':'Non-AC bus, 2nd/3rd tier train','Management':'AC bus, 3rd AC/Chair Car','Sr. Mgmt':'AC bus, 3rd AC + Economy Air (>1000 km)','Two-wheeler':'₹4/km','Car':'₹10/km','Daily Allowance':'₹300/day','Claim By':'10th of next month','Forfeited':'After 2 months'},
+sections:[
+{h:'Travel Modes',body:'<table><tr><th>Grade</th><th>&lt;1000 km</th><th>&gt;1000 km</th></tr><tr><td>Executive</td><td>Non-AC bus, 2/3 tier train</td><td>Same</td></tr><tr><td>Management</td><td>AC bus, 3rd AC / Chair Car</td><td>Same</td></tr><tr><td>Sr. Management</td><td>AC bus, 3rd AC / Chair Car</td><td>+Economy Airfare</td></tr></table>'},
+{h:'Daily Allowance',body:'₹300/day outside area. Full DA if travel >12 hrs. 50% DA if >12 hrs within area.'},
+{h:'TA/DA Claims',body:'Via GreytHR/Zoho Expense only. Submit by 10th. Grace 1 month. Forfeited after 2 months. No email/hard copy accepted.'},
+]},
+{id:'accommodation',cat:'Allowances',title:'Accommodation Policy',icon:'ti-bed',color:'#185FA5',bg:'#e6f1fb',badge:'Up to ₹3,000/night',badgeColor:'#0C447C',
+summary:'Hotel/accommodation limits by grade and city type.',
+compare:{'Executive – Small Town':'₹1,000','Executive – District HQ':'₹1,200','Executive – City':'₹1,400','Management – Small Town':'₹1,300','Management – District HQ':'₹1,500','Management – City':'₹2,000','Sr. Mgmt – Small Town':'₹1,400','Sr. Mgmt – District HQ':'₹1,900','Sr. Mgmt – City':'₹3,000','Staying with Friend':'40% of rate'},
+sections:[
+{h:'Rates',body:'<table><tr><th>Grade</th><th>Small Town</th><th>District HQ</th><th>City</th></tr><tr><td>Executive</td><td>₹1,000</td><td>₹1,200</td><td>₹1,400</td></tr><tr><td>Management</td><td>₹1,300</td><td>₹1,500</td><td>₹2,000</td></tr><tr><td>Sr. Management</td><td>₹1,400</td><td>₹1,900</td><td>₹3,000</td></tr></table>'},
+{h:'Notes',body:'Staying with friend = 40% of rate. Cannot stay in HLC offices/centres. Company arranges accommodation where possible.'},
+{h:'Other Allowances',body:'Relocation: up to ₹5,000 or actuals. Laptop allowance: ₹1,000/month for personal laptop use.'},
+]},
+{id:'loans',cat:'Allowances',title:'Loans & Advances',icon:'ti-cash',color:'#0F6E56',bg:'#e1f5ee',badge:'Max 6× Basic',badgeColor:'#085041',
+summary:'Employee salary advance and loan eligibility, terms and repayment.',
+compare:{'Advance Max':'50% of take-home','Advance Repayment':'2 instalments','Loan Eligibility':'Confirmed + 3 months','Loan Max':'6× monthly Basic','Repayment':'Up to 12 months','Interest':'8–11% p.a.','Approval':'Within 30 days','Guarantor':'Required'},
+sections:[
+{h:'Salary Advance',body:'Max 50% of take-home. Repaid in 2 instalments. Not available if loan is pending. Case-by-case.'},
+{h:'Loan Eligibility',body:'Confirmed employees with 3+ months post-confirmation. Purposes: medical, rent deposit, personal emergencies.'},
+{h:'Loan Terms',body:'Max 6× Basic. Up to 12 months. Interest 8–11% p.a. Approved within 30 days. Guarantor required (confirmed, no pending loan). Outstanding deducted from F&F on exit.'},
+]},
+{id:'appraisal',cat:'Performance',title:'Performance & Appraisal',icon:'ti-chart-bar',color:'#993C1D',bg:'#faece7',badge:'Appraisals in July',badgeColor:'#712B13',
+summary:'Rating scale, KRAs, KPIs, 360° feedback and PIP process.',
+compare:{'Annual Calendar':'June to July','Appraisal Month':'July','Rating P':'Par Excellence (4)','Rating E':'Excellence (3)','Rating T':'Transitioning (2)','Rating S':'Starter (1)','PIP':'Counselling→Warning→Suspension→Termination'},
+sections:[
+{h:'Appraisal Cycle',body:'Annual calendar June to July. Appraisals in July. Increments and incentives linked to this cycle.'},
+{h:'Rating Scale',body:'<table><tr><th>Code</th><th>Score</th><th>Meaning</th></tr><tr><td>P – Par Excellence</td><td>4</td><td>Consistently exceeds all expectations</td></tr><tr><td>E – Excellence</td><td>3</td><td>Exceeds most objectives</td></tr><tr><td>T – Transitioning</td><td>2</td><td>Meets most, not all objectives</td></tr><tr><td>S – Starter</td><td>1</td><td>Meets very few — needs improvement</td></tr></table>'},
+{h:'360° Feedback',body:'Anonymous feedback from peers, subordinates and managers. Summary shared during appraisal.'},
+{h:'PIP',body:'Counselling → Written Warning → Suspension without pay → Termination. HR consultation required before termination.'},
+]},
+{id:'recruitment',cat:'Recruitment',title:'Recruitment & Hiring',icon:'ti-users',color:'#3B6D11',bg:'#eaf3de',badge:'5-day turnaround',badgeColor:'#27500A',
+summary:'Hiring process, interview stages, internal transfers and referral policy.',
+compare:{'HR Response':'2 working days','Interview':'Within 5 working days','Internal Transfer':'Min 1 year in role','Same District Transfer':'No relocation allowance','Referral Bonus':'After referred employee is confirmed'},
+sections:[
+{h:'Hiring Process',body:'<ol style="padding-left:1.1rem"><li>Share JD with HR</li><li>HR responds in 2 working days</li><li>Interview scheduled within 5 working days</li><li>Rounds: HR screening → Technical written → Technical (Lead) → Technical (Manager) → Soft skills (HR)</li><li>Offer letter issued by HR</li></ol>'},
+{h:'Internal Transfers',body:'Min 1 year in current role. Same district = no relocation. New district = relocation allowance.'},
+{h:'Referral',body:'Send to hr@hippocampus.in. Referral bonus paid after the referred employee completes probation.'},
+]},
+{id:'ethics',cat:'Ethics',title:'Ethics & Code of Conduct',icon:'ti-shield-check',color:'#534AB7',bg:'#eeedfe',badge:'Zero Tolerance',badgeColor:'#3C3489',
+summary:'Ethics committee, code of conduct, teacher relationships and helpline.',
+compare:{'Ethics Email':'hlc_ethicspanel@hippocampus.in','Hearing':'Within 3 days','Recommendation':'Within 1 week','Helpline':'8088920322','Teacher Calls':'Not after 6 PM'},
+sections:[
+{h:'Ethics Committee',body:'Contact: hlc_ethicspanel@hippocampus.in. Hears complaints within 3 days, recommends within 1 week. Investigating body only — final decision with HR Manager and CEO.'},
+{h:'Code of Conduct',body:'<ul><li>Highest ethical standards at all times</li><li>No personal use of company property/information</li><li>Full-time employees cannot do paid work outside HLC without written HR permission</li><li>Salary details are confidential</li><li>No false expense claims</li><li>Never accept or give bribes/gifts</li></ul>'},
+{h:'Teacher Policy',body:'No personal relationships with teachers outside duties. No calls after 6 PM without supervisor and HR notification.'},
+{h:'Helpline',body:'8088920322 — IVR recorded, reviewed monthly.'},
+]},
+{id:'posh',cat:'Ethics',title:'Sexual Harassment (POSH)',icon:'ti-gavel',color:'#993556',bg:'#fbeaf0',badge:'ICC Constituted',badgeColor:'#72243E',
+summary:'POSH Act 2013, ICC committee and complaint mechanism.',
+compare:{'ICC Email':'icc@hippocampus.in','Law':'POSH Act 2013','Confidentiality':'Maintained throughout','Retaliation':'Strictly prohibited','False Complaints':'Subject to disciplinary action'},
+sections:[
+{h:'Policy',body:'HLC prohibits sexual harassment. ICC constituted under POSH Act 2013. Contact: icc@hippocampus.in. Full confidentiality maintained.'},
+{h:'Definition',body:'Unwelcome sexual advances, requests for sexual favours, sexually-oriented verbal abuse, or any conduct creating a hostile/intimidating environment.'},
+{h:'Scope',body:'All employees, temporaries, trainees, contractors, clients and suppliers at all offices and company-related activities.'},
+]},
+{id:'zerotolerance',cat:'Ethics',title:'Zero Tolerance Policy',icon:'ti-ban',color:'#993556',bg:'#fbeaf0',badge:'Immediate Action',badgeColor:'#72243E',
+summary:'Behaviours that attract immediate investigation, warning or termination.',
+compare:{},
+sections:[
+{h:'Zero Tolerance Items',body:'<ul><li>Sexual harassment</li><li>Misconduct with teachers, colleagues or children</li><li>Violence / threatening behaviour</li><li>Fraud or misappropriation</li><li>Drug/alcohol at workplace</li><li>Racial discrimination</li><li>Insubordination</li><li>Code of conduct violations</li><li>Disclosure/theft of confidential information</li></ul>'},
+{h:'Consequences',body:'Investigation by relevant committee. Non-serious → warning. Serious → termination.'},
+]},
+{id:'assets',cat:'Assets',title:'IT Asset & Device Policy',icon:'ti-device-laptop',color:'#5F5E5A',bg:'#f1efe8',badge:'5-yr laptop life',badgeColor:'#444441',
+summary:'Device usage, damage liability, theft recovery and audit.',
+compare:{'Laptop Lifespan':'5 years','Tablet Lifespan':'3 years','Damage (Laptop)':'Employee pays 40%','Damage (Tablet)':'₹750 or 20% (lower)','Theft':'Full depreciated cost','Report Window':'48 hours','Audit':'Every 6 months'},
+sections:[
+{h:'Usage',body:'Official use only. No personal browsing or additional software. All messages on company devices are company property.'},
+{h:'Damage & Theft',body:'Laptop damage: employee pays 40% of repair. Tablet: ₹750 or 20% (whichever lower). Theft: full depreciated cost recovered in 3–6 months. Report within 48 hours. File FIR for theft.'},
+{h:'Exit',body:'Laptop must be returned. Failure to do so = cost recovered from F&F.'},
+]},
+{id:'fraud',cat:'Assets',title:'Financial Discipline & Fraud',icon:'ti-alert-triangle',color:'#993C1D',bg:'#faece7',badge:'Ethics Committee',badgeColor:'#712B13',
+summary:'Cash management, fraud actions and penalties.',
+compare:{'Advance Settlement':'By 25th monthly','Overdue Action':'Warning + legal action in 7 days','2 Months Offences':'Termination recommendation'},
+sections:[
+{h:'Fraud Actions',body:'Irregular fee deposits, misappropriation, false expense claims, unsettled advances, accepting bribes, disclosing confidential info.'},
+{h:'Penalties',body:'Fee default: deducted from employee + supervisor salary. 2 months offences = termination recommendation. Advances not settled by 25th: deducted + warning; legal action if not cleared in 7 days.'},
+]},
+{id:'exit',cat:'Exit',title:'Separation & Exit Policy',icon:'ti-door-exit',color:'#993556',bg:'#fbeaf0',badge:'60-day notice',badgeColor:'#72243E',
+summary:'Resignation, termination, absconding, F&F settlement and gratuity.',
+compare:{'Notice Period':'60 days (confirmed)','Emergency':'15 days with approval','F&F':'Within 45 days','Leave During Notice':'LOP','Absconding':'15 consecutive days','Gratuity':'5 years service','Retirement':'Age 65'},
+sections:[
+{h:'Resignation',body:'60-day notice for confirmed employees. Emergency: 15 days with manager approval. No leaves during notice = LOP.'},
+{h:'Full & Final Settlement',body:'Within 45 days of last working day. Requires No Dues Certificate. Unutilised EL adjusted against notice shortfall; remainder lapses. Official email blocked on exit.'},
+{h:'Termination & Absconding',body:'15 consecutive days without notice = absconding. Warning on Day 15, termination in 7 days if no response. No F&F, no experience certificate or relieving letter for absconding employees.'},
+{h:'Gratuity',body:'5 years continuous service required. Payable on death/disability regardless of tenure. Not payable for termination due to violence/fraud.'},
+{h:'Retirement',body:'Retirement age: 65 years.'},
+]},
+];
+
+// ── SEARCH ───────────────────────────────────────────────────────────────
+function doSearch(){
+  const q=document.getElementById('globalSearch').value.trim().toLowerCase();
+  const res=document.getElementById('searchResults');
+  if(!q){res.innerHTML='<div class="search-empty"><i class="ti ti-books" style="font-size:36px;display:block;margin-bottom:8px"></i>Start typing to search across all policies</div>';return;}
+  const hits=[];
+  POLICIES.forEach(p=>{
+    p.sections.forEach(s=>{
+      const txt=s.h+' '+s.body.replace(/<[^>]+>/g,' ');
+      if(txt.toLowerCase().includes(q)){
+        const idx=txt.toLowerCase().indexOf(q);
+        const snip=txt.slice(Math.max(0,idx-60),idx+120).replace(/\s+/g,' ');
+        const hSnip=snip.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
+        hits.push({pid:p.id,cat:p.cat,title:p.title,section:s.h,snip:hSnip});
+      }
+    });
+  });
+  if(!hits.length){res.innerHTML='<div class="search-empty">No results found for "<strong>'+q+'</strong>"</div>';return;}
+  res.innerHTML=hits.map(h=>`<div class="sr" onclick="openModal('${h.pid}')">
+    <div class="sr-cat">${h.cat} › ${h.section}</div>
+    <div class="sr-title">${h.title}</div>
+    <div class="sr-snip">…${h.snip}…</div>
+  </div>`).join('');
+}
+
+// ── BROWSE ───────────────────────────────────────────────────────────────
+const CATS=[...new Set(POLICIES.map(p=>p.cat))];
+let activeCat='All';
+function renderCatFilters(){
+  document.getElementById('catFilters').innerHTML=['All',...CATS].map(c=>`<span class="cat-chip${c===activeCat?' active':''}" onclick="setCat('${c}')">${c}</span>`).join('');
+}
+function setCat(c){activeCat=c;renderGrid();}
+function renderGrid(){
+  renderCatFilters();
+  const g=document.getElementById('policyGrid');
+  const list=activeCat==='All'?POLICIES:POLICIES.filter(p=>p.cat===activeCat);
+  g.innerHTML=list.map(p=>`<div class="policy-card" onclick="openModal('${p.id}')">
+    <div class="icon" style="background:${p.bg};color:${p.color}"><i class="ti ${p.icon}"></i></div>
+    <h3>${p.title}</h3><p>${p.summary}</p>
+    <span class="badge" style="background:${p.bg};color:${p.badgeColor}">${p.badge}</span>
+  </div>`).join('');
+}
+
+// ── MODAL ────────────────────────────────────────────────────────────────
+function openModal(id){
+  const p=POLICIES.find(x=>x.id===id);
+  document.getElementById('mTitle').textContent=p.title;
+  document.getElementById('mBody').innerHTML=p.sections.map(s=>`<div class="ps"><h4>${s.h}</h4><div>${s.body}</div></div>`).join('');
+  document.getElementById('overlay').classList.add('open');
+}
+function closeModal(){document.getElementById('overlay').classList.remove('open');}
+
+// ── COMPARE ──────────────────────────────────────────────────────────────
+function buildCompareSelects(){
+  const opts=POLICIES.map(p=>`<option value="${p.id}">${p.title}</option>`).join('');
+  ['cmp1','cmp2'].forEach(id=>{document.getElementById(id).innerHTML='<option value="">— Select policy —</option>'+opts;});
+}
+function renderCompare(){
+  const a=POLICIES.find(p=>p.id===document.getElementById('cmp1').value);
+  const b=POLICIES.find(p=>p.id===document.getElementById('cmp2').value);
+  const out=document.getElementById('compareOut');
+  if(!a||!b){out.innerHTML='<p style="color:#999;font-size:.82rem">Select two policies above.</p>';return;}
+  const keys=[...new Set([...Object.keys(a.compare||{}),...Object.keys(b.compare||{})])];
+  if(!keys.length){out.innerHTML='<p style="color:#888;font-size:.82rem">No comparison data for these policies.</p>';return;}
+  out.innerHTML=`<div class="cmp-grid">${[a,b].map(pol=>`<div class="cmp-col">
+    <div class="cmp-hdr" style="background:${pol.color}">${pol.title}</div>
+    <div class="cmp-body">${keys.map(k=>{
+      const av=a.compare?.[k]||'—',bv=b.compare?.[k]||'—',diff=av!==bv,val=pol===a?av:bv;
+      return`<div class="cmp-row"><span class="cmp-label">${k}</span><span class="cmp-val${diff?' diff':''}">${val}</span></div>`;
+    }).join('')}</div>
+  </div>`).join('')}</div>
+  <p style="font-size:.72rem;color:#888;margin-top:8px"><span class="diff" style="display:inline">Highlighted</span> = values differ between the two policies.</p>`;
+}
+
+// ── CALCULATORS ──────────────────────────────────────────────────────────
+function calcLeave(){
+  const type=document.getElementById('lv-type').value;
+  const date=document.getElementById('lv-date').value;
+  const gender=document.getElementById('lv-gender').value;
+  const res=document.getElementById('lv-result');
+  if(!date){alert('Please select a date.');return;}
+  const d=new Date(date),now=new Date();
+  const monthsWorked=Math.floor((now-d)/(1000*60*60*24*30.44));
+  if(type==='probation'){
+    res.innerHTML=`<div class="big">1 paid leave / month</div>During probation, employees are entitled to only 1 paid leave per month. No EL, SL/CL or other benefits apply.<br><br>Months on probation: <strong>${monthsWorked}</strong>`;
+  }else{
+    const quarters=Math.min(4,Math.floor(monthsWorked/3));
+    const el=quarters*3,cl=quarters*3;
+    res.innerHTML=`<div class="cmp-row"><span>Months since confirmation</span><span><strong>${monthsWorked}</strong></span></div>
+    <div class="cmp-row"><span>Quarters completed</span><span><strong>${quarters} of 4</strong></span></div>
+    <div class="cmp-row"><span>Earned Leave (EL)</span><span><strong>${el} days</strong></span></div>
+    <div class="cmp-row"><span>Sick/Casual Leave (SL/CL)</span><span><strong>${cl} days</strong></span></div>
+    ${gender==='female'?'<div class="cmp-row"><span>Maternity Leave</span><span><strong>26 weeks (if applicable)</strong></span></div>':''}
+    <div class="cmp-row"><span>Paternity Leave</span><span><strong>${gender==='male'?'10 days (if applicable)':'—'}</strong></span></div>
+    <div class="cmp-row"><span>EL carry-forward max</span><span><strong>6 days</strong></span></div>`;
+  }
+  res.classList.add('show');
+}
+
+function calcNotice(){
+  const status=document.getElementById('np-status').value;
+  const dateVal=document.getElementById('np-date').value;
+  const emergency=document.getElementById('np-emergency').value;
+  const res=document.getElementById('np-result');
+  if(!dateVal){alert('Please select a resignation date.');return;}
+  const d=new Date(dateVal);
+  let days=status==='probation'?30:60;
+  if(emergency==='yes')days=15;
+  const lwd=new Date(d);lwd.setDate(lwd.getDate()+days);
+  const ff=new Date(lwd);ff.setDate(ff.getDate()+45);
+  res.innerHTML=`<div class="cmp-row"><span>Resignation Date</span><span><strong>${d.toDateString()}</strong></span></div>
+  <div class="cmp-row"><span>Notice Period</span><span><strong>${days} days${emergency==='yes'?' (emergency, manager approval needed)':''}</strong></span></div>
+  <div class="cmp-row"><span>Last Working Day</span><span><strong>${lwd.toDateString()}</strong></span></div>
+  <div class="cmp-row"><span>F&F Settlement By</span><span><strong>${ff.toDateString()}</strong></span></div>
+  <div style="margin-top:8px;font-size:.75rem;color:#777">⚠️ No leaves are permitted during notice period. Any leave taken will be treated as LOP.</div>`;
+  res.classList.add('show');
+}
+
+function calcGratuity(){
+  const join=document.getElementById('gr-join').value;
+  const exit=document.getElementById('gr-exit').value;
+  const basic=parseFloat(document.getElementById('gr-basic').value);
+  const res=document.getElementById('gr-result');
+  if(!join||!exit||!basic){alert('Please fill in all fields.');return;}
+  const j=new Date(join),e=new Date(exit);
+  const years=(e-j)/(1000*60*60*24*365.25);
+  const fullYears=Math.floor(years);
+  if(fullYears<5){
+    res.innerHTML=`<div style="color:#b91c1c;font-weight:600">❌ Not eligible for gratuity</div>You need at least <strong>5 years</strong> of continuous service. You have completed <strong>${fullYears} year(s)</strong>.`;
+  }else{
+    const gratuity=(15*basic*fullYears)/26;
+    res.innerHTML=`<div class="cmp-row"><span>Years of Service</span><span><strong>${fullYears} years</strong></span></div>
+    <div class="cmp-row"><span>Monthly Basic</span><span><strong>₹${basic.toLocaleString()}</strong></span></div>
+    <div class="cmp-row"><span>Formula</span><span>15 × Basic × Years ÷ 26</span></div>
+    <div class="cmp-row"><span>Estimated Gratuity</span><span><strong style="color:var(--p);font-size:1rem">₹${Math.round(gratuity).toLocaleString()}</strong></span></div>
+    <div style="margin-top:6px;font-size:.73rem;color:#777">This is an estimate. Actual gratuity subject to management approval and applicable laws.</div>`;
+  }
+  res.classList.add('show');
+}
+
+function calcAccom(){
+  const g=document.getElementById('ac-grade').value;
+  const c=document.getElementById('ac-city').value;
+  const stay=document.getElementById('ac-stay').value;
+  const nights=parseInt(document.getElementById('ac-nights').value)||1;
+  const res=document.getElementById('ac-result');
+  const rates={E:{small:1000,district:1200,city:1400},M:{small:1300,district:1500,city:2000},A:{small:1400,district:1900,city:3000}};
+  let rate=rates[g][c];
+  const fullRate=rate;
+  if(stay==='friend')rate=Math.round(rate*0.4);
+  const total=rate*nights;
+  res.innerHTML=`<div class="cmp-row"><span>Base Rate/night</span><span><strong>₹${fullRate.toLocaleString()}</strong></span></div>
+  ${stay==='friend'?`<div class="cmp-row"><span>Staying with friend (40%)</span><span><strong>₹${rate.toLocaleString()}/night</strong></span></div>`:''}
+  <div class="cmp-row"><span>Nights</span><span><strong>${nights}</strong></span></div>
+  <div class="cmp-row"><span>Total Allowance</span><span><strong style="color:var(--p)">₹${total.toLocaleString()}</strong></span></div>`;
+  res.classList.add('show');
+}
+
+function calcDA(){
+  const type=document.getElementById('da-type').value;
+  const days=parseInt(document.getElementById('da-days').value)||1;
+  const mode=document.getElementById('da-mode').value;
+  const km=parseFloat(document.getElementById('da-km').value)||0;
+  const res=document.getElementById('da-result');
+  let daRate=300;if(type==='within')daRate=150;
+  const daTotal=daRate*days;
+  let kmRate=0,kmLabel='';
+  if(mode==='bike'){kmRate=4;kmLabel='Two-wheeler @ ₹4/km';}
+  else if(mode==='car'){kmRate=10;kmLabel='Car @ ₹10/km';}
+  const kmTotal=km*kmRate;
+  res.innerHTML=`<div class="cmp-row"><span>DA Rate</span><span><strong>₹${daRate}/day${type==='within'?' (50% — within area)':''}</strong></span></div>
+  <div class="cmp-row"><span>Days</span><span><strong>${days}</strong></span></div>
+  <div class="cmp-row"><span>DA Total</span><span><strong>₹${daTotal.toLocaleString()}</strong></span></div>
+  ${km>0?`<div class="cmp-row"><span>${kmLabel}</span><span><strong>₹${kmTotal.toLocaleString()} (${km} km)</strong></span></div>`:''}
+  <div class="cmp-row"><span>Grand Total</span><span><strong style="color:var(--p)">₹${(daTotal+kmTotal).toLocaleString()}</strong></span></div>
+  <div style="margin-top:6px;font-size:.73rem;color:#777">Submit TA/DA claims via GreytHR by 10th of next month.</div>`;
+  res.classList.add('show');
+}
+
+function calcLoan(){
+  const status=document.getElementById('ln-status').value;
+  const months=parseInt(document.getElementById('ln-months').value)||0;
+  const basic=parseFloat(document.getElementById('ln-basic').value)||0;
+  const existing=document.getElementById('ln-existing').value;
+  const res=document.getElementById('ln-result');
+  if(!basic){alert('Please enter your basic salary.');return;}
+  let eligible=true,reasons=[];
+  if(status==='probation'){eligible=false;reasons.push('Not eligible during probation');}
+  if(months<3){eligible=false;reasons.push('Need at least 3 months post-confirmation');}
+  if(existing==='yes'){eligible=false;reasons.push('Cannot apply with an existing pending loan');}
+  const maxLoan=basic*6;
+  if(eligible){
+    res.innerHTML=`<div style="color:#15803d;font-weight:700;margin-bottom:8px">✅ Eligible for Loan</div>
+    <div class="cmp-row"><span>Max Loan Amount</span><span><strong style="color:var(--p)">₹${maxLoan.toLocaleString()}</strong></span></div>
+    <div class="cmp-row"><span>Repayment</span><span><strong>Up to 12 months</strong></span></div>
+    <div class="cmp-row"><span>Interest Rate</span><span><strong>8–11% p.a.</strong></span></div>
+    <div class="cmp-row"><span>Approval Time</span><span><strong>Within 30 days</strong></span></div>
+    <div style="margin-top:6px;font-size:.73rem;color:#777">A guarantor (confirmed employee, no pending loan) is required. Email hr@hippocampus.in to apply.</div>`;
+  }else{
+    res.innerHTML=`<div style="color:#b91c1c;font-weight:700;margin-bottom:8px">❌ Not Currently Eligible</div>
+    <ul style="padding-left:1rem;font-size:.8rem;color:#555">${reasons.map(r=>`<li>${r}</li>`).join('')}</ul>`;
+  }
+  res.classList.add('show');
+}
+
+// ── INSURANCE ────────────────────────────────────────────────────────────
+function checkInsurance(){
+  const gross=parseFloat(document.getElementById('ins-gross').value)||0;
+  const type=document.getElementById('ins-type').value;
+  const gender=document.getElementById('ins-gender').value;
+  const marital=document.getElementById('ins-marital').value;
+  const res=document.getElementById('ins-result');
+  if(!gross){alert('Please enter your gross salary.');return;}
+  const esic=gross<21000;
+  const medIns=!esic;
+  let html='';
+  html+=`<div class="ins-row ${esic?'yes':'no'}"><i class="ti ti-${esic?'circle-check':'circle-x'}"></i><div><strong>ESIC Coverage</strong><br>${esic?'Eligible — Gross below ₹21,000. ESIC deduction: 0.75% of Gross. Employer: 4.75%':'Not applicable — Gross above ₹21,000 threshold'}</div></div>`;
+  html+=`<div class="ins-row ${medIns?'yes':'no'}"><i class="ti ti-${medIns?'circle-check':'circle-x'}"></i><div><strong>Medical Insurance (Max Bupa)</strong><br>${medIns?'Eligible — ₹5 Lakh family cover. '+( marital==='married'?'Covers self + spouse + 2 children':'Covers self + parents + siblings'):'Not eligible — covered under ESIC instead'}</div></div>`;
+  html+=`<div class="ins-row yes"><i class="ti ti-circle-check"></i><div><strong>Personal Accident Insurance</strong><br>Eligible — All employees are covered under personal accident insurance.</div></div>`;
+  if(gender==='female'){
+    html+=`<div class="ins-row ${medIns?'yes':'info'}"><i class="ti ti-${medIns?'circle-check':'info-circle'}"></i><div><strong>Maternity Benefit</strong><br>${medIns?'Eligible under medical insurance — ₹25,000 (normal) / ₹35,000 (LSCS)':'Under ESIC — benefits as per ESIC maternity rules'}</div></div>`;
+  }
+  html+=`<div class="ins-row info"><i class="ti ti-info-circle"></i><div><strong>PF (Provident Fund)</strong><br>Employee: 12% of Basic (capped at ₹15,000). Employer: 13% of Basic.</div></div>`;
+  res.innerHTML=html;
+  res.classList.add('show');
+}
+
+// ── QUIZ ─────────────────────────────────────────────────────────────────
+const QUIZ_BANK={
+  leave:[
+    {q:'How many Earned Leaves does a confirmed employee get per year?',opts:['6 days','10 days','12 days','15 days'],ans:2,exp:'Confirmed employees get 12 EL per year, accrued at 3 days per quarter.'},
+    {q:'What is the maximum carry-forward for Earned Leaves?',opts:['3 days','6 days','10 days','12 days'],ans:1,exp:'EL can be carried forward up to a maximum of 6 days.'},
+    {q:'How many weeks of paid maternity leave is an employee entitled to?',opts:['12 weeks','18 weeks','26 weeks','52 weeks'],ans:2,exp:'HLC provides 26 weeks of paid maternity leave as per the Maternity Benefit Amendment Act.'},
+    {q:'How many days of paternity leave does HLC provide?',opts:['5 days','7 days','10 days','15 days'],ans:2,exp:'Male employees are entitled to 10 days of paid paternity leave.'},
+    {q:'How many paid leaves can a probation employee take per month?',opts:['None','1 day','2 days','3 days'],ans:1,exp:'Employees on probation can only avail 1 paid leave per month.'},
+    {q:'Sick leave and Earned Leave can be combined.',opts:['True','False'],ans:1,exp:'Sick leave and Earned Leave cannot be combined as per HLC policy.'},
+    {q:'What is the HLC leave year period?',opts:['Jan to Dec','Apr to Mar','Jul to Jun','Oct to Sep'],ans:2,exp:'The leave year at HLC runs from 1st July to 30th June.'},
+    {q:'How many bereavement leave days for the death of an aunt or uncle?',opts:['Half day','1 day','2 days','3 days'],ans:1,exp:'1 day of bereavement leave is granted for the death of aunt, uncle, grandparent, or grandchild.'},
+  ],
+  salary:[
+    {q:'What percentage of CTC is the Basic salary?',opts:['30%','35%','40%','50%'],ans:2,exp:'Basic salary is 40% of the CTC at HLC.'},
+    {q:'What is the fixed monthly Conveyance Allowance?',opts:['₹1,000','₹1,250','₹1,600','₹2,000'],ans:2,exp:'Conveyance allowance is fixed at ₹1,600 per month.'},
+    {q:'By what date are salaries paid every month?',opts:['1st','2nd','5th','10th'],ans:1,exp:'Salaries are paid on or before the 2nd of every month.'},
+    {q:'What is the employer PF contribution percentage?',opts:['8.33%','10%','12%','13%'],ans:3,exp:'Employer PF contribution is 13% of Basic salary.'},
+    {q:'ESIC is applicable when gross salary is below what amount?',opts:['₹15,000','₹18,000','₹21,000','₹25,000'],ans:2,exp:'ESIC applies to employees with a gross salary below ₹21,000.'},
+    {q:'What is the Medical Allowance fixed at per month?',opts:['₹800','₹1,000','₹1,250','₹1,500'],ans:2,exp:'Medical allowance is fixed at ₹1,250 per month.'},
+    {q:'If an employee joins after the 20th, when is their first salary paid?',opts:['Same month','Following month','Two months later','On day 30'],ans:1,exp:'Employees joining after the 20th receive their first salary in the following month.'},
+  ],
+  travel:[
+    {q:'What is the Daily Allowance rate for travel outside area of operation?',opts:['₹150','₹200','₹250','₹300'],ans:3,exp:'Daily Allowance is ₹300 per day for travel outside the area of operation.'},
+    {q:'What is the reimbursement rate for two-wheeler travel?',opts:['₹2/km','₹4/km','₹6/km','₹8/km'],ans:1,exp:'Two-wheeler travel is reimbursed at ₹4 per km.'},
+    {q:'By what date must TA/DA claims be submitted each month?',opts:['5th','10th','15th','25th'],ans:1,exp:'Claims must be submitted by the 10th of every month for the previous month.'},
+    {q:'After how many months are TA/DA claims forfeited?',opts:['1 month','2 months','3 months','6 months'],ans:1,exp:'Claims are forfeited if submitted after 2 months of the month in which expense was incurred.'},
+    {q:'Which grade can claim Economy airfare for travel over 1000 km?',opts:['Executive','Management','Sr. Management','All grades'],ans:2,exp:'Only Sr. Management (Grade A) is eligible for Economy airfare on journeys over 1000 km.'},
+    {q:'What percentage of accommodation rate is paid when staying with a friend?',opts:['25%','30%','40%','50%'],ans:2,exp:'40% of the applicable accommodation rate is paid when staying with a friend or relative.'},
+    {q:'What is the maximum accommodation rate for Sr. Management in a city?',opts:['₹2,000','₹2,500','₹3,000','₹3,500'],ans:2,exp:'Sr. Management is entitled to ₹3,000 per night in a city (population > 10 lakh).'},
+  ],
+  conduct:[
+    {q:'What is the email for reporting ethics violations?',opts:['hr@hippocampus.in','icc@hippocampus.in','hlc_ethicspanel@hippocampus.in','ceo@hippocampus.in'],ans:2,exp:'Ethics violations should be reported to hlc_ethicspanel@hippocampus.in'},
+    {q:'Within how many days must the ethics panel hear a complaint?',opts:['1 day','3 days','5 days','7 days'],ans:1,exp:'The ethics panel must hear the integrity issue within 3 days of the complaint.'},
+    {q:'Full-time employees can do paid work outside HLC without any permission.',opts:['True','False'],ans:1,exp:'Full-time employees must obtain written permission from the HR department before undertaking any paid activity outside HLC.'},
+    {q:'HLC\'s helpline number is:',opts:['8088920123','8088920322','9080920322','8908920322'],ans:1,exp:'The HLC helpline number is 8088920322.'},
+    {q:'After what time are employees not allowed to call teachers without reporting to supervisor and HR?',opts:['5 PM','6 PM','7 PM','8 PM'],ans:1,exp:'Employees must not call teachers after 6 PM without informing their supervisor and HR.'},
+    {q:'The POSH ICC can be contacted at:',opts:['hr@hippocampus.in','ethics@hippocampus.in','icc@hippocampus.in','posh@hippocampus.in'],ans:2,exp:'The Internal Complaints Committee for POSH can be contacted at icc@hippocampus.in'},
+  ],
+  exit:[
+    {q:'What is the notice period for a confirmed employee at HLC?',opts:['30 days','45 days','60 days','90 days'],ans:2,exp:'Confirmed employees must serve a 60-day notice period upon resignation.'},
+    {q:'Within how many days is Full & Final Settlement processed?',opts:['15 days','30 days','45 days','60 days'],ans:2,exp:'F&F settlement is processed within 45 days of the last working day.'},
+    {q:'After how many consecutive absent days is an employee treated as absconding?',opts:['5 days','10 days','15 days','20 days'],ans:2,exp:'An employee is treated as absconding after 15 consecutive working days without intimation.'},
+    {q:'How many years of service are needed to be eligible for gratuity?',opts:['2 years','3 years','5 years','7 years'],ans:2,exp:'Gratuity is payable after 5 years of continuous service.'},
+    {q:'What is the retirement age at HLC?',opts:['58 years','60 years','62 years','65 years'],ans:3,exp:'The retirement age at HLC is 65 years.'},
+    {q:'Are leaves allowed during the notice period?',opts:['Yes, EL can be taken','Yes, up to 3 days','No — all treated as LOP','Only with manager approval'],ans:2,exp:'No leaves are allowed during the notice period. Any leave taken is treated as Loss of Pay.'},
+  ],
+  all:[]
+};
+QUIZ_BANK.all=[...QUIZ_BANK.leave,...QUIZ_BANK.salary,...QUIZ_BANK.travel,...QUIZ_BANK.conduct,...QUIZ_BANK.exit].sort(()=>Math.random()-.5).slice(0,12);
+
+let qState={questions:[],idx:0,score:0,answered:false,topic:''};
+const TOPIC_NAMES={leave:'Leave Policy',salary:'Salary & Compensation',travel:'Travel & Allowances',conduct:'Ethics & Conduct',exit:'Exit & Separation',all:'Full Handbook Mix'};
+
+function startQuiz(topic){
+  qState={questions:[...QUIZ_BANK[topic]],idx:0,score:0,answered:false,topic};
+  document.getElementById('quiz-topics').style.display='none';
+  document.getElementById('quiz-arena').classList.add('active');
+  document.getElementById('quiz-topic-name').textContent=TOPIC_NAMES[topic];
+  renderQ();
+}
+function backToTopics(){
+  document.getElementById('quiz-topics').style.display='block';
+  document.getElementById('quiz-arena').classList.remove('active');
+}
+function renderQ(){
+  const {questions,idx,score}=qState;
+  if(idx>=questions.length){showScore();return;}
+  const q=questions[idx];
+  document.getElementById('q-progress').innerHTML=questions.map((_,i)=>`<span class="${i<idx?'done':i===idx?'curr':''}"></span>`).join('');
+  document.getElementById('q-body').innerHTML=`
+    <p class="q-num">Question ${idx+1} of ${questions.length} · Score: ${score}</p>
+    <p class="q-text">${q.q}</p>
+    <div class="q-opts">${q.opts.map((o,i)=>`<button class="opt" id="opt${i}" onclick="checkQ(${i})">${o}</button>`).join('')}</div>
+    <div class="fb" id="fb"></div>
+    <div style="overflow:hidden"><button class="q-next" id="qnext" style="display:none" onclick="nextQ()">Next <i class="ti ti-arrow-right"></i></button></div>`;
+}
+function checkQ(i){
+  if(qState.answered)return;
+  qState.answered=true;
+  const q=qState.questions[qState.idx];
+  document.querySelectorAll('.opt').forEach(b=>b.disabled=true);
+  document.getElementById('opt'+i).className='opt '+(i===q.ans?'correct':'wrong');
+  if(i!==q.ans)document.getElementById('opt'+q.ans).className='opt correct';
+  const fb=document.getElementById('fb');
+  fb.className='fb show '+(i===q.ans?'good':'bad');
+  fb.innerHTML=(i===q.ans?'✅ Correct! ':'❌ Incorrect. ')+q.exp;
+  if(i===q.ans)qState.score++;
+  document.getElementById('qnext').style.display='inline-block';
+}
+function nextQ(){qState.idx++;qState.answered=false;renderQ();}
+function showScore(){
+  const pct=Math.round(qState.score/qState.questions.length*100);
+  const col=pct>=80?'#22c55e':pct>=50?'#F5A623':'#ef4444';
+  document.getElementById('q-body').innerHTML=`<div class="score-card">
+    <div class="score-ring" style="background:${col}20;color:${col}">${pct}%</div>
+    <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:6px">${pct>=80?'Excellent! 🎉':pct>=50?'Good effort! 👍':'Keep learning! 📚'}</h2>
+    <p style="color:#666;font-size:.85rem;margin-bottom:16px">You scored <strong>${qState.score} out of ${qState.questions.length}</strong></p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <button onclick="startQuiz('${qState.topic}')" style="padding:8px 16px;background:var(--p);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:600"><i class="ti ti-refresh"></i> Retry</button>
+      <button onclick="backToTopics()" style="padding:8px 16px;background:#fff;color:var(--p);border:1.5px solid var(--p);border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:600">Other Topics</button>
+    </div>
+  </div>`;
+}
+
+// ── FORMS DOWNLOAD ───────────────────────────────────────────────────────
+const FORMS=[
+  {title:'Leave Application Form',desc:'Standard form to apply for Earned Leave, Sick Leave or Casual Leave in GreytHR.',icon:'ti-calendar-off',fields:['Employee Name','Employee ID','Department','Leave Type','From Date','To Date','Reason','Manager Name']},
+  {title:'Travel & DA Claim Form',desc:'Submit TA/DA claims for official travel including accommodation and daily allowance.',icon:'ti-plane',fields:['Employee Name','Employee ID','Travel Dates','Destination','Purpose','Mode of Transport','Distance (km)','DA Claimed','Accommodation Claimed','Total Claimed']},
+  {title:'Expense Reimbursement Form',desc:'Claim reimbursement for work-related expenses with supporting bills.',icon:'ti-receipt',fields:['Employee Name','Employee ID','Month','Expense Date','Expense Description','Amount','Bill Reference','Approver Name']},
+  {title:'Employee Loan Application',desc:'Apply for a staff loan for medical, rental deposit or personal emergency purposes.',icon:'ti-cash',fields:['Employee Name','Employee ID','Date of Confirmation','Months Since Confirmation','Loan Purpose','Amount Requested','Monthly Basic','Guarantor Name','Guarantor ID']},
+  {title:'Internal Job Transfer Request',desc:'Apply for an internal role transfer after completing 1 year in current position.',icon:'ti-arrows-transfer-up',fields:['Employee Name','Employee ID','Current Role','Target Role / Department','Reason for Transfer','Years in Current Role','Manager Signature']},
+  {title:'IT Asset Request Form',desc:'Request a laptop, tablet, mobile phone, SIM card or backpack from the IT team.',icon:'ti-device-laptop',fields:['Employee Name','Employee ID','Asset Type','Justification','Department Head Approval']},
+  {title:'Separation / Resignation Letter Template',desc:'Standard format for formally submitting your resignation to your reporting manager.',icon:'ti-door-exit',fields:['Date','Manager Name','Notice Period','Last Working Day','Reason (optional)','Signature']},
+  {title:'HR Query / Grievance Form',desc:'Submit a formal HR query or grievance for escalation to the HR team.',icon:'ti-mail',fields:['Employee Name','Employee ID','Category','Query / Grievance Details','Urgency','Date']},
+];
+
+function renderForms(){
+  document.getElementById('formsGrid').innerHTML=FORMS.map((f,i)=>`
+    <div class="form-dl-card">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:32px;height:32px;background:var(--pl);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--p);font-size:16px;flex-shrink:0"><i class="ti ${f.icon}"></i></div>
+        <h3>${f.title}</h3>
+      </div>
+      <p>${f.desc}</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="dl-btn" onclick="downloadForm(${i})"><i class="ti ti-download"></i> Download</button>
+        <button class="dl-btn secondary" onclick="previewForm(${i})"><i class="ti ti-eye"></i> Preview</button>
+      </div>
+    </div>`).join('');
+}
+
+function downloadForm(i){
+  const f=FORMS[i];
+  const content=`HLC PRIVATE LIMITED — ${f.title.toUpperCase()}\n${'='.repeat(60)}\n${f.desc}\n\n${'─'.repeat(60)}\n${f.fields.map(field=>field+':\n'+'_'.repeat(40)+'\n').join('\n')}\n\n${'─'.repeat(60)}\nEmployee Signature: ________________________  Date: ____________\nManager Approval:  ________________________  Date: ____________\n\nSubmit to: hr@hippocampus.in | HLC Private Limited, Koramangala, Bangalore`;
+  const blob=new Blob([content],{type:'text/plain'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=f.title.replace(/\s+/g,'_')+'.txt';a.click();
+}
+
+function previewForm(i){
+  const f=FORMS[i];
+  document.getElementById('mTitle').textContent=f.title;
+  document.getElementById('mBody').innerHTML=`<p style="font-size:.8rem;color:#555;margin-bottom:14px">${f.desc}</p>
+    <div class="ps"><h4>Form Fields</h4>
+    ${f.fields.map(field=>`<div style="padding:8px 0;border-bottom:1px solid #f0eeff;font-size:.82rem"><strong>${field}:</strong> <span style="color:#ccc">_______________________________</span></div>`).join('')}
+    </div>
+    <div style="margin-top:12px;padding:10px;background:#f0eeff;border-radius:8px;font-size:.78rem;color:#555">
+    Submit completed forms to <strong>hr@hippocampus.in</strong> or via GreytHR.</div>`;
+  document.getElementById('overlay').classList.add('open');
+}
+
+// ── HR QUERY ─────────────────────────────────────────────────────────────
+function submitHRQuery(){
+  const name=document.getElementById('hq-name').value.trim();
+  const cat=document.getElementById('hq-cat').value;
+  const query=document.getElementById('hq-query').value.trim();
+  if(!name||!cat||!query){alert('Please fill in all required fields (Name, Category, Query).');return;}
+  const id=document.getElementById('hq-id').value;
+  const dept=document.getElementById('hq-dept').value;
+  const urgency=document.getElementById('hq-urgency').value;
+  const subject=`[${urgency.toUpperCase()}] HR Query — ${cat} — ${name}`;
+  const body=`Name: ${name}\nEmployee ID: ${id||'N/A'}\nDepartment: ${dept||'N/A'}\nCategory: ${cat}\nUrgency: ${urgency}\n\nQuery:\n${query}`;
+  const mailtoLink=`mailto:hr@hippocampus.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.open(mailtoLink);
+  document.getElementById('hrFormWrap').style.display='none';
+  document.getElementById('hrSubmitted').style.display='block';
+  document.getElementById('hrSubmitDetail').textContent=`Your query has been prepared for ${name} in the ${cat} category. Your email client should have opened with the details pre-filled addressed to hr@hippocampus.in`;
+}
+function resetHRForm(){
+  ['hq-name','hq-id','hq-dept','hq-query'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('hq-cat').value='';
+  document.getElementById('hq-urgency').value='normal';
+  document.getElementById('hrFormWrap').style.display='block';
+  document.getElementById('hrSubmitted').style.display='none';
+}
+
+// ── ACKNOWLEDGEMENT ──────────────────────────────────────────────────────
+let ackRecords=JSON.parse(localStorage.getItem('hlc_ack')||'[]');
+function renderAckList(){
+  const el=document.getElementById('ackList');
+  document.getElementById('ackCount').textContent=ackRecords.length;
+  if(!ackRecords.length){el.innerHTML='<div class="ack-empty">No acknowledgements recorded yet.</div>';return;}
+  el.innerHTML=ackRecords.map(r=>`<div class="ack-item">
+    <div><div class="name">${r.name} <span style="font-weight:400;color:#888;font-size:.75rem">(${r.id})</span></div>
+    <div style="font-size:.73rem;color:#888">${r.desg||''} ${r.dept?'· '+r.dept:''}</div></div>
+    <div class="ack-status done">✓ Acknowledged</div>
+    <div class="date">${r.date}</div>
+  </div>`).join('');
+}
+function submitAck(){
+  const name=document.getElementById('ack-name').value.trim();
+  const id=document.getElementById('ack-id').value.trim();
+  if(!name||!id){alert('Name and Employee ID are required.');return;}
+  const rec={name,id,desg:document.getElementById('ack-desg').value,dept:document.getElementById('ack-dept').value,mgr:document.getElementById('ack-mgr').value,date:new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})};
+  ackRecords.push(rec);
+  localStorage.setItem('hlc_ack',JSON.stringify(ackRecords));
+  renderAckList();
+  ['ack-name','ack-id','ack-desg','ack-dept','ack-mgr','ack-doj'].forEach(i=>document.getElementById(i).value='');
+  alert(`✓ Acknowledgement recorded for ${name}. Thank you!`);
+}
+
+// ── NAV ──────────────────────────────────────────────────────────────────
+function show(id){
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('p-'+id).classList.add('active');
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  renderCatFilters();
+  renderGrid();
+  buildCompareSelects();
+  renderCompare();
+  renderForms();
+  renderAckList();
+  document.getElementById('lv-date').valueAsDate=new Date();
+  document.getElementById('np-date').valueAsDate=new Date();
+  document.getElementById('gr-exit').valueAsDate=new Date();
+  document.getElementById('ac-nights').value=1;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--p:#7B68C8;--pd:#5a4fa8;--pl:#eeedfe;--y:#F5A623;--g:#e1f5ee;--gd:#0F6E56}
+body{font-family:system-ui,sans-serif;background:#f5f4ff;color:#1a1a2e;min-height:100vh;font-size:13px}
+header{background:var(--p);color:#fff;padding:12px 20px;display:flex;align-items:center;gap:12px}
+header h1{font-size:1rem;font-weight:700}
+header p{font-size:0.72rem;opacity:.8}
+.tabs{display:flex;background:#fff;border-bottom:2px solid var(--pl);padding:0 16px;overflow-x:auto}
+.tab{padding:10px 16px;font-size:0.8rem;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;color:#777;white-space:nowrap;transition:all .2s}
+.tab.active{color:var(--p);border-bottom-color:var(--p)}
+.tab:hover:not(.active){color:var(--pd);background:#f9f8ff}
+.panel{display:none;padding:14px 16px}.panel.active{display:block}
+
+/* BROWSE */
+.search-row{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.search-row input{flex:1;min-width:180px;padding:8px 12px 8px 34px;border:1.5px solid #d0cbf5;border-radius:8px;font-size:0.82rem;outline:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 10px center}
+.search-row input:focus{border-color:var(--p)}
+.cat-filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.cat-chip{padding:4px 12px;border:1px solid #d0cbf5;border-radius:20px;font-size:0.75rem;cursor:pointer;color:var(--p);background:#fff;font-weight:500;transition:all .15s}
+.cat-chip.active,.cat-chip:hover{background:var(--p);color:#fff;border-color:var(--p)}
+.policy-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.policy-card{background:#fff;border-radius:10px;border:1px solid #e8e4f8;padding:12px;cursor:pointer;transition:all .2s}
+.policy-card:hover{border-color:var(--p);box-shadow:0 2px 10px rgba(123,104,200,.12)}
+.policy-card .icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;font-size:16px}
+.policy-card h3{font-size:0.82rem;font-weight:700;margin-bottom:4px}
+.policy-card p{font-size:0.74rem;color:#666;line-height:1.5}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:0.68rem;font-weight:600;margin-top:6px}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:14px;max-width:620px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.2)}
+.modal-hdr{background:var(--p);color:#fff;padding:14px 18px;border-radius:14px 14px 0 0;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:1}
+.modal-hdr h2{font-size:0.95rem;font-weight:700;flex:1}
+.modal-close{background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer}
+.modal-body{padding:16px}
+.ps{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #f0eeff}
+.ps:last-child{border-bottom:none;margin-bottom:0}
+.ps h4{font-size:0.78rem;font-weight:700;color:var(--p);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+.ps p,.ps li{font-size:0.8rem;color:#333;line-height:1.65}
+.ps ul,.ps ol{padding-left:1.1rem}
+.ps li{margin-bottom:3px}
+.ps table{width:100%;font-size:0.78rem;border-collapse:collapse;margin-top:6px}
+.ps th{background:#f0eeff;padding:5px 8px;text-align:left;font-weight:600}
+.ps td{padding:5px 8px;border-bottom:1px solid #f0eeff}
+.hl{background:#fff8e6;border-left:3px solid var(--y);padding:6px 10px;border-radius:0 6px 6px 0;font-size:0.78rem;margin-top:6px;color:#555}
+
+/* COMPARE */
+.compare-wrap{max-width:100%}
+.compare-selects{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.compare-selects select{flex:1;min-width:160px;padding:8px 10px;border:1.5px solid #d0cbf5;border-radius:8px;font-size:0.8rem;outline:none;background:#fff}
+.compare-selects select:focus{border-color:var(--p)}
+.compare-grid{display:grid;gap:12px}
+.compare-col{background:#fff;border-radius:10px;border:1px solid #e8e4f8;overflow:hidden}
+.compare-col-hdr{background:var(--p);color:#fff;padding:10px 14px;font-size:0.85rem;font-weight:700}
+.compare-col-body{padding:12px 14px}
+.compare-row{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid #f5f3ff;font-size:0.78rem}
+.compare-row:last-child{border-bottom:none}
+.compare-label{color:#888;min-width:100px;font-weight:600;flex-shrink:0}
+.compare-val{color:#1a1a2e;flex:1;line-height:1.5}
+.diff{background:#fff8e6;border-radius:4px;padding:1px 5px;color:#7a4f00;font-weight:600}
+
+/* CHAT */
+.chat-wrap{max-width:640px;margin:0 auto}
+.chat-msgs{background:#fff;border-radius:12px;border:1px solid #e8e4f8;padding:12px;min-height:320px;max-height:420px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:88%;padding:8px 12px;border-radius:10px;font-size:0.82rem;line-height:1.65}
+.msg.bot{background:#f9f8ff;border:1px solid #e8e4f8;align-self:flex-start}
+.msg.user{background:var(--p);color:#fff;align-self:flex-end}
+.msg.thinking{color:#999;font-style:italic}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip{padding:4px 12px;background:#f0eeff;border:1px solid #d0cbf5;border-radius:20px;font-size:0.75rem;cursor:pointer;color:var(--p);font-weight:500;transition:all .15s}
+.chip:hover{background:var(--p);color:#fff}
+.chat-input{display:flex;gap:8px}
+.chat-input input{flex:1;padding:9px 14px;border:1.5px solid #d0cbf5;border-radius:8px;font-size:0.82rem;outline:none;background:#fff;color:#1a1a2e}
+.chat-input input:focus{border-color:var(--p)}
+.chat-input button{padding:9px 16px;background:var(--p);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:0.82rem;font-weight:600;white-space:nowrap}
+.chat-input button:hover{background:var(--pd)}
+.chat-input button:disabled{opacity:.5;cursor:not-allowed}
+</style>
+</head>
+<body>
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden">HLC Employee Handbook Interactive Policy Guide</h2>
+<header>
+  <div style="width:40px;height:40px;background:rgba(255,255,255,.2);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+    <i class="ti ti-building-community" style="font-size:22px"></i>
+  </div>
+  <div>
+    <h1>Hippocampus Learning Centres — Employee Handbook</h1>
+    <p>Interactive Policy Guide · v3.4 · Approved by Umesh Malhotra</p>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('browse')"><i class="ti ti-books" style="margin-right:4px"></i>Browse Policies</div>
+  <div class="tab" onclick="switchTab('chat')"><i class="ti ti-message-circle" style="margin-right:4px"></i>Ask Policy Assistant</div>
+  <div class="tab" onclick="switchTab('compare')"><i class="ti ti-columns" style="margin-right:4px"></i>Compare Policies</div>
+</div>
+
+<!-- BROWSE -->
+<div id="tab-browse" class="panel active">
+  <div class="search-row">
+    <input type="text" id="srch" placeholder="Search across all policies… e.g. maternity, PF, accommodation" oninput="filterPolicies()">
+  </div>
+  <div class="cat-filters" id="catFilters"></div>
+  <div class="policy-grid" id="policyGrid"></div>
+</div>
+
+<!-- CHAT -->
+<div id="tab-chat" class="panel">
+  <div class="chat-wrap">
+    <p style="font-size:0.78rem;color:#666;margin-bottom:8px">Powered by Claude AI — answers are based strictly on the HLC Employee Handbook</p>
+    <div class="chips">
+      <span class="chip" onclick="chip(this)">How many ELs do I get?</span>
+      <span class="chip" onclick="chip(this)">What is the notice period?</span>
+      <span class="chip" onclick="chip(this)">DA rate for travel?</span>
+      <span class="chip" onclick="chip(this)">Maternity leave entitlement?</span>
+      <span class="chip" onclick="chip(this)">Salary structure details?</span>
+      <span class="chip" onclick="chip(this)">Loan eligibility & terms?</span>
+      <span class="chip" onclick="chip(this)">When are appraisals done?</span>
+      <span class="chip" onclick="chip(this)">Accommodation rates?</span>
+    </div>
+    <div class="chat-msgs" id="chatMsgs">
+      <div class="msg bot">👋 Hello! I'm your HLC Policy Assistant. Ask me anything about leave, salary, travel, appraisals, ethics, exit procedures — all based on the official Employee Handbook.</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chatIn" placeholder="Type your question and press Enter…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}">
+      <button id="sendBtn" onclick="sendChat()"><i class="ti ti-send" style="margin-right:4px"></i>Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARE -->
+<div id="tab-compare" class="panel">
+  <div class="compare-wrap">
+    <p style="font-size:0.78rem;color:#666;margin-bottom:10px">Select any two policy areas to compare them side by side</p>
+    <div class="compare-selects">
+      <select id="cmp1" onchange="renderCompare()"><option value="">— Select policy A —</option></select>
+      <select id="cmp2" onchange="renderCompare()"><option value="">— Select policy B —</option></select>
+    </div>
+    <div id="compareOut"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-hdr">
+      <i class="ti ti-file-text" style="font-size:18px"></i>
+      <h2 id="mTitle">Policy</h2>
+      <button class="modal-close" onclick="closeModal()"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+const POLICIES=[
+{id:'onboarding',cat:'Onboarding',title:'Employee Onboarding',icon:'ti-user-plus',color:'#534AB7',bg:'#eeedfe',badge:'3-day induction',badgeColor:'#3C3489',
+summary:'Joining formalities, email setup, induction process and buddy system.',
+compare:{Induction:'3-day structured induction on start date',Buddy:'Buddy assigned for guidance','Email Setup':'IT creates email ID 1 week before joining','ID Card':'Issued by HR Bangalore office','HRMS':'GreytHR — hippocampus.greythr.com','Dress Code':'Professional, clean, work-appropriate attire','NDA':'Signed on joining — confidentiality & non-compete'},
+sections:[
+{h:'Joining Day',body:'A welcome email is sent to the manager the day before. Employees complete paperwork and a 3-day induction covering HLC, their team, and cross-functional teams.'},
+{h:'Email & IT Setup',body:'HR intimates IT at least 1 week ahead of joining to create the official email ID. Default password must be changed at first login.'},
+{h:'GreytHR (HRMS)',body:'Domain: <strong>hippocampus.greythr.com</strong>. Used for payslips, attendance, leave applications, and expense claims. Login credentials sent to official email on induction day.'},
+{h:'ID Card & Salary Account',body:'ID card issued by HR (Bangalore). Employees must submit bank account number, IFSC code and name as per bank records on joining day.'},
+{h:'NDA & NCA',body:'All employees sign a Non-Disclosure and Non-Compete Agreement on joining. Covers confidentiality of all HLC proprietary information.'},
+{h:'Dress Code',body:'Employees must be clean, well-groomed and dressed professionally at all times, especially when representing HLC in front of clients or visitors.'},
+]},
+
+{id:'workinghours',cat:'Attendance',title:'Working Hours',icon:'ti-clock',color:'#0F6E56',bg:'#e1f5ee',badge:'6-day week',badgeColor:'#085041',
+summary:'Office timings, flexible hours, field team schedules and overtime policy.',
+compare:{'Corporate Hours':'Mon–Fri 9:30 AM–6:00 PM, Sat 10 AM–5:30 PM','Flexible Start':'From 8:00 AM (leave by 4:30 PM)','Field Teams':'Mon–Sat, 8 hrs/day','Monthly Off':'First Saturday of every month','Senior Mgmt':'Exempt from Saturdays','Overtime':'No OT — not paid for extra hours'},
+sections:[
+{h:'Corporate Office',body:'Monday–Friday: <strong>9:30 AM – 6:00 PM</strong>. Saturday: <strong>10:00 AM – 5:30 PM</strong>. Flexible option: arrive from 8:00 AM and leave by 4:30 PM. 8 hours per day expected.'},
+{h:'Field Teams',body:'Monday to Saturday — <strong>8 working hours per day</strong>. Schedules follow academic calendar of respective centres/schools.'},
+{h:'First Saturday Off',body:'The <strong>first Saturday of every month</strong> is a monthly off. Working on this day with approval earns a Compensatory Off.'},
+{h:'Senior Management',body:'Exempt from coming in on Saturdays but must be available for meetings and travel when needed.'},
+{h:'Overtime',body:'HLC does not have an overtime (OT) concept. No staff is paid for extra hours. Part-time employees work 4 hours/day; extra hours are paid pro-rata or given as comp-off per their agreement.'},
+]},
+
+{id:'attendance',cat:'Attendance',title:'Attendance & WFH',icon:'ti-fingerprint',color:'#0F6E56',bg:'#e1f5ee',badge:'Mark by 10:30 AM',badgeColor:'#085041',
+summary:'Attendance marking, late arrivals, WFH rules and absence consequences.',
+compare:{'Mark Attendance':'Daily in GreytHR — mandatory','Absent Threshold':'Not in by 10:30 AM without WFH notice = absent','WFH Rule':'Email manager + HR before 10:30 AM','Late Arrival':'After 11:30 AM = half-day leave','3 Consecutive Lates':'= half-day leave deduction','Absent 3 Days':'Salary suspended','Absent 10 Days':'Employment terminated'},
+sections:[
+{h:'Daily Attendance',body:'Mandatory to mark in-time and out-time in <strong>GreytHR</strong> every day. Consultants must also sign in/out — salary calculated on these records.'},
+{h:'Late Arrival',body:'Not present by 10:30 AM without prior WFH intimation = marked absent. If arriving after 11:30 AM (with special permission), it is counted as a half-day leave. This applies to school teachers too.'},
+{h:'Work From Home (WFH)',body:'Prior permission from supervisor required. Email reporting manager and CC HR before 10:30 AM. On special cases, permission can be granted up to 11:30 AM.'},
+{h:'Consecutive Late Arrivals',body:'Any 3 consecutive late arrivals (after 11:30 AM) or working less than 5 hours without permission will be counted as a half-day leave.'},
+{h:'Absence without Notice',body:'<ul><li><strong>3 consecutive days</strong> unexplained — salary and allowances suspended; HR contacts employee</li><li><strong>10 consecutive days</strong> unexplained — contract of employment terminated with no notice entitlement</li></ul>'},
+]},
+
+{id:'holidays',cat:'Attendance',title:'Holidays & Compensatory Off',icon:'ti-calendar-event',color:'#0F6E56',bg:'#e1f5ee',badge:'5 National + 9 State',badgeColor:'#085041',
+summary:'National, state and festival holidays, optional holidays and comp-off rules.',
+compare:{'National Holidays':'5 days — all offices closed','State/Festival Holidays':'9 days — offices closed','Optional Holidays':'1 day choice from announced list','Comp-Off Earning':'Working on holiday/Sunday with approval','Comp-Off Limit':'Max 4 consecutive comp-offs','Comp-Off Validity':'Must be used within 60 days','Senior Mgmt':'Not eligible for comp-off (exempt from Saturday attendance too)'},
+sections:[
+{h:'Holidays',body:'HLC follows <strong>5 national holidays</strong> (all offices closed) and <strong>9 state/festival holidays</strong>. A holiday list is released by HR at the start of every calendar year.'},
+{h:'Optional Holidays',body:'A few optional holidays are announced annually. Employees may choose <strong>1 day</strong> from these based on religious/cultural affiliation.'},
+{h:'Working on Holidays',body:'Prior approval from Department Head is required. Employee earns a Compensatory Off in return.'},
+{h:'Compensatory Off Rules',body:'<ul><li>Maximum <strong>4 comp-offs</strong> can be taken together</li><li>Must be availed within <strong>60 days</strong> with written manager approval</li><li>Lapses if unused within 60 days</li><li>Travel on holidays is not compensated</li><li>Senior management is <strong>not eligible</strong> for comp-off</li></ul>'},
+]},
+
+{id:'leave',cat:'Leave',title:'Leave Policy',icon:'ti-calendar-off',color:'#7B68C8',bg:'#eeedfe',badge:'12 EL + 12 CL/SL',badgeColor:'#5a4fa8',
+summary:'Earned, sick, casual, maternity, paternity, bereavement leave rules.',
+compare:{'Earned Leave':'12 days/year — 3 per quarter','CL/SL':'12 days/year — 3 per quarter, expires same quarter','Maternity':'26 weeks paid (2 pregnancies)','Paternity':'10 days full pay (2 children)','Bereavement (close)':'3 days','Bereavement (distant)':'1 day','Probation':'1 paid leave/month only','Notice Period':'No leaves — all counted as LOP','Leave Year':'1 July to 30 June'},
+sections:[
+{h:'Earned Leave (EL)',body:'All confirmed employees get <strong>12 days EL per year</strong>, accrued at 3 days per quarter from date of confirmation. Carry-forward: max 6 days. Excess lapses. On resignation/termination, unutilised EL is encashed at Gross salary (Basic + DA) or adjusted against notice period shortfall.'},
+{h:'Sick & Casual Leave (SL/CL)',body:'<strong>12 days per year</strong>, credited 3 per quarter — expires at end of the same quarter. Sick leave must be intimated before 10:30 AM. Cannot exceed 2 consecutive days (beyond 2 days, EL is deducted). Medical certificate required if sick for more than 3 consecutive days. Sick leave and EL cannot be combined.'},
+{h:'Maternity Leave',body:'<strong>26 weeks of paid leave</strong> as per the Maternity Benefit Amendment Act. Restricted to 2 pregnancies. Extension beyond 26 weeks is treated as Leave Without Pay (LOP) at management discretion.'},
+{h:'Paternity Leave',body:'<strong>10 days</strong> with full pay. Restricted to 2 children. Must be taken at a stretch. Cannot be accumulated or encashed.'},
+{h:'Bereavement Leave',body:'<ul><li><strong>3 days</strong>: spouse, domestic partner, child, stepchild, parent, stepparent, in-laws, siblings, stepbrother/stepsister, adult who stood in loco parentis</li><li><strong>1 day</strong>: brother/sister-in-law, aunt, uncle, grandparent, grandchild, spouse\'s grandparent</li><li><strong>4 hours</strong>: death of a fellow HLC employee or retiree</li></ul>'},
+{h:'Loss of Pay (LOP)',body:'If no leave balance exists and the employee is absent, it is treated as LOP with no wages for those days.'},
+{h:'Probation Period',body:'Only <strong>1 paid leave per month</strong>. Excess leave is unpaid. No other leave benefits apply during probation.'},
+{h:'Notice Period',body:'No leaves allowed during notice period. All leave taken during notice is treated as Loss of Pay.'},
+{h:'Leave Application',body:'All leaves must be applied in GreytHR. Sick/casual leave: apply by 10:30 AM same day. Earned leave: apply at least 2 days in advance.'},
+]},
+
+{id:'salary',cat:'Compensation',title:'Salary & Compensation',icon:'ti-currency-rupee',color:'#BA7517',bg:'#faeeda',badge:'Paid by 2nd',badgeColor:'#854F0B',
+summary:'Salary structure, CTC components, deductions and payment cycle.',
+compare:{'Salary Date':'On or before 2nd of every month','Salary Cycle':'1st to 30th/31st of month','Late Joiner':'Joining post 20th — salary from next month','Basic':'40% of CTC','HRA':'40% of Basic','Conveyance':'₹1,600/month fixed','Statutory Bonus':'8.33% of Basic (monthly)','Medical Allowance':'₹1,250/month fixed','PF Employer':'13% of Basic (capped at ₹15,000 Basic)','ESIC Employer':'4.75% of Gross (if Gross < ₹21,000)','PF Employee':'12% of Basic (capped at ₹15,000)','ESIC Employee':'0.75% of Gross'},
+sections:[
+{h:'Salary Cycle',body:'Salaries are paid on or before the <strong>2nd of every month</strong>. Calculation cycle: 1st to 30th/31st. If an employee joins after the 20th, salary is paid from the following month.'},
+{h:'CTC Structure',body:'CTC = Gross Monthly Salary + Benefits. Incentives shown separately where applicable.'},
+{h:'Gross Salary Components',body:'<table><tr><th>Component</th><th>Rate</th></tr><tr><td>Basic</td><td>40% of CTC</td></tr><tr><td>HRA</td><td>40% of Basic</td></tr><tr><td>Conveyance Allowance</td><td>₹1,600/month (fixed)</td></tr><tr><td>Statutory Bonus</td><td>8.33% of Basic (monthly)</td></tr><tr><td>Medical Allowance</td><td>₹1,250/month (fixed)</td></tr><tr><td>Other Allowances</td><td>Balance of Gross</td></tr></table>'},
+{h:'Employer Benefits (in CTC)',body:'<table><tr><th>Benefit</th><th>Rate</th></tr><tr><td>PF Employer</td><td>13% of Basic (capped at ₹15,000 Basic)</td></tr><tr><td>ESIC Employer</td><td>4.75% of Gross (if Gross &lt; ₹21,000)</td></tr><tr><td>Medical Insurance</td><td>₹200/month</td></tr><tr><td>Accident Insurance</td><td>₹9/month</td></tr></table>'},
+{h:'Employee Deductions',body:'<ul><li><strong>PF Employee</strong>: 12% of Basic (capped at ₹15,000)</li><li><strong>ESIC Employee</strong>: 0.75% of Gross (if applicable)</li><li><strong>Professional Tax</strong>: As per state rules</li><li><strong>Income Tax</strong>: As per IT rules</li></ul>'},
+{h:'Medical Insurance',body:'Applicable to employees not covered under ESIC. Sum insured: <strong>₹5 Lakh per family</strong> (self + spouse + 2 children; or self + parents + siblings if unmarried). Maternity: ₹25,000 (normal) / ₹35,000 (LSCS). Provider: Max Bupa Insurance.'},
+]},
+
+{id:'travel',cat:'Allowances',title:'Travel Policy',icon:'ti-plane',color:'#185FA5',bg:'#e6f1fb',badge:'DA ₹300/day',badgeColor:'#0C447C',
+summary:'Domestic travel modes by grade, daily allowance and TA/DA claim rules.',
+compare:{'Executive Mode':'Non-AC bus, 2nd/3rd tier train','Management Mode':'AC bus, 3rd AC/Chair Car train','Sr. Mgmt Mode':'AC bus, 3rd AC + Economy Air (>1000 km)','Two-wheeler':'₹4/km','Car':'₹10/km','Daily Allowance':'₹300/day (outside area of operation)','DA >12 hrs in area':'50% DA','Claim Submission':'GreytHR/Zoho Expense only','Claim Deadline':'10th of following month','Grace Period':'1 month','Forfeited After':'2 months — claim lapses'},
+sections:[
+{h:'Travel Modes by Grade',body:'<table><tr><th>Grade</th><th>&lt;1000 km</th><th>&gt;1000 km</th></tr><tr><td><strong>E – Executive</strong></td><td>Non-AC bus, 2nd/3rd tier train</td><td>Non-AC bus, 2nd/3rd tier train</td></tr><tr><td><strong>M – Management</strong></td><td>AC bus, 3rd tier AC / Chair Car</td><td>AC bus, 3rd tier AC / Chair Car</td></tr><tr><td><strong>A – Sr. Management</strong></td><td>AC bus, 3rd tier AC / Chair Car</td><td>AC bus, 3rd tier AC / Chair Car + Economy Airfare</td></tr></table>'},
+{h:'Two-Wheeler & Car Allowance',body:'<ul><li>Two-wheeler: <strong>₹4 per km</strong></li><li>Car: <strong>₹10 per km</strong></li></ul>Employees are encouraged to double up to reduce travel costs.'},
+{h:'Daily Allowance (DA)',body:'<strong>₹300 per day</strong> for all cadres when travelling outside area of operation (for food & non-alcoholic beverages). Full DA if travel exceeds 12 hours. 50% DA if working more than 12 hours within area. No bills required for DA.'},
+{h:'TA/DA Claims',body:'<ul><li>Submit only via <strong>GreytHR / Zoho Expense</strong> — no email or hard copy</li><li>Submit by <strong>10th of every month</strong> for the previous month</li><li>1 month grace period allowed</li><li><strong>Claims forfeited after 2 months</strong> — not processed under any circumstance</li><li>Finance/HR will not process or forward unapproved claims</li></ul>'},
+{h:'Fixed Travel Allowance (Ops)',body:'Field employees get a fixed TA of ₹2,800–₹6,000/month depending on operational area size and distance. Reimbursed on production of receipts. Reimbursements processed on the 15th of each month.'},
+]},
+
+{id:'accommodation',cat:'Allowances',title:'Accommodation Policy',icon:'ti-bed',color:'#185FA5',bg:'#e6f1fb',badge:'Up to ₹3,000/night',badgeColor:'#0C447C',
+summary:'Hotel/accommodation limits by grade and city category when travelling.',
+compare:{'Executive – Small Town':'₹1,000/night','Executive – District HQ':'₹1,200/night','Executive – City':'₹1,400/night','Management – Small Town':'₹1,300/night','Management – District HQ':'₹1,500/night','Management – City':'₹2,000/night','Sr. Mgmt – Small Town':'₹1,400/night','Sr. Mgmt – District HQ':'₹1,900/night','Sr. Mgmt – City':'₹3,000/night','Staying with Friend':'40% of applicable rate','Small Town':'Population < 1 lakh','District HQ':'Population 1–10 lakh','City':'Population > 10 lakh'},
+sections:[
+{h:'Accommodation Limits',body:'<table><tr><th>Grade</th><th>Small Town<br><small>&lt;1 lakh</small></th><th>District HQ<br><small>1–10 lakh</small></th><th>City<br><small>&gt;10 lakh</small></th></tr><tr><td><strong>Executive</strong></td><td style="text-align:center">₹1,000</td><td style="text-align:center">₹1,200</td><td style="text-align:center">₹1,400</td></tr><tr><td><strong>Management</strong></td><td style="text-align:center">₹1,300</td><td style="text-align:center">₹1,500</td><td style="text-align:center">₹2,000</td></tr><tr><td><strong>Sr. Management</strong></td><td style="text-align:center">₹1,400</td><td style="text-align:center">₹1,900</td><td style="text-align:center">₹3,000</td></tr></table>'},
+{h:'Additional Notes',body:'<ul><li>Company will arrange accommodation (e.g. Bangalore) wherever possible</li><li>Staying with a friend: <strong>40% of the applicable rate</strong> will be paid</li><li>Employees cannot stay in HLC offices or operational centres</li><li>In cities where HLC has a presence, company will try to pre-arrange accommodation</li></ul>'},
+{h:'Relocation Allowance',body:'One-time allowance of up to <strong>₹5,000 or actual parcel cost</strong> (whichever is lower) when transferred to a new location requiring a house shift.'},
+{h:'Laptop Allowance',body:'Permanent employees using personal laptops for official work are eligible for <strong>₹1,000/month</strong> after manager approval.'},
+]},
+
+{id:'loans',cat:'Allowances',title:'Loans & Advances',icon:'ti-cash',color:'#0F6E56',bg:'#e1f5ee',badge:'Max 6× Basic',badgeColor:'#085041',
+summary:'Employee salary advance and loan eligibility, terms and repayment.',
+compare:{'Advance Eligibility':'Case-by-case, management discretion','Advance Max':'50% of monthly take-home','Advance Repayment':'2 instalments from salary','Advance Condition':'No pending loan','Loan Eligibility':'Confirmed + 3 months post-confirmation','Loan Purpose':'Medical, rent deposit, personal emergencies','Loan Max':'6× monthly Basic salary','Repayment Period':'Up to 12 months','Interest Rate':'8–11% p.a. on outstanding','Approval Time':'Within 30 days','Guarantor':'Required — confirmed employee, no pending loan','Exit':'Full outstanding deducted from F&F'},
+sections:[
+{h:'Salary Advance',body:'HLC does not encourage salary advances. On a case-by-case basis, management may approve up to <strong>50% of monthly total take-home salary</strong>. Repaid in 2 instalments. Not available if a loan is pending.'},
+{h:'Employee Loan Eligibility',body:'Confirmed employees who have completed <strong>3 months of service post-confirmation</strong>. Purpose must be one of: medical treatment (self/dependents), house rent advance/deposit, or other family/personal emergencies.'},
+{h:'Loan Terms',body:'<ul><li>Maximum: <strong>6× monthly Basic salary</strong></li><li>Repayment: up to <strong>12 months</strong></li><li>Interest: <strong>8–11% per annum</strong> on outstanding balance (interest applied first, then principal)</li><li>Approval within <strong>30 days</strong></li><li>Guarantor required — must be a confirmed permanent employee with no pending loan (one guarantee at a time)</li><li>Full outstanding deducted from final settlement on exit</li></ul>'},
+{h:'Default',body:'If an employee defaults, the guarantor is held responsible for payment and all recovery steps will be initiated against the guarantor directly.'},
+]},
+
+{id:'appraisal',cat:'Performance',title:'Performance & Appraisal',icon:'ti-chart-bar',color:'#993C1D',bg:'#faece7',badge:'Appraisals in July',badgeColor:'#712B13',
+summary:'Rating scale, KRAs, KPIs, 360° feedback, PIP process.',
+compare:{'Annual Calendar':'June to July','Appraisal Month':'July','Increment Linkage':'July–June cycle result','Rating P':'Par Excellence (4) — Consistently exceeds all expectations','Rating E':'Excellence (3) — Exceeds expectations in most objectives','Rating T':'Transitioning (2) — Meets most but not all objectives','Rating S':'Starter (1) — Meets very few objectives','360° Feedback':'Anonymous — peers, subordinates, managers','PIP Steps':'Counselling → Written Warning → Suspension → Termination'},
+sections:[
+{h:'Appraisal Cycle',body:'The HLC annual calendar runs from <strong>June to July</strong>. Formal appraisals are conducted in the <strong>month of July</strong>. Salary increments and annual incentives are linked to this cycle. Promotion and salary revision are based solely on performance and competency.'},
+{h:'Rating Scale',body:'<table><tr><th>Rating</th><th>Score</th><th>Meaning</th></tr><tr><td><strong>P – Par Excellence</strong></td><td style="text-align:center">4</td><td>Consistently exceeds all expectations</td></tr><tr><td><strong>E – Excellence</strong></td><td style="text-align:center">3</td><td>Exceeds expectations in most objectives</td></tr><tr><td><strong>T – Transitioning</strong></td><td style="text-align:center">2</td><td>Meets most objectives, but not all</td></tr><tr><td><strong>S – Starter</strong></td><td style="text-align:center">1</td><td>Meets very few objectives — needs significant improvement</td></tr></table>'},
+{h:'KRAs & KPIs',body:'<strong>KRAs</strong> (Key Responsibility Areas) are defined in your Job Description. <strong>KPIs</strong> measure business outcomes (revenue, customer satisfaction, employee engagement etc.). Mapping KRAs to KPIs as quantifiable statements gives employee goals.'},
+{h:'360° Feedback',body:'Anonymous feedback from peers, subordinates and managers. HR creates groups and collects feedback. Summary shared with each employee during appraisal discussions.'},
+{h:'Performance Improvement Plan (PIP)',body:'Initiated when performance or behaviour is unsatisfactory. Steps:<ol style="padding-left:1.1rem"><li>Counselling</li><li>Written Warning</li><li>Suspension without pay</li><li>Termination</li></ol>HR consultation required before termination. PIP is documented and shared in a face-to-face meeting.'},
+]},
+
+{id:'recruitment',cat:'Recruitment',title:'Recruitment & Hiring',icon:'ti-users',color:'#3B6D11',bg:'#eaf3de',badge:'5-day turnaround',badgeColor:'#27500A',
+summary:'Hiring process, interview stages, internal transfers and referral policy.',
+compare:{'HR Response Time':'2 working days after JD shared','Interview Scheduled':'Within 5 working days','Round 1':'HR screening','Round 2':'Technical written assessment','Round 3':'Technical round (Process Lead)','Round 4':'Technical round (Manager)','Round 5':'Soft skills (HR)','Offer Letter':'Issued by HR','Internal Transfer':'Min 1 year in current role','Referral Bonus':'Paid after referred employee is confirmed'},
+sections:[
+{h:'Hiring Process',body:'<ol style="padding-left:1.1rem"><li>Department head shares JD, skill sets, experience, technical expertise required with HR</li><li>HR responds within <strong>2 working days</strong> with clarifications</li><li>Job posted on portals; interview scheduled within <strong>5 working days</strong></li><li>Rounds: HR screening → Technical written → Technical (Process Lead) → Technical (Manager) → Soft skills (HR)</li><li>Selected candidate receives offer letter from HR</li></ol>'},
+{h:'Internal Transfers',body:'<ul><li>Must have been in current position for at least <strong>1 year</strong> (may be waived with manager + HR consent)</li><li>Complete and submit Internal Job Opening Request Form</li><li>Transfer within same district: <strong>no relocation allowance</strong></li><li>Transfer to new district: relocation allowance applies</li></ul>'},
+{h:'Referral Policy',body:'Send referral resume to <strong>hr@hippocampus.in</strong>. Referral bonus is paid only after the referred candidate completes probation and becomes a confirmed employee.'},
+{h:'Recruitment Advertising',body:'All external recruitment advertising is placed by the HR department based on need and budget.'},
+]},
+
+{id:'ethics',cat:'Ethics',title:'Ethics & Code of Conduct',icon:'ti-shield-check',color:'#534AB7',bg:'#eeedfe',badge:'Zero Tolerance',badgeColor:'#3C3489',
+summary:'Ethics committee, code of conduct, teacher relationships policy and helpline.',
+compare:{'Ethics Email':'hlc_ethicspanel@hippocampus.in','Hearing Timeline':'Within 3 days of complaint','Recommendation':'Within 1 week of hearing','Committee Tenure':'Min 1 year, max 2 years','Meeting Frequency':'At least once a month','Helpline':'8088920322 (IVR recorded)','Teacher Calls':'Not allowed after 6 PM without supervisor/HR notice'},
+sections:[
+{h:'Ethics Committee',body:'Nominated by CEO, Function Head and HR. Hears complaints within <strong>3 days</strong> and issues recommendations within <strong>1 week</strong>. Contact: <strong>hlc_ethicspanel@hippocampus.in</strong>. Committee is an investigating and recommendation body — not a decision-making body. Final decision rests with HR Manager and CEO.'},
+{h:'Issues for Ethics Panel',body:'<ul><li>Violation of code of conduct</li><li>Dishonesty to the company</li><li>Physical or psychological abuse</li><li>Misuse of company money/products/materials</li><li>Illegal activities on premises</li><li>Attitude/behavioural issues affecting workplace relationships</li></ul>'},
+{h:'Employee Code of Conduct',body:'<ul><li>Always act with the highest ethical standards regardless of role or location</li><li>Do not use corporate property, information or position for personal gain</li><li>Full-time employees cannot undertake paid work outside HLC without written HR permission</li><li>All salary and employment details are confidential</li><li>Expense statements must be accurate — no false claims</li><li>Company money credited to personal accounts must be used only for its stated purpose</li><li>Never accept or give bribes, commissions or gifts to influence decisions</li></ul>'},
+{h:'Teacher Relationships Policy',body:'Employees must not have personal relationships with teachers outside the normal course of duties. No movies, individual home visits, or individual meetings outside work without explicit supervisor permission. No calls to teachers after <strong>6 PM</strong> without reporting to supervisor and HR.'},
+{h:'Helpline',body:'<strong>8088920322</strong> — IVR-recorded. Available to all stakeholders. Calls reviewed and analysed monthly. All calls treated as priority.'},
+{h:'Whistle-blower',body:'Protected under the Whistle-blower Protection Act. No retaliation or unfavourable treatment for good-faith reporting. Can report internally (supervisor/HR) or externally.'},
+{h:'Grievance Redressal',body:'Raise grievance verbally or in writing to the Grievance Redressal Committee. Committee recommendation to CEO within 7 working days. Employee informed within 3 working days post-CEO presentation. Appeal possible if unsatisfied — management decides within 12 working days.'},
+]},
+
+{id:'posh',cat:'Ethics',title:'Sexual Harassment (POSH)',icon:'ti-gavel',color:'#993556',bg:'#fbeaf0',badge:'ICC Constituted',badgeColor:'#72243E',
+summary:'POSH Act 2013, ICC committee, complaint mechanism and confidentiality.',
+compare:{'Law':'Sexual Harassment of Women at Workplace Act, 2013','ICC Email':'icc@hippocampus.in','Applicable To':'All employees, temporaries, trainees, contractors, clients, vendors','Scope':'All offices, company activities, social/business functions','Confidentiality':'Maintained throughout investigation','Retaliation':'Strictly prohibited — subject to disciplinary action','False Complaints':'Subject to disciplinary action'},
+sections:[
+{h:'Policy Commitment',body:'HLC strictly prohibits sexual harassment. An Internal Complaints Committee (ICC) is constituted under Section 4 of the POSH Act 2013 with internal and external members. Contact: <strong>icc@hippocampus.in</strong>'},
+{h:'Definition',body:'Sexual harassment includes: unwelcome sexual advances (verbal, written or physical), requests for sexual favours, sexually-oriented verbal abuse or joking, and any conduct creating an intimidating, hostile or offensive work environment.'},
+{h:'Scope',body:'Applies to all employees, temporaries, trainees and contractors at all offices, centres, and company-related activities. Also covers conduct by clients, suppliers and business associates.'},
+{h:'Complaint Mechanism',body:'Report to the ICC at <strong>icc@hippocampus.in</strong>. Complete confidentiality will be maintained. No employee who reports a concern will face any retaliation. Abuse of the procedure (malicious complaints) is also subject to disciplinary action.'},
+]},
+
+{id:'zerotolerance',cat:'Ethics',title:'Zero Tolerance Policy',icon:'ti-ban',color:'#993556',bg:'#fbeaf0',badge:'Immediate Action',badgeColor:'#72243E',
+summary:'Behaviours that attract immediate investigation, warning or termination.',
+compare:{},
+sections:[
+{h:'Zero Tolerance Items',body:'<ul><li>Sexual harassment</li><li>Misconduct/unpleasant behaviour with teachers, colleagues or children</li><li>Violence or threatening behaviour (including minor scuffles)</li><li>Fraud or misappropriation</li><li>Drug/alcohol use on office premises or arriving to work drunk</li><li>Racial discrimination</li><li>Integrity issues — negligent behaviour, misuse of company money</li><li>Being non-compliant with company policies</li><li>Insubordination</li><li>Violation of code of conduct</li><li>Disclosure, sale, theft or improper handling of confidential information</li><li>Any other disruptive or undisciplined behaviour</li></ul>'},
+{h:'Consequences',body:'Any violation triggers an investigation by the relevant committee/panel. Non-serious violations may result in a warning. Serious violations result in termination of employment.'},
+]},
+
+{id:'assets',cat:'Assets',title:'IT Asset & Device Policy',icon:'ti-device-laptop',color:'#5F5E5A',bg:'#f1efe8',badge:'5-yr laptop life',badgeColor:'#444441',
+summary:'Device usage rules, damage liability, theft recovery and audit.',
+compare:{'Permitted Use':'Official purposes only','Additional Software':'Prohibited without IT approval','Laptop Lifespan':'5 years','Tablet Lifespan':'3 years','Physical Damage (Laptop)':'Employee pays 40% of repair cost','Physical Damage (Tablet)':'₹750 or 20% of repair (lower)','Theft Recovery':'Full depreciated cost in 3–6 months','Laptop Audit':'Serviced every 6 months','Laptop Allowance':'₹1,000/month for personal laptop use'},
+sections:[
+{h:'IT Device Policy',body:'<ul><li>Devices for official use only — no personal browsing, no additional software</li><li>All messages sent/received/stored on company devices are company property</li><li>Inappropriate content: 1st offence = warning, 2nd = written apology to HR, 3rd = termination</li><li>Laptops: 5-year lifespan; Tablets: 3-year lifespan</li></ul>'},
+{h:'Damage & Loss',body:'<ul><li><strong>Physical damage (laptop)</strong>: Employee pays 40% of repair cost</li><li><strong>Physical damage (tablet)</strong>: Employee pays ₹750 or 20% of repair cost (whichever is lower)</li><li><strong>Theft/missing</strong>: Employee pays full depreciated cost, deducted from salary in 3–6 months</li><li>Report loss/damage to supervisor within <strong>48 hours</strong></li><li>If theft: file FIR within 48 hours and submit original docket to HR & Finance</li></ul>'},
+{h:'Exit',body:'Laptop must be handed over to the company on exit. Failure to do so results in cost recovery (post-depreciation) from final settlement.'},
+{h:'Audit',body:'Laptops are serviced every 6 months. Employees must attend the audit. Policy violations found during audit will attract action.'},
+]},
+
+{id:'fraud',cat:'Assets',title:'Financial Discipline & Fraud',icon:'ti-alert-triangle',color:'#993C1D',bg:'#faece7',badge:'Ethics Committee',badgeColor:'#712B13',
+summary:'Cash management compliance, fraud definition and penalties.',
+compare:{'Advance Settlement Deadline':'By 25th of every month','Overdue Warning':'7 days to clear failing which legal action','2 Months of Offences':'Finance can recommend termination','Fee Deposit Default':'Amount deducted from employee + supervisor salary','Fraud Investigation':'Ethics Committee + Audit team'},
+sections:[
+{h:'Manager Responsibility',body:'Managers are responsible for detecting and preventing fraud, misappropriation, and financial irregularities. Must immediately report any detected or suspected compliance issues.'},
+{h:'Actions Constituting Fraud',body:'<ul><li>Irregular fee collection deposits</li><li>Irregular software (Samarthya) entries</li><li>Misappropriation of funds, securities, materials or company assets</li><li>Unsettled advances</li><li>False expense claims</li><li>Accepting bribes, commissions or costly gifts</li><li>Disclosing confidential information to outside parties</li><li>Improper use of records, furniture, fixtures or equipment</li></ul>'},
+{h:'Penalties',body:'<ul><li>Fee deposit defaulter: amount deducted from employee\'s and supervisor\'s salary until recovered</li><li><strong>2 months of offences</strong> in a financial year → Finance can recommend termination</li><li>Advances not settled by 25th → deducted from salary + warning letter; legal action if not cleared in 7 days</li></ul>'},
+]},
+
+{id:'exit',cat:'Exit',title:'Separation & Exit Policy',icon:'ti-door-exit',color:'#993556',bg:'#fbeaf0',badge:'60-day notice',badgeColor:'#72243E',
+summary:'Resignation, termination, absconding, F&F settlement and gratuity.',
+compare:{'Notice Period':'60 days for confirmed employees','Emergency Relief':'15 days with manager approval','F&F Settlement':'Within 45 days of last working day','Leave During Notice':'Not allowed — treated as LOP','Absconding Threshold':'15 consecutive unexcused days','Gratuity Eligibility':'5 years continuous service','Absconding F&F':'Not entitled','Retirement Age':'65 years'},
+sections:[
+{h:'Resignation',body:'Submit through immediate supervisor. Confirmed employees: <strong>60-day notice period</strong>. Emergency: can be relieved in 15 days with manager approval. No leaves during notice period — all treated as LOP. Last working day: complete exit interview and return company property.'},
+{h:'Full & Final Settlement',body:'Processed within <strong>45 days</strong> of last working day. Requires signed No Dues Certificate from all departments. Unutilised EL adjusted against notice period shortfall; remaining EL lapses. Official email blocked on exit.'},
+{h:'Termination by HLC',body:'<ul><li>2 unscheduled leaves in 1 month → warning letter + LOP</li><li>3 unscheduled leaves in 2 consecutive months → referred to HR for disciplinary action</li><li><strong>15 consecutive days</strong> without intimation = absconding</li></ul>On termination for disciplinary reasons, all clearances happen on the same day.'},
+{h:'Absconding Process',body:'<ol style="padding-left:1.1rem"><li>Manager informs HR on 15th day of absence</li><li>HR sends warning letter on Day 15; salary put on hold</li><li>Employee must respond within 7 days or termination letter is issued</li><li>No F&F, no experience certificate, no relieving letter for absconding employees</li></ol>'},
+{h:'Gratuity',body:'Payable after <strong>5 years of continuous service</strong>. Also payable (for actual years worked) on death or disability regardless of tenure. Not payable for termination due to violence, riot, or moral misconduct.'},
+{h:'Retirement',body:'Retirement age at HLC is <strong>65 years</strong>.'},
+]},
+];
+
+const CATS=[...new Set(POLICIES.map(p=>p.cat))];
+let activeCat='All',filtered=POLICIES;
+
+function renderCatFilters(){
+  const el=document.getElementById('catFilters');
+  el.innerHTML=['All',...CATS].map(c=>`<span class="cat-chip${c===activeCat?' active':''}" onclick="setCat('${c}')">${c}</span>`).join('');
+}
+function setCat(c){activeCat=c;filterPolicies();}
+function filterPolicies(){
+  const q=(document.getElementById('srch').value||'').toLowerCase();
+  filtered=POLICIES.filter(p=>{
+    const catOk=activeCat==='All'||p.cat===activeCat;
+    const qOk=!q||p.title.toLowerCase().includes(q)||p.summary.toLowerCase().includes(q)||p.sections.some(s=>s.h.toLowerCase().includes(q)||s.body.toLowerCase().includes(q));
+    return catOk&&qOk;
+  });
+  renderCatFilters();
+  renderGrid();
+}
+function renderGrid(){
+  const g=document.getElementById('policyGrid');
+  if(!filtered.length){g.innerHTML='<p style="color:#999;grid-column:1/-1;font-size:0.82rem">No policies found. Try a different search term.</p>';return;}
+  g.innerHTML=filtered.map(p=>`
+    <div class="policy-card" onclick="openModal('${p.id}')">
+      <div class="icon" style="background:${p.bg};color:${p.color}"><i class="ti ${p.icon}"></i></div>
+      <h3>${p.title}</h3>
+      <p>${p.summary}</p>
+      <span class="badge" style="background:${p.bg};color:${p.badgeColor}">${p.badge}</span>
+    </div>`).join('');
+}
+
+function openModal(id){
+  const p=POLICIES.find(x=>x.id===id);
+  document.getElementById('mTitle').textContent=p.title;
+  document.getElementById('mBody').innerHTML=p.sections.map(s=>`<div class="ps"><h4>${s.h}</h4><div>${s.body}</div></div>`).join('');
+  document.getElementById('overlay').classList.add('open');
+}
+function closeModal(){document.getElementById('overlay').classList.remove('open')}
+
+// COMPARE
+function buildCompareSelects(){
+  const opts=POLICIES.map(p=>`<option value="${p.id}">${p.title}</option>`).join('');
+  document.getElementById('cmp1').innerHTML='<option value="">— Select policy A —</option>'+opts;
+  document.getElementById('cmp2').innerHTML='<option value="">— Select policy B —</option>'+opts;
+}
+function renderCompare(){
+  const a=POLICIES.find(p=>p.id===document.getElementById('cmp1').value);
+  const b=POLICIES.find(p=>p.id===document.getElementById('cmp2').value);
+  const out=document.getElementById('compareOut');
+  if(!a||!b){out.innerHTML='<p style="color:#999;font-size:0.82rem">Select two policies above to compare them.</p>';return;}
+  const allKeys=[...new Set([...Object.keys(a.compare||{}),...Object.keys(b.compare||{})])];
+  if(!allKeys.length){out.innerHTML='<p style="color:#888;font-size:0.82rem">No comparison data available for these policies.</p>';return;}
+  out.innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div class="compare-col">
+      <div class="compare-col-hdr" style="background:${a.color}">${a.title}</div>
+      <div class="compare-col-body">${allKeys.map(k=>{
+        const av=a.compare?.[k]||'—';const bv=b.compare?.[k]||'—';const diff=av!==bv;
+        return`<div class="compare-row"><span class="compare-label">${k}</span><span class="compare-val${diff?' diff':''}">${av}</span></div>`;
+      }).join('')}</div>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-hdr" style="background:${b.color}">${b.title}</div>
+      <div class="compare-col-body">${allKeys.map(k=>{
+        const av=a.compare?.[k]||'—';const bv=b.compare?.[k]||'—';const diff=av!==bv;
+        return`<div class="compare-row"><span class="compare-label">${k}</span><span class="compare-val${diff?' diff':''}">${bv}</span></div>`;
+      }).join('')}</div>
+    </div>
+  </div>
+  <p style="font-size:0.72rem;color:#888;margin-top:8px"><span style="background:#fff8e6;border-radius:4px;padding:1px 5px;color:#7a4f00;font-weight:600">Highlighted</span> values differ between the two policies.</p>`;
+}
+
+// CHAT
+const HANDBOOK=`HLC Employee Handbook — Full Policy Summary:
+
+WORKING HOURS: Corporate Mon–Fri 9:30–6:00, Sat 10–5:30. Flexible from 8 AM (leave 4:30). Field teams Mon–Sat 8hrs/day. First Saturday monthly off. Seniors exempt from Saturdays. No overtime paid.
+
+ATTENDANCE: Mark in GreytHR daily. Not in by 10:30 AM without WFH notice = absent. WFH: email manager+HR before 10:30 AM. After 11:30 = half-day. 3 consecutive lates = half-day deduction. 3 consecutive absent days = salary suspended. 10 consecutive absent days = terminated.
+
+HOLIDAYS: 5 national + 9 state/festival. 1 optional holiday per year. Comp-off for working on holidays: max 4 at a time, used within 60 days, lapses else. Senior management not eligible.
+
+LEAVE: EL 12 days/year (3/quarter, post-confirmation). Carry-forward max 6 days. SL/CL 12 days/year (3/quarter, expires same quarter). Sick leave: before 10:30 AM, max 2 consecutive (beyond = EL deducted), medical cert if >3 days. Maternity: 26 weeks paid (2 pregnancies). Paternity: 10 days (2 children). Bereavement: 3 days (close family), 1 day (distant relatives), 4 hours (HLC colleague). Probation: 1 paid leave/month. Notice period: no leaves = LOP. Leave year: 1 July–30 June.
+
+SALARY: Paid by 2nd of month. Basic=40% CTC, HRA=40% Basic, Conveyance=₹1600, Statutory Bonus=8.33% Basic, Medical Allowance=₹1250. PF employer=13% Basic (capped ₹15000). ESIC employer=4.75% if Gross<₹21000. Medical insurance ₹5L family. PF employee=12% Basic. ESIC employee=0.75%. Join after 20th = paid next month.
+
+TRAVEL: Executive: non-AC bus, 2nd/3rd tier train. Management: AC bus, 3rd AC/Chair Car. Sr Mgmt: AC bus, 3rd AC + Economy air >1000km. 2-wheeler ₹4/km, car ₹10/km. DA: ₹300/day outside area, 50% if >12hrs in area. TA claims via GreytHR only by 10th of next month, grace 1 month, forfeited after 2 months.
+
+ACCOMMODATION: Executive ₹1000/1200/1400 (small/district/city). Management ₹1300/1500/2000. Sr Mgmt ₹1400/1900/3000. Staying with friend = 40%. Small town <1 lakh, district HQ 1–10 lakh, city >10 lakh.
+
+SALARY ADVANCES: Max 50% take-home, 2 instalments, no pending loan. LOANS: Confirmed + 3 months post-confirmation. Max 6× basic, 12 months repayment, 8–11% p.a. interest, approved within 30 days, guarantor required. Relocation: ₹5000 or actuals. Laptop allowance: ₹1000/month.
+
+APPRAISAL: Annual calendar June to July. Appraisals in July. Ratings: P=4 (Par Excellence), E=3 (Excellence), T=2 (Transitioning), S=1 (Starter). 360° feedback anonymous. PIP: Counselling→Written Warning→Suspension→Termination.
+
+RECRUITMENT: JD to HR → HR responds in 2 days → interview in 5 days. Rounds: HR screen → technical written → technical (lead) → technical (manager) → soft skills (HR). Internal transfers: min 1 year in role. Referral bonus after probation completion. Send referrals to hr@hippocampus.in.
+
+ETHICS: Ethics panel: hlc_ethicspanel@hippocampus.in, hears in 3 days, recommends in 1 week. POSH ICC: icc@hippocampus.in. Helpline: 8088920322. Teacher calls not allowed after 6 PM without supervisor+HR notice. Individual meetings with teachers outside work require supervisor permission. Whistle-blower protection applies.
+
+ZERO TOLERANCE: Sexual harassment, violence, fraud, drugs, racial discrimination, code of conduct violations, insubordination, confidential info disclosure.
+
+ASSETS: Devices for official use only. Laptop life 5 years, tablet 3 years. Physical damage: laptop 40% cost, tablet ₹750/20%. Theft: full depreciated cost in 3–6 months. Report loss in 48 hours. Laptops audited every 6 months.
+
+FRAUD: Advance settlement by 25th monthly. 2 months of offences = termination recommendation. Ethics committee investigates.
+
+EXIT: Confirmed employees: 60 days notice. Emergency: 15 days with manager approval. No leaves during notice (LOP). F&F within 45 days of last working day. Absconding: 15 days without contact = warning, 7 more days = termination. No F&F/relieving letter for absconding employees. Gratuity: 5 years continuous service. Retirement at 65.
+
+ONBOARDING: 3-day induction. Buddy assigned. GreytHR: hippocampus.greythr.com. HR email: hr@hippocampus.in`;
+
+let chatHist=[];
+let isTyping=false;
+
+async function sendChat(){
+  if(isTyping)return;
+  const inp=document.getElementById('chatIn');
+  const q=inp.value.trim();
+  if(!q)return;
+  inp.value='';
+  addMsg(q,'user');
+  const btn=document.getElementById('sendBtn');
+  btn.disabled=true;
+  isTyping=true;
+  const t=addMsg('Thinking…','bot thinking');
+  chatHist.push({role:'user',content:q});
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',
+        max_tokens:1000,
+        system:`You are the HR Policy Assistant for Hippocampus Learning Centres (HLC). Answer questions ONLY based on the HLC Employee Handbook below. Be concise, warm and precise. Use bullet points or tables for complex answers. If something isn't covered, say so and direct them to hr@hippocampus.in. Always cite specific numbers/rules from the handbook.\n\n${HANDBOOK}`,
+        messages:chatHist
+      })
+    });
+    const data=await res.json();
+    const reply=data.content?.find(b=>b.type==='text')?.text||'Sorry, I could not generate a response.';
+    t.className='msg bot';
+    t.innerHTML=reply.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>').replace(/\n/g,'<br>');
+    chatHist.push({role:'assistant',content:reply});
+  }catch(e){
+    t.className='msg bot';
+    t.textContent='Sorry, there was a connection error. Please try again.';
+  }
+  btn.disabled=false;
+  isTyping=false;
+}
+
+function addMsg(text,cls){
+  const d=document.getElementById('chatMsgs');
+  const m=document.createElement('div');
+  m.className='msg '+cls;
+  m.textContent=text;
+  d.appendChild(m);
+  d.scrollTop=d.scrollHeight;
+  return m;
+}
+function chip(el){document.getElementById('chatIn').value=el.textContent;sendChat();}
+
+function switchTab(t){
+  document.querySelectorAll('.tab').forEach((el,i)=>el.classList.toggle('active',['browse','chat','compare'][i]===t));
+  document.querySelectorAll('.panel').forEach(el=>el.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+}
+
+// INIT
+renderCatFilters();
+renderGrid();
+buildCompareSelects();
+renderCompare();
+</script>
+</body>
+</html>
